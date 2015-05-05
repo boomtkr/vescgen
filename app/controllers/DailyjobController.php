@@ -36,6 +36,7 @@ class DailyjobController extends BaseController {
 
 	public static function getpeopleonwork($works, $date, $time){
 		$i = 0;
+		$peopleonwork = array();
 		foreach($works as $work){
 			$peopleonwork[$i] = DB::table('job_history')->where('date','=',$date)
 							->join('person','person.id','=','job_history.person_id')
