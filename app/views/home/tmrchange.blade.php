@@ -33,22 +33,28 @@
 	?>
 	<br>
 	<h4>คนขึ้น - {{$pplincount}} คน</h4>
+	<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addArriveModal">เพิ่มคนขึ้น</button>
 	@foreach($pplinlist as $ppl)
 		<h4>
-			<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#basicModal" onclick="postpone()">เลื่อน</button>
+			<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#postponeModal">เลื่อน</button>
 			<a href={{asset('person/'.$ppl->id)}}>{{$ppl->nickname}}{{'#'}}{{$ppl->year}}</a>
 		</h4>
 	@endforeach
 	<br>
 	<h4>คนลง - {{$pploutcount}} คน</h4>
+	<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#addDepartModal">เพิ่มคนลง</button>
 	@foreach($pploutlist as $ppl)
 		<h4>
-			<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#basicModal">เลื่อน</button>
+			<button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#postponeModal">เลื่อน</button>
 			<a href={{asset('person/'.$ppl->id)}}>{{$ppl->nickname}}{{'#'}}{{$ppl->year}}</a>
 		</h4>
 	@endforeach
 
-<div class="modal fade" id="basicModal">
+	@foreach($pploncamp as $ppl)
+		{{$ppl->nickname}}
+	@endforeach
+
+<div class="modal fade" id="postponeModal">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -66,19 +72,9 @@
 				        placeholder="Enter email">
 				    </div>
 				    <div class="form-group">
-				        <label for="password">Password</label>
+				        <label for="password">New Date</label>
 				        <input type="password" class="form-control" 
 				        id="password" placeholder="Password">
-				    </div>
-				    <div class="form-group">
-				        <label for="telephone">Telephone</label>
-				        <input type="tel" class="form-control" id="telephone" 
-				        placeholder="Enter telephone number">
-				    </div>
-				    <div class="form-group">
-				        <label for="address">Address</label>
-				        <textarea id="address" class="form-control" 
-				        name="address" rows="3"></textarea>
 				    </div>
 				    <button type="submit" class="btn btn-default"> ยันยืน </button>
 				</form>
@@ -88,6 +84,75 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="addArriveModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h2>เพิ่มคนขึ้น Form</h2>
+            </div>
+            <div class="modal-body">
+                <form role="form" action="#" method="post">
+				    <div class="form-group">
+				        <label for="email">Email address</label>
+				        <input type="email" class="form-control" id="email" 
+				        placeholder="Enter email">
+				    </div>
+				    <table>
+				    	@foreach($pploutcamp as $ppl)
+				    	<tr>
+				    		<td>{{$ppl->nickname}}{{'#'}}{{$ppl->year}}</td>
+				    	</tr>
+				    	@endforeach
+				    </table>
+				    <button type="submit" class="btn btn-default"> ยันยืน </button>
+				</form>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="addDepartModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h2>เพิ่มคนลง Form</h2>
+            </div>
+            <div class="modal-body">
+                <form role="form" action="#" method="post">
+                	<div class="">
+                	</div>
+				    <div class="form-group">
+				        <label for="email">Email address</label>
+				        <input type="email" class="form-control" id="email" 
+				        placeholder="Enter email">
+				    </div>
+				    <table>
+				    	@foreach($pploncamp as $ppl)
+				    	<tr>
+				    		<td>{{$ppl->nickname}}{{'#'}}{{$ppl->year}}</td>
+				    	</tr>
+				    	@endforeach
+				    </table>
+				    <button type="submit" class="btn btn-default"> ยันยืน </button>
+				</form>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
 
 </body>
 </html>
