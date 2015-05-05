@@ -34,7 +34,7 @@ Route::get('/', function()
 	if($m==10){ $month = "ตุลาคม"; }
 	if($m==11){ $month = "พฤศจิกายน"; }
 	if($m==12){ $month = "ธันวาคม"; }
-	$thmanday = PludDate::where('date','=',$date)->get();
+	$thmanday = PludDate::where('date','=',$date)->first()->id;
 	$user_count = DB::table('oncamp')->where('date','=',$date)
 					  ->join('person','oncamp.person_id','=','person.id')
 					  ->count();
