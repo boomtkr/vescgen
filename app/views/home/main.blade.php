@@ -94,7 +94,7 @@
                                 <div class="sidebar-user-name"><a href="/" style="color:#ffffff;text-decoration:none">V E S C <strong>G&nbsp; E&nbsp; N</strong></a></div>
                             </div>
                             <div class="sidebar-section clearfix sidebar-nav-mini-hide">
-                                <div style="font-size:20px"><small>อังคาร 5 พฤษภาคม 58<br>Manday 2</small></div>
+                                <div style="font-size:20px"><small>อังคาร {{$day}} {{$month}} {{$year-2500}}<br>Manday {{$thmanday}}</small></div>
                             </div>
                             <!-- END User Info -->
 
@@ -107,7 +107,9 @@
                                     <span class="sidebar-header-title">Main Menu</span>
                                 </li>
                                 <li>
-                                    <a href="/" class=" active"><i class="fa fa-th-large sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Dashboard</span></a>
+                                    @if(Route::getCurrentRoute()->getPath()=='/') <a href="/" class=" active">
+                                    @else <a href="/"> @endif
+                                    <i class="fa fa-th-large sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Dashboard</span></a>
                                 </li>
                                 <li>
                                     <a href={{asset('namelist')}} ><i class="fa fa-download sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">อัพเดตรายชื่อ</span></a>
@@ -173,32 +175,32 @@
                                             </div>
                                             <div class="col-sm-2 hidden-xs">
                                                 <h2 class="animation-hatch">
-                                                    <strong>20</strong><br>
+                                                    <strong>{{$senior_count}}</strong><br>
                                                     <small><i class="fa fa-thumbs-o-up"></i> Senior</small>
                                                 </h2>
                                             </div>
                                             <div class="col-sm-2 hidden-xs">
                                                 <h2 class="animation-hatch">
-                                                    <strong>30</strong><br>
+                                                    <strong>{{$junior_count}}</strong><br>
                                                     <small><i class="fa fa-heart-o"></i> Junior</small>
                                                 </h2>
                                             </div>
                                             <div class="col-sm-2 hidden-xs">
                                                 <h2 class="animation-hatch">
-                                                    <strong>40</strong><br>
+                                                    <strong>{{$more_count}}</strong><br>
                                                     <small><i class="fa fa-calendar-o"></i> More</small>
                                                 </h2>
                                             </div>
                                             <!-- We hide the last stat to fit the other 3 on small devices -->
                                             <div class="col-sm-2 hidden-xs">
                                                 <h2 class="animation-hatch">
-                                                    <strong>50</strong><br>
+                                                    <strong>{{$freshy_count}}</strong><br>
                                                     <small><i class="fa fa-map-marker"></i> Freshy</small>
                                                 </h2>
                                             </div>
                                             <div class="col-sm-3">
                                                 <h2 class="animation-hatch">
-                                                    <strong>140</strong><br>
+                                                    <strong>{{$user_count}}</strong><br>
                                                     <small><i class="fa fa-map-marker"></i> Total</small>
                                                 </h2>
                                             </div>
@@ -249,57 +251,7 @@
                     </div>
                     <!-- END Modal Header -->
 
-                    <!-- Modal Body -->
-                    <div class="modal-body">
-                        <form action="index.html" method="post" enctype="multipart/form-data" class="form-horizontal form-bordered" onsubmit="return false;">
-                            <fieldset>
-                                <legend>Vital Info</legend>
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label">Username</label>
-                                    <div class="col-md-8">
-                                        <p class="form-control-static">Admin</p>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label" for="user-settings-email">Email</label>
-                                    <div class="col-md-8">
-                                        <input type="email" id="user-settings-email" name="user-settings-email" class="form-control" value="admin@example.com">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label" for="user-settings-notifications">Email Notifications</label>
-                                    <div class="col-md-8">
-                                        <label class="switch switch-primary">
-                                            <input type="checkbox" id="user-settings-notifications" name="user-settings-notifications" value="1" checked>
-                                            <span></span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </fieldset>
-                            <fieldset>
-                                <legend>Password Update</legend>
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label" for="user-settings-password">New Password</label>
-                                    <div class="col-md-8">
-                                        <input type="password" id="user-settings-password" name="user-settings-password" class="form-control" placeholder="Please choose a complex one..">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-4 control-label" for="user-settings-repassword">Confirm New Password</label>
-                                    <div class="col-md-8">
-                                        <input type="password" id="user-settings-repassword" name="user-settings-repassword" class="form-control" placeholder="..and confirm it!">
-                                    </div>
-                                </div>
-                            </fieldset>
-                            <div class="form-group form-actions">
-                                <div class="col-xs-12 text-right">
-                                    <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
-                                    <button type="submit" class="btn btn-sm btn-primary">Save Changes</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <!-- END Modal Body -->
+                    
                 </div>
             </div>
         </div>
