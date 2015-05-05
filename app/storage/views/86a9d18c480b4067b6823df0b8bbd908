@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+  	<?php echo HTML::style('css/bootstrap.css');; ?>
+
+  	<?php echo HTML::script('js/jquery.min.js');; ?>
+
+  	<?php echo HTML::script('js/bootstrap.min.js');; ?>
+
+	<style>
+		td{
+			padding-right: 20px;
+		}
+	</style>
+</head>
+<body>
+	<h3><a href=<?php echo asset('/'); ?>>back</a></h3>
+	<ul style="list-style: none;">
+		<li style="display: inline; padding-right: 20px"><a href=<?php echo asset('namelist'); ?>>อัพเดทรายชื่อ</a></li>
+		<li style="display: inline; padding-right: 20px"><a href=<?php echo asset('jobmgt'); ?>>แบ่งงาน</a></li>
+		<li style="display: inline; padding-right: 20px"><a href=<?php echo asset('jobtoday'); ?>>กระดานหน้าที่วันนี้</a></li>
+		<li style="display: inline; padding-right: 20px"><a href=<?php echo asset('tmrchange'); ?>>คนขึ้นลงพรุ่งนี้</a></li>
+		<li style="display: inline; padding-right: 20px"><a href=<?php echo asset('dailyname'); ?>>รายชื่อรายวัน</a></li>
+		<li style="display: inline; padding-right: 20px"><a href=<?php echo asset('allname'); ?>>รายชื่อทั้งหมด</a></li>
+		<li style="display: inline; padding-right: 20px"><a href=<?php echo asset('dailyjob'); ?>>หน้าที่รายวัน</a></li>
+		<li style="display: inline; padding-right: 20px"><a href=<?php echo asset('allwork'); ?>>หน้าที่ทั้งหมด</a></li>
+	</ul>
+
+
+	<div style="margin-left: 20px">
+		<h2>Statistics</h2>
+		<h5>people: <?php echo $user_count; ?></h5>
+		<h5>man: <?php echo $male_count; ?>    
+			woman: <?php echo $female_count; ?></h5>
+		<h5>senior: <?php echo $senior_count; ?>
+
+			junior: <?php echo $junior_count; ?>
+
+			more: <?php echo $more_count; ?>
+
+			freshy: <?php echo $freshy_count; ?></h5>
+		<h5>totalmanday: </h5>		
+	</div>
+
+	<div class="dropdown">
+		<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Sort By
+	  	<span class="caret"></span></button>
+	  	<ul class="dropdown-menu">
+	    	<li><a href="<?php echo asset('allname/year'); ?>">ชั้นปี</a></li>
+	    	<li><a href="<?php echo asset('allname/name'); ?>">ชื่อจริง</a></li>
+	    	<li><a href="<?php echo asset('allname/nickname'); ?>">ชื่อเล่น</a></li>
+	  	</ul>
+	</div>
+
+	<table style="margin-left: 10px"> 
+		<?php foreach($users as $user): ?>
+			<tr>
+				<td><?php echo $user->first_name; ?></td>
+				<td><?php echo $user->last_name; ?></td>
+				<td><?php echo $user->nickname; ?></td>
+				<td><?php echo $user->faculty; ?></td>
+				<td><?php echo $user->dep; ?></td>
+				<td><?php echo $user->year; ?></td>
+				<td><?php echo $user->gender; ?></td>
+				<td><?php echo $user->student_id; ?></td>
+				<td><?php echo $user->citizen_id; ?></td>
+				<td><?php echo $user->phone; ?></td>
+				<td><?php echo $user->birthday; ?></td>
+				<td><?php echo $user->str_lvl; ?></td>
+				<td><?php echo $user->total_manday; ?></td>
+			</tr>
+		<?php endforeach; ?>
+	</table>
+</body>

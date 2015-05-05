@@ -1,0 +1,51 @@
+<html>
+<head>
+	<meta charset="utf-8">
+    <?php echo HTML::style('css/bootstrap.css');; ?>
+
+    <?php echo HTML::style('css/bootstrap.min.css');; ?>
+
+    <?php echo HTML::style('css/bootstrap-theme.css');; ?>
+
+    <?php echo HTML::style('css/bootstrap-theme.min.css');; ?>
+
+    <?php echo HTML::style('js/bootstrap.js');; ?>
+
+    <?php echo HTML::script('js/bootstrap.min.js');; ?>
+
+    <style>
+    	td {
+    		padding-right: 40px;
+    	}
+    </style>
+</head>
+<body>
+	<h3><a href=<?php echo asset('/'); ?>>back</a></h3>
+	<ul style="list-style: none;">
+		<li style="display: inline; padding-right: 20px"><a href=<?php echo asset('namelist'); ?>>อัพเดทรายชื่อ</a></li>
+		<li style="display: inline; padding-right: 20px"><a href=<?php echo asset('jobmgt'); ?>>แบ่งงาน</a></li>
+		<li style="display: inline; padding-right: 20px"><a href=<?php echo asset('jobtoday'); ?>>กระดานหน้าที่วันนี้</a></li>
+		<li style="display: inline; padding-right: 20px"><a href=<?php echo asset('tmrchange'); ?>>คนขึ้นลงพรุ่งนี้</a></li>
+		<li style="display: inline; padding-right: 20px"><a href=<?php echo asset('dailyname'); ?>>รายชื่อรายวัน</a></li>
+		<li style="display: inline; padding-right: 20px"><a href=<?php echo asset('allname'); ?>>รายชื่อทั้งหมด</a></li>
+		<li style="display: inline; padding-right: 20px"><a href=<?php echo asset('dailyjob'); ?>>หน้าที่รายวัน</a></li>
+		<li style="display: inline; padding-right: 20px"><a href=<?php echo asset('allwork'); ?>>หน้าที่ทั้งหมด</a></li>
+	</ul>
+
+	<table style="margin-left:20px;">
+		<tr>
+			<td><?php echo "id"; ?></td>
+			<td><?php echo "work_name"; ?></td>
+			<td><?php echo 'location'; ?></td>
+			<td><?php echo 'work_lvl'; ?></td>
+			</tr>
+		<?php foreach($works as $work): ?>
+			<tr>
+				<td><?php echo $work->id; ?></td>
+				<td><?php echo $work->work_name; ?></td>
+				<td><?php echo $work->location; ?></td>
+				<td><?php echo $work->work_lvl; ?></td>
+			</tr>
+		<?php endforeach; ?>
+	</table>
+</body>

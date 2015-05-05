@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+  	<?php echo HTML::style('css/bootstrap.css');; ?>
+
+  	<?php echo HTML::script('js/jquery.min.js');; ?>
+
+  	<?php echo HTML::script('js/bootstrap.min.js');; ?>
+
+	<style>
+		td{
+			padding-right: 12px;
+		}
+	</style>
+</head>
+<body style="padding-left: 20px;">
+
+	<h3><a href=<?php echo asset('/'); ?>>back</a></h3>
+	<ul style="list-style: none;">
+
+		<li style="display: inline; padding-right: 20px"><a href=<?php echo asset('namelist'); ?>>อัพเดทรายชื่อ</a></li>
+		<li style="display: inline; padding-right: 20px"><a href=<?php echo asset('jobmgt'); ?>>แบ่งงาน</a></li>
+		<li style="display: inline; padding-right: 20px"><a href=<?php echo asset('jobtoday'); ?>>กระดานหน้าที่วันนี้</a></li>
+		<li style="display: inline; padding-right: 20px"><a href=<?php echo asset('tmrchange'); ?>>คนขึ้นลงพรุ่งนี้</a></li>
+		<li style="display: inline; padding-right: 20px"><a href=<?php echo asset('dailyname'); ?>>รายชื่อรายวัน</a></li>
+		<li style="display: inline; padding-right: 20px"><a href=<?php echo asset('allname'); ?>>รายชื่อทั้งหมด</a></li>
+		<li style="display: inline; padding-right: 20px"><a href=<?php echo asset('dailyjob'); ?>>หน้าที่รายวัน</a></li>
+		<li style="display: inline; padding-right: 20px"><a href=<?php echo asset('allwork'); ?>>หน้าที่ทั้งหมด</a></li>
+	</ul>
+
+    <?php echo Form::open(array('url' => 'person/'.$person->id.'/update')); ?>
+
+		<input type="text" name="first_name" value=<?php echo $person->first_name; ?>><br>
+		<input type="text" name="last_name" value=<?php echo $person->last_name; ?>><br>
+		<input type="text" name="nickname" value=<?php echo $person->nickname; ?>><br>
+		<input type="text" name="faculty" value=<?php echo $person->faculty; ?>><br>
+		<input type="text" name="dep" value=<?php echo $person->dep; ?>><br>
+		<input type="text" name="year" value=<?php echo $person->year; ?>><br>
+		<input type="text" name="gender" value=<?php echo $person->gender; ?>><br>
+		<input type="text" name="student_id" value=<?php echo $person->student_id; ?>><br>
+		<input type="text" name="citizen_id" value=<?php echo $person->citizen_id; ?>><br>
+		<input type="text" name="phone" value=<?php echo $person->phone; ?>><br>
+		<input type="text" name="birthday" value=<?php echo $person->birthday; ?>><br>
+		<input type="text" name="str_lvl" value=<?php echo $person->str_lvl; ?>><br>
+	    <input type="submit" value="Change Submit">
+	<?php echo Form::close(); ?>           
+
+	<h4>หน้าที่ย้อนหลัง 5 วัน</h4>
+	<?php $count = count($datehistory) ?>
+	<table>
+	<?php for($i=0; $i<$count; $i++): ?>
+		<tr>
+			<td><?php echo $datehistory[$i]; ?></td>
+			<td><?php echo $timehistory[$i]; ?></td>
+			<td><?php echo $jobhistory[$i]; ?></td>
+		</tr>
+	<?php endfor; ?>
+	</table>	
+</body>
+</html>
