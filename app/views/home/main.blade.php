@@ -62,7 +62,7 @@
             <!-- Preloader functionality (initialized in js/app.js) - pageLoading() -->
             <!-- Used only if page preloader is enabled from inc/config (PHP version) or the class 'page-loading' is added in #page-wrapper element (HTML version) -->
             <div class="preloader themed-background">
-                <h1 class="push-top-bottom text-light text-center"><strong>Pro</strong>UI</h1>
+                <h1 class="push-top-bottom text-light text-center"><strong>VESC GEN</strong>erator</h1>
                 <div class="inner">
                     <h3 class="text-light visible-lt-ie9 visible-lt-ie10"><strong>Loading..</strong></h3>
                     <div class="preloader-spinner hidden-lt-ie9 hidden-lt-ie10"></div>
@@ -94,7 +94,7 @@
                                 <div class="sidebar-user-name"><a href="/" style="color:#ffffff;text-decoration:none">V E S C <strong>G&nbsp; E&nbsp; N</strong></a></div>
                             </div>
                             <div class="sidebar-section clearfix sidebar-nav-mini-hide">
-                                <div style="font-size:20px"><small>อังคาร {{$day}} {{$month}} {{$year-2500}}<br>Manday {{$thmanday}}</small></div>
+                                <div style="font-size:20px"><small>{{--$day--}} {{--$month--}} {{--$year--}}<br>Manday {{--$thmanday--}}</small></div>
                             </div>
                             <!-- END User Info -->
 
@@ -107,18 +107,18 @@
                                     <span class="sidebar-header-title">Main Menu</span>
                                 </li>
                                 <li>
-                                    @if(Route::getCurrentRoute()->getPath()=='/') <a href="/" class=" active">
-                                    @else <a href="/"> @endif
-                                    <i class="fa fa-th-large sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Dashboard</span></a>
+                                    <a href="/" class="{{ Route::getCurrentRoute()->getPath()=='/' ? 'active' : ''}}"><i class="fa fa-th-large sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Dashboard</span></a>
                                 </li>
                                 <li>
+
                                     <a href={{asset('namelist')}} ><i class="fa fa-download sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">อัพเดตรายชื่อ</span></a>
                                 </li>
                                 <li>
                                     <a href={{asset('jobmgt')}}><i class="gi gi-ax sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">แบ่งงาน</span></a>
                                 </li>
                                 <li>
-                                    <a href={{asset('jobtoday')}}><i class="gi gi-imac sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">กระดานหน้าที่วันนี้</span></a>
+                                    <a href="/jobtoday" class="{{ Route::getCurrentRoute()->getPath()=='jobtoday' ? 'active' : ''}}"><i class="gi gi-imac sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">กระดานหน้าที่วันนี้</span></a>
+                                    
                                 </li>
                                 <li>
                                     <a href={{asset('tmrchange')}}><i class="gi gi-sorting sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">คนขึ้นลงพรุ่งนี้</span></a>
@@ -154,65 +154,7 @@
                     <div id="page-content">
                         <!-- Dashboard Header -->
                         <!-- For an image header add the class 'content-header-media' and an image as in the following example -->
-                        <div class="content-header content-header-media">
-                            <div class="header-section">
-                                <div class="row">
-                                    <!-- Main Title (hidden on small devices for the statistics to fit) -->
-                                    <div class="col-md-4 col-lg-4 hidden-xs hidden-sm">
-                                        
-                                                <h3 class="animation-hatch">
-                                                    Welcome to <strong>VESC GEN</strong>.<br>
-                                                    
-                                                </h3>
-                                            
-                                    </div>
-                                    <!-- END Main Title -->
-
-                                    <!-- Top Stats -->
-                                    <div class="col-md-8 col-lg-8">
-                                        <div class="row text-center">
-                                            <div class="col-sm-1 hidden-xs">
-                                            </div>
-                                            <div class="col-sm-2 hidden-xs">
-                                                <h2 class="animation-hatch">
-                                                    <strong>{{$senior_count}}</strong><br>
-                                                    <small><i class="fa fa-thumbs-o-up"></i> Senior</small>
-                                                </h2>
-                                            </div>
-                                            <div class="col-sm-2 hidden-xs">
-                                                <h2 class="animation-hatch">
-                                                    <strong>{{$junior_count}}</strong><br>
-                                                    <small><i class="fa fa-heart-o"></i> Junior</small>
-                                                </h2>
-                                            </div>
-                                            <div class="col-sm-2 hidden-xs">
-                                                <h2 class="animation-hatch">
-                                                    <strong>{{$more_count}}</strong><br>
-                                                    <small><i class="fa fa-calendar-o"></i> More</small>
-                                                </h2>
-                                            </div>
-                                            <!-- We hide the last stat to fit the other 3 on small devices -->
-                                            <div class="col-sm-2 hidden-xs">
-                                                <h2 class="animation-hatch">
-                                                    <strong>{{$freshy_count}}</strong><br>
-                                                    <small><i class="fa fa-map-marker"></i> Freshy</small>
-                                                </h2>
-                                            </div>
-                                            <div class="col-sm-3">
-                                                <h2 class="animation-hatch">
-                                                    <strong>{{$user_count}}</strong><br>
-                                                    <small><i class="fa fa-map-marker"></i> Total</small>
-                                                </h2>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- END Top Stats -->
-                                </div>
-                            </div>
-                            <!-- For best results use an image with a resolution of 2560x248 pixels (You can also use a blurred image with ratio 10:1 - eg: 1000x100 pixels - it will adjust and look great!) -->
-                            {{-- <img src="img/placeholders/headers/dashboard_header.jpg" alt="header image" class="animation-pulseSlow"> --}}
-                            {{ HTML::image('img/widget1_header.jpg', 'VESC Task Generator') }}
-                        </div>
+                        
                         <!-- END Dashboard Header -->
 
                         @yield('content')

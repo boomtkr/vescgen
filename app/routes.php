@@ -60,9 +60,9 @@ Route::get('/', function()
 								  ->with('more_count',$more_count)
 								  ->with('freshy_count',$freshy_count);
 });
-Route::get('/home', function()
+Route::get('/workspace', function()
 {
-	return View::make('home/home');
+	return View::make('home/workspace');
 });
 Route::get('/jobtoday','JobtodayController@showdata');
 
