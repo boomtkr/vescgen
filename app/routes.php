@@ -19,7 +19,10 @@ Route::get('/', function()
 {
 	return View::make('home/home');
 });
-
+Route::get('/home', function()
+{
+	return View::make('home/home');
+});
 Route::get('/jobtoday','JobtodayController@showdata');
 
 Route::get('/tmrchange','TmrchangeController@showdata');
