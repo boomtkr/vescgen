@@ -94,7 +94,7 @@
                                 <div class="sidebar-user-name"><a href="/" style="color:#ffffff;text-decoration:none">V E S C <strong>G&nbsp; E&nbsp; N</strong></a></div>
                             </div>
                             <div class="sidebar-section clearfix sidebar-nav-mini-hide">
-                                <div style="font-size:20px"><small>{{--$day--}} {{--$month--}} {{--$year--}}<br>Manday {{--$thmanday--}}</small></div>
+                                <div style="font-size:20px"><small>{{$day}} {{$month}} {{$year}}<br>Manday {{$thmanday}}</small></div>
                             </div>
                             <!-- END User Info -->
 

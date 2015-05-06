@@ -22,32 +22,32 @@
                     </div>
                     <div class="col-sm-2 hidden-xs">
                         <h2 class="animation-hatch">
-                            <strong>{{--$senior_count--}}</strong><br>
+                            <strong>{{$senior_count}}</strong><br>
                             <small>Senior</small>
                         </h2>
                     </div>
                     <div class="col-sm-2 hidden-xs">
                         <h2 class="animation-hatch">
-                            <strong>{{--$junior_count--}}</strong><br>
+                            <strong>{{$junior_count}}</strong><br>
                             <small>Junior</small>
                         </h2>
                     </div>
                     <div class="col-sm-2 hidden-xs">
                         <h2 class="animation-hatch">
-                            <strong>{{--$more_count--}}</strong><br>
+                            <strong>{{$more_count}}</strong><br>
                             <small>More</small>
                         </h2>
                     </div>
                     <!-- We hide the last stat to fit the other 3 on small devices -->
                     <div class="col-sm-2 hidden-xs">
                         <h2 class="animation-hatch">
-                            <strong>{{--$freshy_count--}}</strong><br>
+                            <strong>{{$freshy_count}}</strong><br>
                             <small>Freshy</small>
                         </h2>
                     </div>
                     <div class="col-sm-3">
                         <h2 class="animation-hatch">
-                            <strong>{{--$user_count--}}</strong><br>
+                            <strong>{{$user_count}}</strong><br>
                             <small><i class="fa fa-users"></i> Total</small>
                         </h2>
                     </div>
