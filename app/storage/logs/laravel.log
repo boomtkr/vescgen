@@ -13369,3 +13369,21 @@ Stack trace:
 #9 /Applications/XAMPP/xamppfiles/htdocs/vescgen/bootstrap/compiled.php(657): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
 #10 /Applications/XAMPP/xamppfiles/htdocs/vescgen/public/index.php(49): Illuminate\Foundation\Application->run()
 #11 {main} [] []
+[2015-05-06 07:15:11] production.ERROR: exception 'Symfony\Component\HttpKernel\Exception\NotFoundHttpException' in /Applications/XAMPP/xamppfiles/htdocs/vescgen/bootstrap/compiled.php:5738
+Stack trace:
+#0 /Applications/XAMPP/xamppfiles/htdocs/vescgen/bootstrap/compiled.php(5060): Illuminate\Routing\RouteCollection->match(Object(Illuminate\Http\Request))
+#1 /Applications/XAMPP/xamppfiles/htdocs/vescgen/bootstrap/compiled.php(5048): Illuminate\Routing\Router->findRoute(Object(Illuminate\Http\Request))
+#2 /Applications/XAMPP/xamppfiles/htdocs/vescgen/bootstrap/compiled.php(5040): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#3 /Applications/XAMPP/xamppfiles/htdocs/vescgen/bootstrap/compiled.php(715): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#4 /Applications/XAMPP/xamppfiles/htdocs/vescgen/bootstrap/compiled.php(696): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#5 /Applications/XAMPP/xamppfiles/htdocs/vescgen/bootstrap/compiled.php(7812): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#6 /Applications/XAMPP/xamppfiles/htdocs/vescgen/bootstrap/compiled.php(8419): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#7 /Applications/XAMPP/xamppfiles/htdocs/vescgen/bootstrap/compiled.php(8366): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#8 /Applications/XAMPP/xamppfiles/htdocs/vescgen/bootstrap/compiled.php(11029): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#9 /Applications/XAMPP/xamppfiles/htdocs/vescgen/bootstrap/compiled.php(657): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#10 /Applications/XAMPP/xamppfiles/htdocs/vescgen/public/index.php(49): Illuminate\Foundation\Application->run()
+#11 {main} [] []
+[2015-05-06 07:27:05] production.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected ';'' in /Applications/XAMPP/xamppfiles/htdocs/VESCgen/app/storage/views/00cf476c5988b621cb791a985c28d910:8
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []

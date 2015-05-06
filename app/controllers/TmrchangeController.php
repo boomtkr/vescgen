@@ -7,6 +7,29 @@ class TmrchangeController extends BaseController {
 		$thistoday = str_replace('-', '/', $today);
 		$tomorrow = date('Y-m-d',strtotime($thistoday . "+1 days"));
 
+		$date = $today;
+		$exdate = explode("-", $date);
+		$year = (int)$exdate[0] + 543;
+		$day = (int)$exdate[2];
+		$m = (int)$exdate[1];
+		if($m==1){ $month = "มกราคม"; }
+		if($m==2){ $month = "กุมภาพันธ์"; }
+		if($m==3){ $month = "มีนาคม"; }
+		if($m==4){ $month = "เมษายน"; }
+		if($m==5){ $month = "พฤษภาคม"; }
+		if($m==6){ $month = "มิถุนายน"; }
+		if($m==7){ $month = "กรกฏาคม"; }
+		if($m==8){ $month = "สิงหาคม"; }
+		if($m==9){ $month = "กันยายน"; }
+		if($m==10){ $month = "ตุลาคม"; }
+		if($m==11){ $month = "พฤศจิกายน"; }
+		if($m==12){ $month = "ธันวาคม"; }
+		$thmanday = PludDate::where('date','=',$date)->first()->id;
+		$weekday = Array('Monday'=>'จันทร์', 'Tuesday'=>'อังคาร', 'Wednesday'=>'พุธ',
+						 'Thursday'=>'พฤหัสบดี', 'Friday'=>'ศุกร์', 'Saturday'=>'เสาร์',
+						 'Sunday'=>'อาทิตย์');
+		$tdate = date("l",strtotime($date));
+
 		$ppltodaycount = OnCamp::where('date','=',$today)->count();
 
 		$pplinlist = DB::table('manday_history')
@@ -41,7 +64,12 @@ class TmrchangeController extends BaseController {
 			$i++;
 		}
 
-		return View::make('home/tmrchange')->with('today',$today)
+		return View::make('home/tmrchange')->with('day',$day)
+								 		   ->with('weekday',$weekday[$tdate])
+								  		   ->with('month',$month)
+								  		   ->with('year',$year)
+								  		   ->with('thmanday',$thmanday)
+								  		   ->with('today',$today)
 										   ->with('tomorrow',$tomorrow)
 										   ->with('pplinlist',$pplinlist)
 										   ->with('pploutlist',$pploutlist)

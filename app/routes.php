@@ -35,6 +35,11 @@ Route::get('/', function()
 	if($m==11){ $month = "พฤศจิกายน"; }
 	if($m==12){ $month = "ธันวาคม"; }
 	$thmanday = PludDate::where('date','=',$date)->first()->id;
+	$weekday = Array('Monday'=>'จันทร์', 'Tuesday'=>'อังคาร', 'Wednesday'=>'พุธ',
+					 'Thursday'=>'พฤหัสบดี', 'Friday'=>'ศุกร์', 'Saturday'=>'เสาร์',
+					 'Sunday'=>'อาทิตย์');
+	$tdate = date("l",strtotime($date));
+	echo $weekday[$tdate];
 	$user_count = DB::table('oncamp')->where('date','=',$date)
 					  ->join('person','oncamp.person_id','=','person.id')
 					  ->count();
@@ -50,7 +55,9 @@ Route::get('/', function()
 	$freshy_count = DB::table('oncamp')->where('date','=',$date)
 					  ->join('person','oncamp.person_id','=','person.id')
 					  ->where('person.year','=',1)->count();
+
 	return View::make('home/home')->with('day',$day)
+								  ->with('weekday',$weekday[$tdate])
 								  ->with('month',$month)
 								  ->with('year',$year)
 								  ->with('thmanday',$thmanday)
