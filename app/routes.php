@@ -67,6 +67,16 @@ Route::get('/workspace', function()
 Route::get('/jobtoday','JobtodayController@showdata');
 
 Route::get('/tmrchange','TmrchangeController@showdata');
+Route::get('/tmrchange/add/depart','TmrchangeController@adddepart');
+Route::get('/tmrchange/add/arrive','TmrchangeController@addarrive');
+Route::post('/tmrchange/add/depart/update','TmrchangeController@updateadddepart');
+Route::post('/tmrchange/add/arrive/update','TmrchangeController@updateaddarrive');
+Route::post('/tmrchange/add/arrive/update/{id}/new','TmrchangeController@updateaddarrivenew');
+Route::post('/tmrchange/add/arrive/update/{id}/edit','TmrchangeController@updateaddarriveedit');
+Route::get('/tmrchange/postpone/depart/{id}','TmrchangeController@postponedepart');
+Route::get('/tmrchange/postpone/arrive/{id}','TmrchangeController@postponearrive');
+Route::post('/tmrchange/postpone/depart/{id}/update','TmrchangeController@updatepostponedepart');
+Route::post('/tmrchange/postpone/arrive/{id}/update','TmrchangeController@updatepostponearrive');
 
 Route::get('/person/{id}','PersonController@persondetails');
 Route::post('/person/{id}/update','PersonController@updatedetails');

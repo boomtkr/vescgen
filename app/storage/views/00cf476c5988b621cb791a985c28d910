@@ -1,13 +1,9 @@
 <?php
 
-	$today = date('Y-m-d',strtotime("22-05-2015"));
-	$date = $today;
-	$tomorrow = $today;
+		$today = Time::select('date')->first()->date;
+		$id = 2;
+		$manhis = MandayHistory::where('person_id','=',$id)->where('date_in','<',$today)
+					->where('date_out','>',$today)->first(); 
 
-	$weekday = Array('Monday'=>'จันทร์', 'Tuesday'=>'อังคาร', 'Wednesday'=>'พุธ',
-					 'Thursday'=>'พฤหัสบดี', 'Friday'=>'ศุกร์', 'Saturday'=>'เสาร์',
-					 'Sunday'=>'อาทิตย์');
-	$tdate = date("l",strtotime($tomorrow));
-	echo $weekday[$tdate];
-
+		dd($manhis);
 ?>
