@@ -26,6 +26,28 @@ class DailynameController extends BaseController {
 	}
 
 	public static function sortbyyear(){
+		$date = Time::select('date')->first()->date;
+		$exdate = explode("-", $date);
+		$year = (int)$exdate[0] + 543;
+		$day = (int)$exdate[2];
+		$m = (int)$exdate[1];
+		if($m==1){ $month = "มกราคม"; }
+		if($m==2){ $month = "กุมภาพันธ์"; }
+		if($m==3){ $month = "มีนาคม"; }
+		if($m==4){ $month = "เมษายน"; }
+		if($m==5){ $month = "พฤษภาคม"; }
+		if($m==6){ $month = "มิถุนายน"; }
+		if($m==7){ $month = "กรกฏาคม"; }
+		if($m==8){ $month = "สิงหาคม"; }
+		if($m==9){ $month = "กันยายน"; }
+		if($m==10){ $month = "ตุลาคม"; }
+		if($m==11){ $month = "พฤศจิกายน"; }
+		if($m==12){ $month = "ธันวาคม"; }
+		$thmanday = PludDate::where('date','=',$date)->first()->id;
+		$weekday = Array('Monday'=>'จันทร์', 'Tuesday'=>'อังคาร', 'Wednesday'=>'พุธ',
+						 'Thursday'=>'พฤหัสบดี', 'Friday'=>'ศุกร์', 'Saturday'=>'เสาร์',
+						 'Sunday'=>'อาทิตย์');
+		$tdate = date("l",strtotime($date));
 		$sort = "year";
 		$today = Time::select('date')->first()->date;
 		$currentplud = self::findcurrentplud($today); 
@@ -73,7 +95,12 @@ class DailynameController extends BaseController {
 					  ->join('person','oncamp.person_id','=','person.id')
 					  ->where('person.year','=',1)
 					  ->get(array('person_id','first_name','last_name','nickname','year'));
-		return View::make('home/dailyname')->with('users',$users)
+		return View::make('home/dailyname')->with('day',$day)
+										   ->with('weekday',$weekday[$tdate])
+										   ->with('month',$month)
+										   ->with('year',$year)
+										   ->with('thmanday',$thmanday)
+										   ->with('users',$users)
 										   ->with('userdesp',$userdesp)
 										   ->with('sort',$sort)
 										   ->with('plud',$plud)
@@ -91,6 +118,28 @@ class DailynameController extends BaseController {
 	}
 
 	public static function sortbygender(){
+		$date = Time::select('date')->first()->date;
+		$exdate = explode("-", $date);
+		$year = (int)$exdate[0] + 543;
+		$day = (int)$exdate[2];
+		$m = (int)$exdate[1];
+		if($m==1){ $month = "มกราคม"; }
+		if($m==2){ $month = "กุมภาพันธ์"; }
+		if($m==3){ $month = "มีนาคม"; }
+		if($m==4){ $month = "เมษายน"; }
+		if($m==5){ $month = "พฤษภาคม"; }
+		if($m==6){ $month = "มิถุนายน"; }
+		if($m==7){ $month = "กรกฏาคม"; }
+		if($m==8){ $month = "สิงหาคม"; }
+		if($m==9){ $month = "กันยายน"; }
+		if($m==10){ $month = "ตุลาคม"; }
+		if($m==11){ $month = "พฤศจิกายน"; }
+		if($m==12){ $month = "ธันวาคม"; }
+		$thmanday = PludDate::where('date','=',$date)->first()->id;
+		$weekday = Array('Monday'=>'จันทร์', 'Tuesday'=>'อังคาร', 'Wednesday'=>'พุธ',
+						 'Thursday'=>'พฤหัสบดี', 'Friday'=>'ศุกร์', 'Saturday'=>'เสาร์',
+						 'Sunday'=>'อาทิตย์');
+		$tdate = date("l",strtotime($date));
 		$sort = "gender";
 		$today = Time::select('date')->first()->date;
 		$currentplud = self::findcurrentplud($today);
@@ -130,7 +179,12 @@ class DailynameController extends BaseController {
 					  ->where('person.gender','=','F')
 					  ->orderBy('year','DSC')
 					  ->get(array('person_id','first_name','last_name','nickname','year'));
-		return View::make('home/dailyname')->with('users',$users)
+		return View::make('home/dailyname')->with('day',$day)
+										   ->with('weekday',$weekday[$tdate])
+										   ->with('month',$month)
+										   ->with('year',$year)
+										   ->with('thmanday',$thmanday)
+										   ->with('users',$users)
 										   ->with('userdesp',$userdesp)
 										   ->with('sort',$sort)
 										   ->with('plud',$plud)
@@ -193,7 +247,12 @@ class DailynameController extends BaseController {
 					  ->join('person','oncamp.person_id','=','person.id')
 					  ->where('person.year','=',1)
 					  ->get(array('person_id','first_name','last_name','nickname','year'));
-		return View::make('home/dailyname')->with('users',$users)
+		return View::make('home/dailyname')->with('day',$day)
+										   ->with('weekday',$weekday[$tdate])
+										   ->with('month',$month)
+										   ->with('year',$year)
+										   ->with('thmanday',$thmanday)
+										   ->with('users',$users)
 										   ->with('userdesp',$userdesp)
 										   ->with('sort',$sort)
 										   ->with('plud',$plud)
@@ -210,6 +269,28 @@ class DailynameController extends BaseController {
 	}
 
 	public static function sortbygenderp($plud){
+		$tddate = Time::select('date')->first()->date;
+		$exdate = explode("-", $tddate);
+		$year = (int)$exdate[0] + 543;
+		$day = (int)$exdate[2];
+		$m = (int)$exdate[1];
+		if($m==1){ $month = "มกราคม"; }
+		if($m==2){ $month = "กุมภาพันธ์"; }
+		if($m==3){ $month = "มีนาคม"; }
+		if($m==4){ $month = "เมษายน"; }
+		if($m==5){ $month = "พฤษภาคม"; }
+		if($m==6){ $month = "มิถุนายน"; }
+		if($m==7){ $month = "กรกฏาคม"; }
+		if($m==8){ $month = "สิงหาคม"; }
+		if($m==9){ $month = "กันยายน"; }
+		if($m==10){ $month = "ตุลาคม"; }
+		if($m==11){ $month = "พฤศจิกายน"; }
+		if($m==12){ $month = "ธันวาคม"; }
+		$thmanday = PludDate::where('date','=',$date)->first()->id;
+		$weekday = Array('Monday'=>'จันทร์', 'Tuesday'=>'อังคาร', 'Wednesday'=>'พุธ',
+						 'Thursday'=>'พฤหัสบดี', 'Friday'=>'ศุกร์', 'Saturday'=>'เสาร์',
+						 'Sunday'=>'อาทิตย์');
+		$tdate = date("l",strtotime($date));
 		$sort = "gender";
 		$today = Time::select('date')->first()->date;
 		$currentplud = self::findcurrentplud($today);
@@ -248,7 +329,12 @@ class DailynameController extends BaseController {
 					  ->where('person.gender','=','F')
 					  ->orderBy('year','DSC')
 					  ->get(array('person_id','first_name','last_name','nickname','year'));
-		return View::make('home/dailyname')->with('users',$users)
+		return View::make('home/dailyname')->with('day',$day)
+										   ->with('weekday',$weekday[$tdate])
+										   ->with('month',$month)
+										   ->with('year',$year)
+										   ->with('thmanday',$thmanday)
+										   ->with('users',$users)
 										   ->with('userdesp',$userdesp)
 										   ->with('sort',$sort)
 										   ->with('plud',$plud)
@@ -264,7 +350,29 @@ class DailynameController extends BaseController {
 										   ->with('female_count',$female_count);
 	}
 
-	public static function sortbyyearpd($plud,$date){
+	public static function sortbyyearpd($plud,$date){		
+		$tddate = Time::select('date')->first()->date;
+		$exdate = explode("-", $tddate);
+		$year = (int)$exdate[0] + 543;
+		$day = (int)$exdate[2];
+		$m = (int)$exdate[1];
+		if($m==1){ $month = "มกราคม"; }
+		if($m==2){ $month = "กุมภาพันธ์"; }
+		if($m==3){ $month = "มีนาคม"; }
+		if($m==4){ $month = "เมษายน"; }
+		if($m==5){ $month = "พฤษภาคม"; }
+		if($m==6){ $month = "มิถุนายน"; }
+		if($m==7){ $month = "กรกฏาคม"; }
+		if($m==8){ $month = "สิงหาคม"; }
+		if($m==9){ $month = "กันยายน"; }
+		if($m==10){ $month = "ตุลาคม"; }
+		if($m==11){ $month = "พฤศจิกายน"; }
+		if($m==12){ $month = "ธันวาคม"; }
+		$thmanday = PludDate::where('date','=',$date)->first()->id;
+		$weekday = Array('Monday'=>'จันทร์', 'Tuesday'=>'อังคาร', 'Wednesday'=>'พุธ',
+						 'Thursday'=>'พฤหัสบดี', 'Friday'=>'ศุกร์', 'Saturday'=>'เสาร์',
+						 'Sunday'=>'อาทิตย์');
+		$tdate = date("l",strtotime($date));
 		$today = Time::select('date')->first()->date;
 		$sort = "year";
 		$currentplud = self::findcurrentplud($today);
@@ -310,7 +418,12 @@ class DailynameController extends BaseController {
 					  ->join('person','oncamp.person_id','=','person.id')
 					  ->where('person.year','=',1)
 					  ->get(array('person_id','first_name','last_name','nickname','year'));
-		return View::make('home/dailyname')->with('users',$users)
+		return View::make('home/dailyname')->with('day',$day)
+										   ->with('weekday',$weekday[$tdate])
+										   ->with('month',$month)
+										   ->with('year',$year)
+										   ->with('thmanday',$thmanday)
+										   ->with('users',$users)
 										   ->with('userdesp',$userdesp)
 										   ->with('sort',$sort)
 										   ->with('plud',$plud)
@@ -327,6 +440,28 @@ class DailynameController extends BaseController {
 	}
 
 	public static function sortbygenderpd($plud,$date){
+		$tddate = Time::select('date')->first()->date;
+		$exdate = explode("-", $tddate);
+		$year = (int)$exdate[0] + 543;
+		$day = (int)$exdate[2];
+		$m = (int)$exdate[1];
+		if($m==1){ $month = "มกราคม"; }
+		if($m==2){ $month = "กุมภาพันธ์"; }
+		if($m==3){ $month = "มีนาคม"; }
+		if($m==4){ $month = "เมษายน"; }
+		if($m==5){ $month = "พฤษภาคม"; }
+		if($m==6){ $month = "มิถุนายน"; }
+		if($m==7){ $month = "กรกฏาคม"; }
+		if($m==8){ $month = "สิงหาคม"; }
+		if($m==9){ $month = "กันยายน"; }
+		if($m==10){ $month = "ตุลาคม"; }
+		if($m==11){ $month = "พฤศจิกายน"; }
+		if($m==12){ $month = "ธันวาคม"; }
+		$thmanday = PludDate::where('date','=',$date)->first()->id;
+		$weekday = Array('Monday'=>'จันทร์', 'Tuesday'=>'อังคาร', 'Wednesday'=>'พุธ',
+						 'Thursday'=>'พฤหัสบดี', 'Friday'=>'ศุกร์', 'Saturday'=>'เสาร์',
+						 'Sunday'=>'อาทิตย์');
+		$tdate = date("l",strtotime($date));
 		$today = Time::select('date')->first()->date;
 		$sort = "gender";
 		$currentplud = self::findcurrentplud($today);
@@ -364,7 +499,12 @@ class DailynameController extends BaseController {
 					  ->where('person.gender','=','F')
 					  ->orderBy('year','DSC')
 					  ->get(array('person_id','first_name','last_name','nickname','year'));
-		return View::make('home/dailyname')->with('users',$users)
+		return View::make('home/dailyname')->with('day',$day)
+										   ->with('weekday',$weekday[$tdate])
+										   ->with('month',$month)
+										   ->with('year',$year)
+										   ->with('thmanday',$thmanday)
+										   ->with('users',$users)
 										   ->with('userdesp',$userdesp)
 										   ->with('sort',$sort)
 										   ->with('plud',$plud)

@@ -4,14 +4,10 @@
 	$date = $today;
 	$tomorrow = $today;
 
-
-	$date = Time::select('date')->first()->date;
-	$exdate = explode("-", $date);
-	$year = (int)$exdate[0] + 543;
-	echo $year;
-
-
-	$thmanday = PludDate::where('date','=',$date)->first();
-
+	$weekday = Array('Monday'=>'จันทร์', 'Tuesday'=>'อังคาร', 'Wednesday'=>'พุธ',
+					 'Thursday'=>'พฤหัสบดี', 'Friday'=>'ศุกร์', 'Saturday'=>'เสาร์',
+					 'Sunday'=>'อาทิตย์');
+	$tdate = date("l",strtotime($tomorrow));
+	echo $weekday[$tdate];
 
 ?>
