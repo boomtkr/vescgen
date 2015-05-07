@@ -502,6 +502,11 @@ class TmrchangeController extends BaseController {
 		$tdate = date("l",strtotime($date));
 		$ppltodaycount = OnCamp::where('date','=',$today)->count();
 
+		$manhis = MandayHistory::where('person_id','=',$id)
+						->where('date_in','>',$tomorrow)->orderBy('date_in','ASC')->first();
+		$manhis->date_in = $tomorrow;
+		$manhis->save();
+
 		$pplinlist = DB::table('manday_history')
 					->select('person.id','person.nickname','person.year')
 					->join('person','manday_history.person_id','=','person.id')
@@ -524,13 +529,15 @@ class TmrchangeController extends BaseController {
 			if($pcount == 1){
 				unset($pploutcamp[$i]);
 			}
+			else{
+				$pcount = MandayHistory::where('person_id','=',$ppl->id)
+							->where('date_in','=',$tomorrow)->count();
+				if($pcount == 1){
+					unset($pploutcamp[$i]);
+				}
+			}
 			$i++;
 		}
-
-		$manhis = MandayHistory::where('person_id','=',$id)
-						->where('date_in','>',$tomorrow)->orderBy('date_in','ASC')->first();
-		$manhis->date_in = $tomorrow;
-		$manhis->save();
 
 		return View::make('home/tmrchangeadd')->with('day',$day)
 										 		   ->with('weekday',$weekday[$tdate])
