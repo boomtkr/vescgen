@@ -75,11 +75,11 @@ class PersonController extends BaseController {
 		if($m==10){ $month = "ตุลาคม"; }
 		if($m==11){ $month = "พฤศจิกายน"; }
 		if($m==12){ $month = "ธันวาคม"; }
-		$thmanday = PludDate::where('date','=',$date)->first()->id;
+		$thmanday = PludDate::where('date','=',$tddate)->first()->id;
 		$weekday = Array('Monday'=>'จันทร์', 'Tuesday'=>'อังคาร', 'Wednesday'=>'พุธ',
 						 'Thursday'=>'พฤหัสบดี', 'Friday'=>'ศุกร์', 'Saturday'=>'เสาร์',
 						 'Sunday'=>'อาทิตย์');
-		$tdate = date("l",strtotime($date));
+		$tdate = date("l",strtotime($tddate));
 		$latestdate = Time::select('date')->first()->date;
 		$latesttime = Time::select('time')->first()->time;
 		$person = Person::where('id','=',$id)->first();

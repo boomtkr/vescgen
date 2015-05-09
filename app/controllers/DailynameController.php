@@ -372,7 +372,7 @@ class DailynameController extends BaseController {
 		$weekday = Array('Monday'=>'จันทร์', 'Tuesday'=>'อังคาร', 'Wednesday'=>'พุธ',
 						 'Thursday'=>'พฤหัสบดี', 'Friday'=>'ศุกร์', 'Saturday'=>'เสาร์',
 						 'Sunday'=>'อาทิตย์');
-		$tdate = date("l",strtotime($date));
+		$tdate = date("l",strtotime($tddate));
 		$today = Time::select('date')->first()->date;
 		$sort = "year";
 		$currentplud = self::findcurrentplud($today);
@@ -461,7 +461,7 @@ class DailynameController extends BaseController {
 		$weekday = Array('Monday'=>'จันทร์', 'Tuesday'=>'อังคาร', 'Wednesday'=>'พุธ',
 						 'Thursday'=>'พฤหัสบดี', 'Friday'=>'ศุกร์', 'Saturday'=>'เสาร์',
 						 'Sunday'=>'อาทิตย์');
-		$tdate = date("l",strtotime($date));
+		$tdate = date("l",strtotime($tddate));
 		$today = Time::select('date')->first()->date;
 		$sort = "gender";
 		$currentplud = self::findcurrentplud($today);
