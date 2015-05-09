@@ -8,17 +8,17 @@
 			<div class="widget-advanced widget-advanced-alt">
 
 				<!-- Widget Header -->
-				<div class="widget-simple text-center themed-background-dark-flatie">
+				<div class="widget-simple text-center themed-background-coral">
 					
 					
-					<h2 class="widget-content-light themed-color-flatie edpensook">
+					<h2 class="widget-content-light  edpensook">
 						<i class="hi hi-user sidebar-nav-icon"></i> รายชื่อรายวัน<br>
-						<h4 class="edpensook" style="color:white;">ผลัด {{$plud}}: {{$date}}</h4>
+						<h4 class="edpensook" style="color:white;">ผลัด {{$plud}} วัน {{$date}}</h4>
 
 					</h2>
 					<div class="pull-right" style="margin-top:-30px">
 						<div class="btn-group">
-							<a href="javascript:void(0)" data-toggle="dropdown" class="btn btn-primary dropdown-toggle"><strong>Plud</strong> <span class="caret"></span></a>
+							<a href="javascript:void(0)" data-toggle="dropdown" class="btn btn-default dropdown-toggle"><strong>ผลัด</strong> <span class="caret"></span></a>
 							<ul class="dropdown-menu text-left">
 								<li class="dropdown-header">เลือกผลัด</li>
 								@for($i=0 ; $i<=$currentplud; $i++)
@@ -27,7 +27,7 @@
 							</ul>
 						</div>
 						<div class="btn-group">
-							<a href="javascript:void(0)" data-toggle="dropdown" class="btn btn-primary dropdown-toggle"><strong>Date</strong> <span class="caret"></span></a>
+							<a href="javascript:void(0)" data-toggle="dropdown" class="btn btn-default dropdown-toggle"><strong>วันที่</strong> <span class="caret"></span></a>
 							<ul class="dropdown-menu text-left">
 								<li class="dropdown-header">เลือกวันที่</li>
 								@foreach($datelist as $menudate)
@@ -36,7 +36,7 @@
 							</ul>
 						</div>
 						<div class="btn-group">
-							<a href="javascript:void(0)" data-toggle="dropdown" class="btn btn-primary dropdown-toggle"><strong>Sort By</strong> <span class="caret"></span></a>
+							<a href="javascript:void(0)" data-toggle="dropdown" class="btn btn-default dropdown-toggle"><strong>เรียงตาม</strong> <span class="caret"></span></a>
 							<ul class="dropdown-menu text-left">
 
 								<li><a href={{asset('dailyname/year/'.$plud.'/'.$date)}}>ชั้นปี</a></li>
@@ -54,17 +54,17 @@
 							<div class="list-group remove-margin">
 								<a href="javascript:void(0)" class="list-group-item">
 									<span class="pull-right"><strong>{{$user_count}}</strong></span>
-									<h4 class="list-group-item-heading remove-margin"><i class="fa fa-users"></i>&nbsp;&nbsp; Total People</h4>
+									<h4 class="list-group-item-heading remove-margin"><i class="fa fa-users"></i>&nbsp;&nbsp; จำนวนคนทั้งหมด</h4>
 								</a>
 								<br>
 								<a href="javascript:void(0)" class="list-group-item">
 									<span class="pull-right"><strong>{{$male_count}}</strong></span>
-									<h4 class="list-group-item-heading remove-margin"><i class="gi gi-male"></i>&nbsp;&nbsp; Man</h4>
+									<h4 class="list-group-item-heading remove-margin"><i class="gi gi-male"></i>&nbsp;&nbsp; ชาย</h4>
 									<p class="list-group-item-text"></p>
 								</a>
 								<a href="javascript:void(0)" class="list-group-item">
 									<span class="pull-right"><strong>{{$female_count}}</strong></span>
-									<h4 class="list-group-item-heading remove-margin"><i class="gi gi-female"></i>&nbsp;&nbsp; Woman</h4>
+									<h4 class="list-group-item-heading remove-margin"><i class="gi gi-female"></i>&nbsp;&nbsp; หญิง</h4>
 									<p class="list-group-item-text"></p>
 								</a>
 								<br>
@@ -94,8 +94,8 @@
 							<div class="table-responsive">
 								@if($sort=='year')
 								<table class="table table-vcenter table-striped table-bordered">
-									<thead>
-										<tr>
+									<thead >
+										<tr >
 											<th style="width:50px">ชั้นปี</th>
 											<th>รายชื่อ</th>
 											<th style="width:40px">จำนวน</th>

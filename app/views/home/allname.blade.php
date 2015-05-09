@@ -66,16 +66,17 @@
 			<div class="widget-advanced widget-advanced-alt">
 
 				<!-- Widget Header -->
-				<div class="widget-simple text-center themed-background-dark-flatie">
+				<div class="widget-simple text-center themed-background-coral">
 					
 					
-					<h2 class="widget-content-light themed-color-flatie edpensook">
-						<i class="hi hi-user sidebar-nav-icon"></i> รายชื่อทั้งหมด
+					<h2 class="widget-content-light edpensook">
+						<i class="gi gi-list sidebar-nav-icon"></i> รายชื่อทั้งหมด
+						<small>&nbsp;</small>
 					</h2>
 					<div class="pull-right" >
 						
 						<div class="btn-group">
-							<a href="javascript:void(0)" data-toggle="dropdown" class="btn btn-primary dropdown-toggle"><strong>Sort By</strong> <span class="caret"></span></a>
+							<a href="javascript:void(0)" data-toggle="dropdown" class="btn btn-default dropdown-toggle"><strong>เรียงตาม</strong> <span class="caret"></span></a>
 							<ul class="dropdown-menu text-left">
 								<li><a href="{{asset('allname/year')}}">ชั้นปี</a></li>
 								<li><a href="{{asset('allname/name')}}">ชื่อจริง</a></li>
@@ -94,11 +95,11 @@
 								<div class="list-group remove-margin">
 									<a href="javascript:void(0)" class="list-group-item">
 										<span class="pull-right"><strong>{{$user_count}}</strong></span>
-										<h4 class="list-group-item-heading remove-margin"><i class="fa fa-users"></i>&nbsp;&nbsp; Total People</h4>
+										<h4 class="list-group-item-heading remove-margin"><i class="fa fa-users"></i>&nbsp;&nbsp; จำนวนคนทั้งหมด</h4>
 									</a>
 									<a href="javascript:void(0)" class="list-group-item">
 										<span class="pull-right"><strong>{{$user_count}}</strong></span>
-										<h4 class="list-group-item-heading remove-margin"><i class="fa fa-users"></i>&nbsp;&nbsp; Total Manday</h4>
+										<h4 class="list-group-item-heading remove-margin"><i class="fa fa-users"></i>&nbsp;&nbsp; แมนเดย์รวม</h4>
 									</a>
 								</div>
 							</div>
@@ -106,12 +107,12 @@
 								<div class="list-group remove-margin">
 									<a href="javascript:void(0)" class="list-group-item">
 										<span class="pull-right"><strong>{{$male_count}}</strong></span>
-										<h4 class="list-group-item-heading remove-margin"><i class="gi gi-male"></i>&nbsp;&nbsp; Man</h4>
+										<h4 class="list-group-item-heading remove-margin"><i class="gi gi-male"></i>&nbsp;&nbsp; ชาย</h4>
 										<p class="list-group-item-text"></p>
 									</a>
 									<a href="javascript:void(0)" class="list-group-item">
 										<span class="pull-right"><strong>{{$female_count}}</strong></span>
-										<h4 class="list-group-item-heading remove-margin"><i class="gi gi-female"></i>&nbsp;&nbsp; Woman</h4>
+										<h4 class="list-group-item-heading remove-margin"><i class="gi gi-female"></i>&nbsp;&nbsp; หญิง</h4>
 										<p class="list-group-item-text"></p>
 									</a>
 								</div>

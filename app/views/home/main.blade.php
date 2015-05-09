@@ -107,11 +107,11 @@
                                     <span class="sidebar-header-title">Main Menu</span>
                                 </li>
                                 <li>
-                                    <a href="/" class="{{ Route::getCurrentRoute()->getPath()=='/' ? 'active' : ''}}"><i class="fa fa-th-large sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">Dashboard</span></a>
+                                    <a href="/" class="{{ Route::getCurrentRoute()->getPath()=='/' ? 'active' : ''}}"><i class="fa fa-th-large sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">หน้าแรก</span></a>
                                 </li>
                                 <li>
 
-                                    <a href={{asset('namelist')}} ><i class="fa fa-download sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">อัพเดตรายชื่อ</span></a>
+                                    <a href={{asset('namelist')}}  class="{{ strpos(Route::getCurrentRoute()->getPath(), 'namelist') !== false ? 'active' : ''}}"><i class="fa fa-download sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">อัพเดตรายชื่อ</span></a>
                                 </li>
                                 <li>
                                     <a href={{asset('jobmgt')}}><i class="gi gi-ax sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">แบ่งงาน</span></a>
@@ -121,7 +121,7 @@
                                     
                                 </li>
                                 <li>
-                                    <a href={{asset('tmrchange')}}><i class="gi gi-sorting sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">คนขึ้นลงพรุ่งนี้</span></a>
+                                    <a href={{asset('tmrchange')}}  class="{{ strpos(Route::getCurrentRoute()->getPath(), 'tmrchange') !== false ? 'active' : ''}}"><i class="gi gi-sorting sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">คนขึ้นลงพรุ่งนี้</span></a>
                                 </li>
                                 <li>
                                     <a href={{asset('dailyname')}} class="{{ strpos(Route::getCurrentRoute()->getPath(), 'dailyname') !== false ? 'active' : ''}}"><i class="hi hi-user sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">รายชื่อรายวัน</span></a>
@@ -130,10 +130,10 @@
                                     <a href={{asset('allname')}} class="{{ strpos(Route::getCurrentRoute()->getPath(), 'allname') !== false ? 'active' : ''}}"><i class="gi gi-list sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">รายชื่อทั้งหมด</span></a>
                                 </li>
                                 <li>
-                                    <a href={{asset('dailyjob')}}><i class="fa fa-briefcase sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">หน้าที่รายวัน</span></a>
+                                    <a href={{asset('dailyjob')}}  class="{{ strpos(Route::getCurrentRoute()->getPath(), 'dailyjob') !== false ? 'active' : ''}}"><i class="fa fa-briefcase sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">หน้าที่รายวัน</span></a>
                                 </li>
                                 <li>
-                                    <a href={{asset('allwork')}}><i class="fa fa-list-alt sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">หน้าที่ทั้งหมด</span></a>
+                                    <a href={{asset('allwork')}}  class="{{ strpos(Route::getCurrentRoute()->getPath(), 'allwork') !== false ? 'active' : ''}}"><i class="fa fa-list-alt sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">หน้าที่ทั้งหมด</span></a>
                                 </li>
                                 
                             </ul>
