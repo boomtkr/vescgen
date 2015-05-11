@@ -20,7 +20,7 @@
 								</div>
 							</div>
 							<div class="form-group col-xs-4">
-                                            <label class="col-xs-4 control-label" for="example-select">Time period</label>
+                                            <label class="col-xs-4 control-label" for="example-select">Sort by</label>
                                             <div class="col-xs-8">
                                                 <select id="example-select" name="example-select" class="form-control" size="1">
                                                     <option value="0">Morning</option>
@@ -41,69 +41,64 @@
 	             
 	</div>
 	<div class="col-xs-12">
-		<a href="#" class="widget" style="cursor:default;color:black">
-			<div class="widget-simple">
-				<h2 class="widget-content animation-pullDown text-center">
-					วันอังคารที่ 5 พฤษภาคม 2558 {{$date}} ผลัด {{$plud}} {{$time}}
-				</h2>
-			</div>
-		</a>              
-	</div>
-	<div class="col-xs-7">
-		<!-- Your Plan Widget -->
 		<div class="widget">
-			<div class="widget-extra themed-background-emerald">
-
-				<h3 class="widget-content-light">
-					Tasks
-
-				</h3>
-			</div>
-			<div class="widget-extra-full">
-
-				<div class="table-responsive">
-					<table class="table table-vcenter table-striped">
-						<thead>
-							<tr>
-								<th style="width:80px">Work</th>
-								<th style="width:50px">Amount</th>
-								<th class="text-center">People</th>
-							</tr>
-						</thead>
-						<tbody>
-						<?php $i = 0; ?>
-						@foreach($works as $work)
-							<tr>
-								<td class="text-center">{{$work->work_name}}</td>
-								<td class="text-center">{{count($pplonwork[$i])}}</td>
-								<td>
-								@foreach($pplonwork[$i] as $ppow)
-										<a href={{asset('person/'.$ppow->id)}}>{{$ppow->nickname}}{{'#'}}{{$ppow->year}}</a> | 
-								@endforeach
-								</td>
-							</tr>
-						<?php $i++; ?>
-						@endforeach
-						</tbody>
-					</table>
+			<div class="widget-advanced widget-advanced-alt">
+				<!-- Widget Header -->
+				<div class="widget-header text-center themed-background-dark-flatie">
+					
+					<a href="page_ready_user_profile.html">
+						<img src="img/placeholders/avatars/avatar15.jpg" alt="avatar" class="widget-image img-circle">
+					</a>
+					<h4 class="widget-content-light">
+						<a href="page_ready_user_profile.html" class="themed-color-flatie">George Peterson</a><br>
+						<small><i class="gi gi-pin"></i> New York</small>
+					</h4>
 				</div>
+				<!-- END Widget Header -->
 
-			</div>
-		</div>
-		<!-- END Your Plan Widget -->
-	</div>
-	<div class="col-xs-5">
-		<!-- Your Plan Widget -->
-		<div class="widget">
-			<div class="widget-extra themed-background-coral">
-
-				<h3 class="widget-content-light">
-					People
-
-				</h3>
-			</div>
-			<div class="widget-extra-full">
-				<div class="table-responsive">
+				<!-- Widget Main -->
+				<div class="widget-main">
+					<div class="row">
+						<div class="col-xs-4">
+							<div class="list-group remove-margin">
+						<a href="javascript:void(0)" class="list-group-item">
+							<span class="pull-right"><strong>160</strong></span>
+							<h4 class="list-group-item-heading remove-margin"><i class="fa fa-file fa-fw"></i> Total People</h4>
+						</a>
+						<a href="javascript:void(0)" class="list-group-item">
+							<span class="pull-right"><strong>90</strong></span>
+							<h4 class="list-group-item-heading remove-margin"><i class="fa fa-briefcase fa-fw"></i> Man</h4>
+							<p class="list-group-item-text"></p>
+						</a>
+						<a href="javascript:void(0)" class="list-group-item">
+							<span class="pull-right"><strong>3.589</strong></span>
+							<h4 class="list-group-item-heading remove-margin"><i class="fa fa-users fa-fw"></i> Woman</h4>
+							<p class="list-group-item-text"></p>
+						</a>
+						<a href="javascript:void(0)" class="list-group-item">
+							<span class="pull-right"><strong>15.325</strong></span>
+							<h4 class="list-group-item-heading remove-margin"><i class="fa fa-heart fa-fw"></i> Senior</h4>
+							<p class="list-group-item-text"></p>
+						</a>
+						<a href="javascript:void(0)" class="list-group-item">
+							<span class="pull-right"><strong>15.325</strong></span>
+							<h4 class="list-group-item-heading remove-margin"><i class="fa fa-heart fa-fw"></i> Junior</h4>
+							<p class="list-group-item-text"></p>
+						</a>
+						<a href="javascript:void(0)" class="list-group-item">
+							<span class="pull-right"><strong>15.325</strong></span>
+							<h4 class="list-group-item-heading remove-margin"><i class="fa fa-heart fa-fw"></i> More</h4>
+							<p class="list-group-item-text"></p>
+						</a>
+						<a href="javascript:void(0)" class="list-group-item">
+							<span class="pull-right"><strong>15.325</strong></span>
+							<h4 class="list-group-item-heading remove-margin"><i class="fa fa-heart fa-fw"></i> Freshy</h4>
+							<p class="list-group-item-text"></p>
+						</a>
+					</div>
+						</div>
+						<div class="col-xs-8">
+							<div class="table-responsive">
 					<table class="table table-vcenter table-striped table-bordered">
 						<thead>
 							<tr>
@@ -115,31 +110,31 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td>SENIOR</td>
+								<td><h4>SENIOR</h4></td>
 								<td>ปุ๊ก ปุ๊ก ปุ๊ก</td>
 								<td class="text-center">3</td>
 								<td class="text-center">3</td>
 							</tr>
 							<tr>
-								<td>JUNIOR</td>
+								<td><h4>JUNIOR</h4></td>
 								<td>ปุ๊ก ปุ๊ก ปุ๊ก ปุ๊ก ปุ๊ก ปุ๊ก ปุ๊ก ปุ๊ก ปุ๊ก ปุ๊ก ปุ๊ก ปุ๊ก</td>
 								<td class="text-center">3</td>
 								<td class="text-center">3</td>
 							</tr>
 							<tr>
-								<td>MORE</td>
+								<td><h4>MORE</h4></td>
 								<td>ปุ๊ก ปุ๊ก ปุ๊ก ปุ๊ก ปุ๊ก ปุ๊ก ปุ๊ก ปุ๊ก ปุ๊ก ปุ๊ก ปุ๊ก ปุ๊ก</td>
 								<td class="text-center">3</td>
 								<td class="text-center">3</td>
 							</tr>
 							<tr>
-								<td>FRESHY</td>
+								<td><h4>FRESHY</h4></td>
 								<td>ปุ๊ก ปุ๊ก ปุ๊ก ปุ๊ก ปุ๊ก ปุ๊ก ปุ๊ก ปุ๊ก ปุ๊ก ปุ๊ก ปุ๊ก ปุ๊ก</td>
 								<td class="text-center">3</td>
 								<td class="text-center">3</td>
 							</tr>
 							<tr>
-								<td>TOTAL</td>
+								<td><h4><strong>TOTAL</strong></h4></td>
 								<td></td>
 								<td class="text-center">12</td>
 								<td class="text-center">3</td>
@@ -147,9 +142,16 @@
 						</tbody>
 					</table>
 				</div>
+						</div>
+					</div>
+					
+				</div>
+				<!-- END Widget Main -->
 			</div>
 		</div>
-		<!-- END Your Plan Widget -->
+		<!-- END Advanced Theme Color Widget Alternative -->
+	</div>
+	
 	</div>
 </div>
 

@@ -26,6 +26,10 @@
 /* Include Open Sans font from Google Web Fonts */
 @import url('//fonts.googleapis.com/css?family=Open+Sans:300,400,400italic,600,600italic,700,700italic');
 
+.edpensook {
+    font-family: 'EDPenSook', sans-serif;
+}
+
 /* Preloader */
 #page-wrapper.page-loading {
     overflow: hidden;
@@ -1993,7 +1997,7 @@ a[data-toggle="lightbox-image"]:hover img {
 
 /* Typography */
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
-    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: 'EDPenSook', sans-serif;
     font-weight: 300;
 }
 
