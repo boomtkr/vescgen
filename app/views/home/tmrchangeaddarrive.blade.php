@@ -57,13 +57,21 @@
 			<td>
 				<div>
 					<h3>กำหนดการขึ้น-ลงถัดไปของ {{$person->nickame}}{{"#"}}{{$person->year}}</h3>
+					@if($mancount != 0)
 					<h5>วันขึ้น : {{$manhis->date_in}}</h5>
 					<h5>วันลง : {{$manhis->date_out}}</h5>
+					@endif
+					@if($mancount == 0)
+					<h5>ยังไม่มีกำหนดขึ้นลงถัดไป</h5>
+					@endif
 
+
+					@if($mancount != 0)
 	    			{{Form::open(array('url'=>'/tmrchange/add/arrive/update/'.$person->id.'/edit'))}}
 	    			<h4>แก้ไขจากวันขึ้นถัดไปเป็นวันพรุ่งนี้</h4>
 		   			<input type="submit" value="ยันยืน">
 	    			{{Form::close()}}
+	    			@endif
 
 	    			{{Form::open(array('url'=>'/tmrchange/add/arrive/update/'.$person->id.'/new'))}}
 	    			<h4>เพิ่มวันขึ้น-ลงรอบใหม่ (ต้องลงก่อนวันขึ้นของรอบถัดไป)</h4>

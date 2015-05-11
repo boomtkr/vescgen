@@ -1,9 +1,19 @@
-<?php
-
-		$today = Time::select('date')->first()->date;
-		$id = 2;
-		$manhis = MandayHistory::where('person_id','=',$id)->where('date_in','<',$today)
-					->where('date_out','>',$today)->first(); 
-
-		dd($manhis);
-?>
+<html>
+<head>
+	<title>
+	</title>
+</head>	
+<script>
+	$(document).ready(function () {
+		$('#addButton').click(function(){
+			alert('4');
+		    $('.container').append('<input type="text" name="someName[]" value="someNumber" />');
+		);
+	});
+</script>
+<body>
+	<div class="container">
+	</div>
+	<button id="addbutton">add</button>
+</body>
+</html>
