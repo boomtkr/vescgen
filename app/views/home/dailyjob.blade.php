@@ -88,7 +88,7 @@
 
 
 									<h2 class="widget-content-light edpensook">
-										<i class="fa fa-briefcase sidebar-nav-icon" ></i> หน้าที่รายวัน<br>
+										<i class="fa fa-briefcase" ></i> หน้าที่รายวัน<br>
 										<h4 class="edpensook" style="color:white;">ผลัด {{$plud}} วัน {{$date}} ช่วง@if($time=='morning')เช้า@endif</h4>
 
 									</h2>
@@ -181,7 +181,7 @@
 					</div>
 
 				</div>
-			</div>
-
+	
+	
 
 			@stop

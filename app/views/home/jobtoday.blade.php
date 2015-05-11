@@ -4,14 +4,29 @@
 
 <div class="row">
 	<div class="col-xs-12">
+		<div class="widget">
+			<div class="widget-advanced widget-advanced-alt">
 
-		
-			{{-- <div class="widget-simple">
-				datepicker/plud dropdown/time
-			</div> --}}
-			<div class="block row">
+				<!-- Widget Header -->
+				<div class="widget-simple text-center themed-background-fire">
+					
+					
+					<h2 class="widget-content-light  edpensook">
+						<i class="gi gi-imac sidebar-nav-icon"></i> กระดานหน้าที่วันนี้<br>
+						<h4 class="edpensook" style="color:white;">ผลัด {{$plud}} วัน {{$date}} @if($time=='morning')ช่วงเช้า@endif
+					@if($time=='afternoon')ช่วงบ่าย@endif
+					@if($time=='all')ทั้งวัน@endif</h4>
 
-					<form action="#" method="post" class="form-horizontal form-bordered" onsubmit="return false;">
+					</h2>
+					
+					</div>
+				</div>
+				<!-- END Widget Header -->
+				<div class="widget-main">
+					<div class="row">
+						<div class="col-xs-12">
+
+					<form action="#" method="post" class="form-horizontal form-bordered" onsubmit="return false;" style=" margin-top: 0px; ">
 						<fieldset>
 							<div class="form-group col-xs-4">
 							<label class="col-xs-4 control-label" for="example-datepicker">วันที่</label>
@@ -19,7 +34,7 @@
 									<input type="text" id="example-datepicker2" name="example-datepicker2" class="form-control input-datepicker input-datepicker-close" data-date-format="dd/mm/yy" placeholder="dd/mm/yy">
 								</div>
 							</div>
-							<div class="form-group col-xs-4">
+							<div class="form-group col-xs-4" style=" margin-top: 4px; ">
                                             <label class="col-xs-4 control-label" for="example-select">ช่วงเวลา</label>
                                             <div class="col-xs-8">
                                                 <select id="example-select" name="example-select" class="form-control" size="1">
@@ -36,20 +51,8 @@
 						</fieldset>
 					</form>
 				
-				
-			</div>
+
 	             
-	</div>
-	<div class="col-xs-12">
-		<a href="#" class="widget " style="cursor:default;color:black">
-			<div class="widget-simple">
-				<h2 class="widget-content animation-pullDown text-center">
-					ผลัด {{$plud}} วัน {{$date}} @if($time=='morning')ช่วงเช้า@endif
-					@if($time=='afternoon')ช่วงบ่าย@endif
-					@if($time=='all')ทั้งวัน@endif
-				</h2>
-			</div>
-		</a>              
 	</div>
 	<div class="col-xs-7">
 		<!-- Your Plan Widget -->
@@ -151,6 +154,12 @@
 		</div>
 		<!-- END Your Plan Widget -->
 	</div>
+					</div>
+				</div>
+		</div>
+	</div>
+	
+	
 </div>
 
 
