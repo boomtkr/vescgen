@@ -469,9 +469,12 @@ class TmrchangeController extends BaseController {
 		$id = Person::where('nickname','=',$name)->where('year','=',$tyear)
 				->first()->id;
 		$person = Person::find($id);
+		$mancount = MandayHistory::where('person_id','=',$id)
+						->where('date_in','>',$tomorrow)->count();
 		$manhis = MandayHistory::where('person_id','=',$id)
 						->where('date_in','>',$tomorrow)->orderBy('date_in','ASC')->first();
 		return View::make('home/tmrchangeaddarrive')->with('person',$person)
+													->with('mancount',$mancount)
 													->with('manhis',$manhis)
 													->with('day',$day)
 										 		    ->with('weekday',$weekday[$tdate])
@@ -505,6 +508,7 @@ class TmrchangeController extends BaseController {
 		$manhis = MandayHistory::where('person_id','=',$id)
 						->where('date_in','>',$tomorrow)->orderBy('date_in','ASC')->first();
 		$manhis->date_in = $tomorrow;
+		$manhis->plud = Self::getpludofdate($manhis->date_in);
 		$manhis->save();
 
 		$pplinlist = DB::table('manday_history')
@@ -609,7 +613,18 @@ class TmrchangeController extends BaseController {
 			$i++;
 		}
 
-		return Redirect::action('TmrchangeController@updateaddarrive');
+		return View::make('home/tmrchangeadd')->with('day',$day)
+										 		   ->with('weekday',$weekday[$tdate])
+										  		   ->with('month',$month)
+										  		   ->with('year',$year)
+										  		   ->with('thmanday',$thmanday)
+										  		   ->with('today',$today)
+												   ->with('tomorrow',$tomorrow)
+												   ->with('pplinlist',$pplinlist)
+												   ->with('pploutlist',$pploutlist)
+												   ->with('ppltodaycount',$ppltodaycount)
+												   ->with('ppltoaddlist',$pploutcamp)
+												   ->with('type',$type);
 	}
 
 

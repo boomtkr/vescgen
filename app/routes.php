@@ -66,6 +66,9 @@ Route::get('/workspace', function()
 });
 Route::get('/jobtoday','JobtodayController@showdata');
 
+Route::get('/jobmgt','JobmgtController@jobmgt');
+Route::post('/jobmgt/datechosen','JobmgtController@datechosen');
+
 Route::get('/tmrchange','TmrchangeController@showdata');
 Route::get('/tmrchange/add/depart','TmrchangeController@adddepart');
 Route::get('/tmrchange/add/arrive','TmrchangeController@addarrive');
