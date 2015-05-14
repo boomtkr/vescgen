@@ -41,9 +41,10 @@
 	?>
 
 	<h5>จำนวนงานทั้งหมด {{$jobcount}} งาน   เหลือคน {{$userleft}}/{{$user_count}} คน     เหลือผู้หญิง {{$femaleleft}}/{{$female_count}} คน</h5>
-	{{Form::open(array('url'=>'/jobmgt/datechosen'))}}
+	{{Form::open(array('url'=>'/jobmgt/workcreated'))}}
 
-	<table>
+	<table id="inputTable">
+	  <tbody>
 		<tr>
 			<td>
 				ชื่องาน
@@ -56,28 +57,33 @@
 			</td>
 		</tr>
 		<tr>
-			<td><input type="text" name="user[]" id="user" placeholder="ชื่องาน"></td>
-			<td><input type="ีหำพ" name="job[]" id="job" placeholder="จำนวนคน"></td>
+			<td><input type="text" name="job[]" id="job" placeholder="ชื่องาน"></td>
+			<td><input type="text" name="user[]" id="user" placeholder="จำนวนคน"></td>
 			<td><input type="text" name="female[]" id="female" placeholder="จำนวนสตรี"></td>
 		</tr>
 		<tr>
-			<td><input type="text" name="user[]" id="user" placeholder="ชื่องาน"></td>
-			<td><input type="ีหำพ" name="job[]" id="job" placeholder="จำนวนคน"></td>
+			<td><input type="text" name="job[]" id="job" placeholder="ชื่องาน"></td>
+			<td><input type="text" name="user[]" id="user" placeholder="จำนวนคน"></td>
 			<td><input type="text" name="female[]" id="female" placeholder="จำนวนสตรี"></td>
 		</tr>
 		<tr>
-			<td><input type="text" name="user[]" id="user" placeholder="ชื่องาน"></td>
-			<td><input type="ีหำพ" name="job[]" id="job" placeholder="จำนวนคน"></td>
+			<td><input type="text" name="job[]" id="job" placeholder="ชื่องาน"></td>
+			<td><input type="text" name="user[]" id="user" placeholder="จำนวนคน"></td>
 			<td><input type="text" name="female[]" id="female" placeholder="จำนวนสตรี"></td>
 		</tr>
 		<tr>
-			<td><input type="text" name="user[]" id="user" placeholder="ชื่องาน"></td>
-			<td><input type="ีหำพ" name="job[]" id="job" placeholder="จำนวนคน"></td>
+			<td><input type="text" name="job[]" id="job" placeholder="ชื่องาน"></td>
+			<td><input type="text" name="user[]" id="user" placeholder="จำนวนคน"></td>
 			<td><input type="text" name="female[]" id="female" placeholder="จำนวนสตรี"></td>
 		</tr>
+	  </tbody>
 	</table>
 
-	<button id="addrow">เพิ่มงาน</button>
+	<div onclick="addRow()" style="width: 100px; height: 30px; background:red;">เพิ่มงาน</div>
+
+
+	<input type='hidden' name='timerecord' value={{json_encode($timerecord)}}></input> 
+	<input type='hidden' name='jobhis' value={{json_encode($jobhis)}}></input> 
 
 	<br><br>
 	<input type="submit" name="submit" value="รีบๆทำให้เสดเรว ยืนยันๆๆ">
