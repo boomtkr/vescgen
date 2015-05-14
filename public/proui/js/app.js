@@ -89,6 +89,9 @@ var App = function() {
         
         $('.input-typeahead').typeahead({ source: exampleTypeheadData });
 
+        var peopleName = ["pook","mon"];
+        $('.input-typeahead-test').typeahead({ source: peopleName });
+
         // Initialize Chosen
         $('.select-chosen').chosen({width: "100%"});
 

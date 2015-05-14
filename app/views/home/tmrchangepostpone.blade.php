@@ -50,7 +50,7 @@
 								<div class="widget">
 									<div class="widget-extra themed-background-default">
 										<h3 class="widget-content-light">
-											คนขึ้น - {{$pplincount}} คน
+											&nbsp;<i class="gi gi-user_add"></i> คนขึ้น - {{$pplincount}} คน
 										</h3>
 										<div class="pull-right" style="margin-top:-50px">
 											<div class="btn-group">
@@ -60,7 +60,7 @@
 									</div>
 									<div class="widget-extra-full">
 										@if($type == 'arrive')
-										<div class="block">
+										<div class="block" style="padding-bottom:50px">
 													
 											   		<h3 style=" margin-top: 0px; ">เลื่อนวันขึ้น</h3>
 											   		{{Form::open(array('url'=>'tmrchange/postpone/arrive/'.$person->id.'/update','style'=>'margin-bottom:10px'))}}
@@ -85,14 +85,15 @@
 									    					<h5>{{$departdate}}</h5>
 									    				</div>
 															<div class="col-xs-4">
-									    					<h5 for="newdate"><strong>วันลงวันใหม่</strong></h5>
+									    					<h5 for="newdate"><strong>วันขึ้นวันใหม่</strong></h5>
 									    					</div>
-															<div class="col-xs-8"><input type="text" id="example-datepicker2" name="newdate" class="form-control input-datepicker input-datepicker-close" data-date-format="dd/mm/yy" placeholder="dd/mm/yy">
+															<div class="col-xs-6"><input type="text" id="example-datepicker2" name="newdate" class="form-control input-datepicker input-datepicker-close" data-date-format="yyyy-mm-dd" placeholder="yyyy-mm-dd">
 									    				</div>
 									    			</div>
-			                                        
+			                                        <div class="pull-right">
 									   				<button class="btn btn-success" type="submit" value="ยันยืน">ยืนยัน</button>
-									   				<a href={{asset('tmrchange')}} ><button class="btn btn-default" type="button">ยกเลิก</button></a>
+									   				<a href={{asset('tmrchange')}} ><button class="btn btn-default" type="button">ปิด</button></a>
+									   				</div>
 											    	{{Form::close()}}
 											  
 										</div>
@@ -126,7 +127,7 @@
 								<div class="widget">
 									<div class="widget-extra themed-background-night">
 										<h3 class="widget-content-light">
-											คนลง - {{$pploutcount}} คน
+											&nbsp;<i class="gi gi-user_add"></i> คนลง - {{$pploutcount}} คน
 										</h3>
 										<div class="pull-right" style="margin-top:-50px">
 											<div class="btn-group">
@@ -168,7 +169,7 @@
 									    			</div>
 			                                        
 									   				<button class="btn btn-success" type="submit" value="ยันยืน">ยืนยัน</button>
-									   				<a href={{asset('tmrchange')}} ><button class="btn btn-default" type="button">ยกเลิก</button></a>
+									   				<a href={{asset('tmrchange')}} ><button class="btn btn-default" type="button">ปิด</button></a>
 											    	{{Form::close()}}
 											  
 										</div>

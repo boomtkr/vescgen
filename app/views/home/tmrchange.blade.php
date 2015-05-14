@@ -62,7 +62,7 @@
 									<div class="widget-extra themed-background-default">
 
 										<h3 class="widget-content-light">
-											คนขึ้น - {{$pplincount}} คน
+											&nbsp;<i class="gi gi-user_add"></i> คนขึ้น - {{$pplincount}} คน
 										</h3>
 										<div class="pull-right" style="margin-top:-50px">
 											<div class="btn-group">
@@ -86,12 +86,12 @@
 													<?php $i=1; ?>
 													@foreach($pplinlist as $ppl)
 													<tr>
-														<td>{{$i}}</td>
+														<td class="text-center">{{$i}}</td>
 														<td>
 															<a href={{asset('person/'.$ppl->id)}}>{{$ppl->nickname}}{{'#'}}{{$ppl->year}}</a>
 														</td>
 														<td>
-															<a href={{asset('tmrchange/postpone/arrive/'.$ppl->id)}}><button class="btn btn-primary btn-lg"><i class="fa fa-angle-double-right"></i> เลื่อน</button></a>
+															<a href={{asset('tmrchange/postpone/arrive/'.$ppl->id)}}><button class="btn btn-primary btn-md"><i class="fa fa-angle-double-right"></i> เลื่อน</button></a>
 														</td>
 														<td>cancel</td>
 														<?php $i++; ?>
@@ -111,7 +111,7 @@
 									<div class="widget-extra themed-background-night">
 
 										<h3 class="widget-content-light">
-											คนลง - {{$pploutcount}} คน
+											&nbsp;<i class="gi gi-user_remove"></i> คนลง - {{$pploutcount}} คน
 										</h3>
 										<div class="pull-right" style="margin-top:-50px">
 											<div class="btn-group">
@@ -134,7 +134,7 @@
 													<?php $i=1; ?>
 													@foreach($pploutlist as $ppl)
 													<tr>
-														<td>{{$i}}</td>
+														<td class="text-center">{{$i}}</td>
 														<td>
 															<a href={{asset('person/'.$ppl->id)}}>{{$ppl->nickname}}{{'#'}}{{$ppl->year}}</a>
 														</td>

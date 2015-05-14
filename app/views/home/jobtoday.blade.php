@@ -31,7 +31,7 @@
 							<div class="form-group col-xs-4">
 							<label class="col-xs-4 control-label" for="example-datepicker">วันที่</label>
 								<div class="col-xs-8">
-									<input type="text" id="example-datepicker2" name="example-datepicker2" class="form-control input-datepicker input-datepicker-close" data-date-format="dd/mm/yy" placeholder="dd/mm/yy">
+									<input type="text" id="example-datepicker2" name="example-datepicker2" class="form-control input-datepicker input-datepicker-close" data-date-format="yyyy-mm-dd" placeholder="yyyy-mm-dd">
 								</div>
 							</div>
 							<div class="form-group col-xs-4" style=" margin-top: 4px; ">

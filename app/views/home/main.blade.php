@@ -217,7 +217,7 @@
 
         <!-- Load and execute javascript code used only in this page -->
         {{-- // <script src="js/pages/index.js"></script> --}}
-        {{ HTML::script('proui/pages/index.js'); }}
+        {{ HTML::script('proui/js/pages/index.js'); }}
         <script>$(function(){ Index.init(); });</script>
     </body>
 </html> 
