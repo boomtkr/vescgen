@@ -98,6 +98,7 @@ class JobmgtController extends BaseController {
 						 'Sunday'=>'อาทิตย์');
 		$tdate = date("l",strtotime($date));
 
+		$worklist = Work::all();
 
 		$user_count = DB::table('oncamp')->where('date','=',$timerecord->date)
 					  ->join('person','oncamp.person_id','=','person.id')
@@ -116,7 +117,63 @@ class JobmgtController extends BaseController {
 										   ->with('jobhis',$jobhis)
 										   ->with('timerecord',$timerecord)
 										   ->with('user_count',$user_count)
-										   ->with('female_count',$female_count);
+										   ->with('female_count',$female_count)
+										   ->with('worklist',$worklist);
+	}
+
+	public static function workcreated() {
+		$user = Input::get('user');
+		$job = Input::get('job');
+		$female = Input::get('female');
+		$s_jobhis = Input::get('jobhis');
+		$s_timerecord = Input::get('timerecord');
+		$timerecord = json_decode($s_timerecord);
+		$jobhis = json_decode($s_jobhis);
+
+		$today = Time::select('date')->first()->date;
+		$thistoday = str_replace('-', '/', $today);
+		$tomorrow = date('Y-m-d',strtotime($thistoday . "+1 days"));
+		$date = $today;
+		$exdate = explode("-", $date);
+		$year = (int)$exdate[0] + 543;
+		$day = (int)$exdate[2];
+		$month = Self::getmonthname((int)$exdate[1]);
+		$thmanday = PludDate::where('date','=',$date)->first()->id;
+		$weekday = Array('Monday'=>'จันทร์', 'Tuesday'=>'อังคาร', 'Wednesday'=>'พุธ',
+						 'Thursday'=>'พฤหัสบดี', 'Friday'=>'ศุกร์', 'Saturday'=>'เสาร์',
+						 'Sunday'=>'อาทิตย์');
+		$tdate = date("l",strtotime($date));
+
+		$user_count = DB::table('oncamp')->where('date','=',$timerecord->date)
+					  ->join('person','oncamp.person_id','=','person.id')
+					  ->count();
+		$senior_count = DB::table('oncamp')->where('date','=',$timerecord->date)
+					  ->join('person','oncamp.person_id','=','person.id')
+					  ->where('person.year','=',4)->count();
+		$female_count = DB::table('oncamp')->where('date','=',$timerecord->date)
+					  ->join('person','oncamp.person_id','=','person.id')
+					  ->where('person.gender','=','F')->count();
+
+		$people = DB::table('oncamp')->where('date','=',$timerecord->date)
+					->join('person','oncamp.person_id','=','person.id')
+					->select('person.id','person.nickname','person.year')
+					->get();
+		return View::make('home/jobmgtpeople')->with('day',$day)
+										   	  ->with('weekday',$weekday[$tdate])
+										      ->with('month',$month)
+										      ->with('year',$year)
+										      ->with('thmanday',$thmanday)
+										      ->with('today',$today)
+									   	      ->with('tomorrow',$tomorrow)
+									   	      ->with('user',$user)
+											  ->with('job',$job)
+											  ->with('female',$female)
+											  ->with('jobhis',$jobhis)
+											  ->with('people',$people)
+											  ->with('timerecord',$timerecord)
+										      ->with('user_count',$user_count)
+										      ->with('senior_count',$senior_count)
+										      ->with('female_count',$female_count);
 	}
 
 }

@@ -68,6 +68,7 @@ Route::get('/jobtoday','JobtodayController@showdata');
 
 Route::get('/jobmgt','JobmgtController@jobmgt');
 Route::post('/jobmgt/datechosen','JobmgtController@datechosen');
+Route::post('/jobmgt/workcreated','JobmgtController@workcreated');
 
 Route::get('/tmrchange','TmrchangeController@showdata');
 Route::get('/tmrchange/add/depart','TmrchangeController@adddepart');
