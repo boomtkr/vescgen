@@ -12,6 +12,9 @@ var FormsValidation = function() {
              *  Jquery Validation, Check out more examples and documentation at https://github.com/jzaefferer/jquery-validation
              */
 
+             
+
+
             /* Initialize Form Validation */
             $('#form-validation').validate({
                 errorClass: 'help-block animation-slideDown', // You can change the animation class for a different entrance animation - check animations page
@@ -29,6 +32,15 @@ var FormsValidation = function() {
                     e.closest('.help-block').remove();
                 },
                 rules: {
+                    
+                    'user[]': {
+                        required: true,
+                        digits: true
+                    },
+                    'female[]': {
+                        required: true,
+                        digits: true
+                    },
                     val_username: {
                         required: true,
                         minlength: 3
@@ -77,6 +89,15 @@ var FormsValidation = function() {
                     }
                 },
                 messages: {
+                    
+                    'user[]': {
+                        required: ' !!!!! ใส่ด้วยดิวะ',
+                        digits: 'ใส่ตัวเลขโว้ยยย'
+                    },
+                    'female[]': {
+                        required: ' !!!!! ใส่ด้วยดิวะ',
+                        digits: 'ใส่ตัวเลขโว้ยยย'
+                    },
                     val_username: {
                         required: 'Please enter a username',
                         minlength: 'Your username must consist of at least 3 characters'

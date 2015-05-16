@@ -320,6 +320,15 @@ class TmrchangeController extends BaseController {
 
 		$today = Time::select('date')->first()->date;
 		$newdate = Input::get('newdate');
+
+		// ยังไม่ดัก case ที่เลื่อนไปทับวันขึ้นรอบหน้า แก้ด้วย
+		// $aftermanhiscount = MandayHistory::where('person_id','=',$id)
+		// 					->where('date_out','>=',$today)->count();
+		// if($aftermanhiscount > 1){
+		// 	$allmanhis =  MandayHistory::where('person_id','=',$id)
+		// 					->where('date_out','>=',$today)->get();
+		// }
+		
 		$manhis = MandayHistory::where('person_id','=',$id)
 					->where('date_out','=',$today)->first();
 		$manhis->date_out = $newdate;

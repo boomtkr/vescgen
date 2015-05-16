@@ -89,6 +89,7 @@ var App = function() {
         
         $('.input-typeahead').typeahead({ source: exampleTypeheadData });
 
+
         // Initialize Chosen
         $('.select-chosen').chosen({width: "100%"});
 

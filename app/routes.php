@@ -15,6 +15,8 @@ Route::get('/test', function(){
 	return View::make('home/test');
 });
 
+Route::get('/testing','TestController@exportjson');
+
 Route::get('/', function()
 {
 	$date = Time::select('date')->first()->date;
@@ -64,6 +66,9 @@ Route::get('/workspace', function()
 {
 	return View::make('home/workspace');
 });
+
+Route::get('/updatepeople','UpdatepeopleController@showhome');
+
 Route::get('/jobtoday','JobtodayController@showdata');
 
 Route::get('/jobmgt','JobmgtController@jobmgt');
