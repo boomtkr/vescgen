@@ -158,6 +158,11 @@ class JobmgtController extends BaseController {
 					->join('person','oncamp.person_id','=','person.id')
 					->select('person.id','person.nickname','person.year')
 					->get();
+		$senior = DB::table('oncamp')->where('date','=',$timerecord->date)
+					->join('person','oncamp.person_id','=','person.id')
+					->where('person.year','=',4)
+					->select('person.id','person.nickname','person.year')
+					->get();
 		return View::make('home/jobmgtpeople')->with('day',$day)
 										   	  ->with('weekday',$weekday[$tdate])
 										      ->with('month',$month)
@@ -170,11 +175,22 @@ class JobmgtController extends BaseController {
 											  ->with('female',$female)
 											  ->with('jobhis',$jobhis)
 											  ->with('people',$people)
+											  ->with('senior',$senior)
 											  ->with('timerecord',$timerecord)
 										      ->with('user_count',$user_count)
 										      ->with('senior_count',$senior_count)
 										      ->with('female_count',$female_count);
 	}
+
+	// public static function workrandom(){
+	// 	$timerecord
+	// 	$jobhis 
+	// 	$job
+	// 	$usrperjob
+	// 	$people
+
+		
+	// }
 
 }
 
