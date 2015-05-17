@@ -55,8 +55,8 @@
 														<i class="fa fa-list-alt"></i>
 													</div>
 													<h3 class="widget-content text-right animation-pullDown" style="font-size:40px;margin-top: 0px;">
-														<strong id="remaining-user">{{$jobcount}}</strong><br>
-														<small>&nbsp;</small>
+														<strong id="remaining-user">{{count($job)}}</strong><br>
+														<small>{{$jobcount}}</small>
 														<small>จำนวนงานทั้งหมด</small>
 													</h3>
 												</div>

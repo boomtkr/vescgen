@@ -23,7 +23,9 @@
 	.chosen-container{
 		border-radius:0px 5px 0px 0px;
 	}
-
+	.alert #isEmpty,#isFemale,#isNumeric,#isDuplicate{
+		font-size: 16px;
+	}
 </style>
 <div class="row edpensook">
 	<div class="col-xs-12">
@@ -67,7 +69,7 @@
 						<div class="col-xs-3">
 							<div class="col-xs-12">
 								<!-- Widget -->
-								<a href="page_ready_article.html" class="widget widget-hover-effect1 block" style=" padding-right: 0px; padding-top: 0px; padding-left: 0px; ">
+								<a href="#" class="widget widget-hover-effect1 block" style=" padding-right: 0px; padding-top: 0px; padding-left: 0px; ">
 									<div class="widget-simple" style=" padding-bottom: 0px; padding-top: 10px; ">
 										<div class="widget-icon pull-left themed-background-default animation-fadeIn" style=" margin-top: 8px; ">
 											<i class="fa fa-list-alt"></i>
@@ -121,7 +123,7 @@
 								<div class="col-xs-4">
 									<div class="form-group">
 										<div class="col-xs-12">
-											<select id="example-chosen" name="job[]" class="form-control select-work" data-placeholder="งาน" style="width: 250px;" >
+											<select id="work-chosen" name="job[]" class="form-control select-work" data-placeholder="งาน" style="width: 250px;" >
 												@foreach($worklist as $work)
 												<option value={{$work->work_name}} >{{$work->work_name}}</option >
 													@endforeach
@@ -155,6 +157,10 @@
 
 							</div>
 							<div class="col-xs-3">
+								<div class="alert alert-warning alert-dismissable">
+                                        {{-- <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button> --}}
+                                        <h4><i class="fa fa-exclamation-circle"></i> Warning</h4>
+                                    </div>
 								<div class="col-xs-12" style="margin-bottom:10px">
 									<button type="button" class="btn btn-primary input-add" style="border-radius:25px"><strong>+</strong></button>
 									<button type="button" class="btn btn-danger input-remove" style="border-radius:25px"><strong>-</strong></button>
@@ -166,7 +172,10 @@
 									<button class="btn btn-lg btn-warning" onclick="reset();" type="reset">Reset</button>
 								</div>
 								<div class="col-xs-12" style="margin-bottom:10px">
-									<button type="submit" name='submit' class="btn btn-lg btn-primary"><i class="fa fa-angle-right"></i> ต่อไป</button>			
+									<button id="submit-button" type="button" name='submit' onclick="isCal();" class="btn btn-lg btn-primary"><i class="fa fa-angle-right"></i> ต่อไป</button>			
+								</div>
+								<div class="col-xs-12">
+									<span style="color:red">*กด Calculate ทุกครั้งก่อนกดปุ่มต่อไป</span>
 								</div>
 							</div>
 							<input type='hidden' name='timerecord' value={{json_encode($timerecord)}}></input> 
@@ -184,36 +193,116 @@
 	</div>
 
 	<script type="text/javascript">
-		
+		var cal = 0;
+		var work = [];
+		var user = [];
+		var female = [];
+		$('.alert').hide();
+		$('#isEmpty').hide();
+		$('#isNumeric').hide();
+		$('#isFemale').hide();
+		$('#isDuplicate').hide();
+	function isCal(){
+		if(!cal){
+			alert('กด Calculate เซ็คจำนวนคนก่อนน้าาาาา');
+		} 
 
+	}
 function calculate(){
+	var duplicatework = 0;
 	var empty = 0;
 	var err_numeric = 0;
+	var err_female =0;
+	var work = [];
+	var user = [];
+	var female = [];
+	var i =0;
 	$('.count-user').each(function(){
+		user[i] = $(this).val(); // get value form each user input.
+		i++;
+
+		//check each is empty.
 		if($(this).val()==null || $(this).val() ==''){
 			empty=1;
 		}
+		//check each is numeric.
 		if(isNaN($(this).val())){
 			err_numeric=1;
 		}
 	});
+	i=0;
 	$('.count-female').each(function(){
+		female[i] = $(this).val(); // get value from each female input.
+		i++;
+
+		//check each is empty.
 		if($(this).val()==null || $(this).val() ==''){
 			empty=1;
 		}
+		//check each is numeric.
 		if(isNaN($(this).val())){
 			err_numeric=1;
 		}
 	});
-	if(empty){
-		alert('ใส่จำนวนคนกับผู้หญิงให้ครบๆทุกช่องได้ม้ะ');
-	} else {
-		if(err_numeric==0){
-			sum();
-		} else {
-			alert('ใส่ตัวเลขสิเฟ่ย');
-		}
+
+	//check each row, number of female must be equal to and less than number of user.
+	for(i=0;i<user.length;i++){
+		if(user[i]<female[i]) err_female=1;
 	}
+
+	i=0;
+	//check duplicate work
+		$('.select-work').each(function(){
+			work[i] = $(this).val();
+			// alert(work[i]+' '+$(this).val()+' '+i);
+			i++;
+		});
+
+		for(i=0;i<work.length;i++){
+			for(j=i;j<work.length;j++){
+				if(work[i]===work[j] && i!=j){
+					duplicatework=1;
+					// alert(work[i]+' = '+work[j]);
+				}
+			}
+		}
+		
+		if(empty||err_numeric||err_female||duplicatework){
+			$('.alert').show();
+			// $('br').remove();
+		}
+	if(empty){
+		$('#isEmpty').show();
+		if(!$('.alert').find('#isEmpty').length) $('.alert').append('<p id="isEmpty">- กรอกทุกช่องให้ครบด้วย</p>');
+	} else {
+		$('#isEmpty').hide();
+	}
+	if(err_numeric){
+		$('#isNumeric').show();
+		if(!$('.alert').find('#isNumeric').length) $('.alert').append('<p id="isNumeric">- ใส่ตัวเลขขขขขขขขขขข</p>');
+	} else {
+		$('#isNumeric').hide();
+	}
+	if(err_female){
+		$('#isFemale').show();
+		if(!$('.alert').find('#isFemale').length) $('.alert').append('<p id="isFemale">- จำนวนผู้หญิงต้องน้อยกว่าหรือเท่ากับจำนวนคนในแต่ละงาน</p>');
+	} else {
+		$('#isFemale').hide();
+	}
+	if (duplicatework) {
+		$('#isDuplicate').show();
+		if(!$('.alert').find('#isDuplicate').length) $('.alert').append('<p id="isDuplicate">- งานซ้ำ!!!!</p>');
+	} else {
+		$('#isDuplicate').hide();
+	}
+	if(!empty && !err_numeric && !duplicatework && !err_female){
+		sum();
+		cal=1;
+		$("#submit-button").attr("type","submit");
+		$('.alert').hide();
+	}
+
+	
 }
 
 function sum(){
@@ -236,7 +325,7 @@ function sum(){
 	$('#remaining-female').html(female);
 }
 
-var test = "<div class='row added-row'><div class='col-xs-4'><div class='form-group'><div class='col-xs-12'><select id='example-chosen' name='job[]' class='form-control select-work' data-placeholder='งาน' style='width: 250px;' >@foreach($worklist as $work)<option value={{$work->work_name}} >{{$work->work_name}}</option>@endforeach</select></div></div></div><div class='col-xs-4'><div class='form-group'><div class='col-xs-12'><div class='input-group'><span class='input-group-addon' style='padding-right: 6px; padding-left: 6px;'><i class='gi gi-group'></i></span><input type='text' id='example-input1-group1' name='user[]' class='form-control count-user' placeholder='จำนวนคน'></div></div></div></div><div class='col-xs-4'><div class='form-group'><div class='col-xs-12'><div class='input-group'><span class='input-group-addon' style='padding-right: 6px; padding-left: 6px;'><i class='gi gi-woman'></i></span><input type='text' id='example-input1-group1' name='female[]' class='form-control count-female' placeholder='จำนวนผู้หญิง'></div></div></div></div><div class='col-xs-3'></div></div>";
+var test = "<div class='row added-row'><div class='col-xs-4'><div class='form-group'><div class='col-xs-12'><select id='work-chosen' name='job[]' class='form-control select-work' data-placeholder='งาน' style='width: 250px;' >@foreach($worklist as $work)<option value={{$work->work_name}} >{{$work->work_name}}</option>@endforeach</select></div></div></div><div class='col-xs-4'><div class='form-group'><div class='col-xs-12'><div class='input-group'><span class='input-group-addon' style='padding-right: 6px; padding-left: 6px;'><i class='gi gi-group'></i></span><input type='text' id='example-input1-group1' name='user[]' class='form-control count-user' placeholder='จำนวนคน'></div></div></div></div><div class='col-xs-4'><div class='form-group'><div class='col-xs-12'><div class='input-group'><span class='input-group-addon' style='padding-right: 6px; padding-left: 6px;'><i class='gi gi-woman'></i></span><input type='text' id='example-input1-group1' name='female[]' class='form-control count-female' placeholder='จำนวนผู้หญิง'></div></div></div></div><div class='col-xs-3'></div></div>";
 $(".input-add").click(function(){
 	var jobcount = parseInt($("#remaining-job").text());
 	if(jobcount < parseInt($("#all-job").text())){
@@ -248,9 +337,11 @@ $(".input-add").click(function(){
 });
 $(".input-remove").click(function(){
 		var jobcount = parseInt($("#remaining-job").text());
-		$(".added-row:last").remove();
-		jobcount = jobcount-1;
-		$('#remaining-job').html(jobcount);
+		if(jobcount >1){
+			$(".added-row:last").remove();
+			jobcount = jobcount-1;
+			$('#remaining-job').html(jobcount);
+		}
 });
 
 
