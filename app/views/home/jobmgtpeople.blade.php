@@ -104,16 +104,16 @@
 														<td class="text-center">{{$user[$i]}}</td>	
 														<td class="text-center">{{$female[$i]}}</td>
 														<td>
-															<select id="example-chosen-multiple" name="senior_namelist[]" class="select-chosen" data-placeholder="จิ้มเลือกซีเนียร์มาสักคน" style="width: 250px;" multiple>
+															<select id="example-chosen-multiple" name='senior_namelist[]' class="select-chosen" data-placeholder="จิ้มเลือกซีเนียร์มาสักคน" style="width: 250px;" multiple>
 																@foreach($senior as $person)
-																	<option value='{{$person->id}}'>{{$person->nickname.'#'.$person->year}}</option>
+																	<option value='{{$person->id}}{{'.'}}{{$i}}'>{{$person->nickname.'#'.$person->year}}</option>
 																@endforeach
 															</select>
 														</td>
 														<td>
 															<select id="example-chosen-multiple" name="nonsenior_namelist[]" class="select-chosen" data-placeholder="จิ้มเลือกน้องมาสักคนดิ" style="width: 250px;" multiple>
 																@foreach($nonsenior as $person)
-																	<option value='{{$person->id}}'>{{$person->nickname.'#'.$person->year}}</option>
+																	<option value='{{$person->id}}{{'.'}}{{$i}}'>{{$person->nickname.'#'.$person->year}}</option>
 																@endforeach
 															</select>
 														</td>
@@ -132,6 +132,7 @@
 											<button id="submit-button" onclick="isCal();" type="button" name='submit' class="btn btn-lg btn-primary"><i class="fa fa-angle-right"></i> ต่อไป</button>			
 										</div>
 									</div>
+									<input type='hidden' name='job' value={{json_encode($user)}}></input> 
 									<input type='hidden' name='job' value={{json_encode($job)}}></input> 
 									<input type='hidden' name='female' value={{json_encode($female)}}></input> 
 									<input type='hidden' name='timerecord' value={{json_encode($timerecord)}}></input> 
