@@ -163,15 +163,20 @@
 		$('.search-choice').each(function(){
 			count_senior = count_senior +1;
 		});
-		alert(count_senior)
+		// alert(count_senior)
 		var remaining_senior = all_senior - count_senior;
-		$('#remaining-senior').html(remaining_senior);
-		cal=1;
+		if(remaining_senior>=0){
+			$('#remaining-senior').removeAttr('style');
+			$('#remaining-senior').html(remaining_senior);
+			cal=1;
+		} else {
+			$('#remaining-senior').attr('style','color:red');
+			$('#remaining-senior').html(remaining_senior);
+		}
+		
 	}
 	
 
-	$('.chosen-results').click(function(){
-		alert();
-	})
+	
 </script>
 			@stop

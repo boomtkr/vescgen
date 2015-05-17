@@ -347,7 +347,7 @@
 			$('#remaining-female').removeAttr('style');
 			$('#remaining-female').html(female);
 		}
-		if(user > 0 && female >0 ){
+		if(user > 0 && female >=0 ){
 			$("#submit-button").attr("type","submit");
 
 		}
