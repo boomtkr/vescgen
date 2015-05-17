@@ -104,10 +104,9 @@
 														<td class="text-center">{{$female[$i]}}</td>
 														<td>
 															<select id="example-chosen-multiple" name="senior_namelist" class="select-chosen" data-placeholder="จิ้มเลือกซีเนียร์มาสักคน" style="width: 250px;" multiple>
-																<option value="ปุ๊ก">ปุ๊ก</option>
-																<option value="บูม">บูม</option>
-																<option value="บัง">บัง</option>
-																<option value="มน">มน</option>
+																@foreach($senior as $person)
+																	<option value={{$person->name}}>{{$person->name.'#'.$person->year}}</option>
+																@endforeach
 															</select>
 														</td>
 													</tr>
