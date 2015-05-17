@@ -89,10 +89,11 @@
 											<table class="table table-vcenter table-striped table-bordered" >
 												<thead >
 													<tr>
-														<th width="15%">งาน</th>
-														<th width="15%" class="text-center">จำนวนคน</th>
-														<th width="15%" class="text-center">จำนวนผญ</th>
+														<th width="10%">งาน</th>
+														<th width="10%" class="text-center">คน</th>
+														<th width="10%" class="text-center">ผญ</th>
 														<th>เลือกซีเนียร์เข้าใจปะ</th>
+														<th>อยากเลือกน้องคนไหนก็เลือกเลยยยย</th>
 													</tr>
 
 												</thead>
@@ -105,7 +106,14 @@
 														<td>
 															<select id="example-chosen-multiple" name="senior_namelist" class="select-chosen" data-placeholder="จิ้มเลือกซีเนียร์มาสักคน" style="width: 250px;" multiple>
 																@foreach($senior as $person)
-																	<option value={{$person->name}}>{{$person->name.'#'.$person->year}}</option>
+																	<option value={{$person->id}}>{{$person->nickname.'#'.$person->year}}</option>
+																@endforeach
+															</select>
+														</td>
+														<td>
+															<select id="example-chosen-multiple" name="nonsenior_namelist" class="select-chosen" data-placeholder="จิ้มเลือกน้องมาสักคนดิ" style="width: 250px;" multiple>
+																@foreach($nonsenior as $person)
+																	<option value={{$person->id}}>{{$person->nickname.'#'.$person->year}}</option>
 																@endforeach
 															</select>
 														</td>

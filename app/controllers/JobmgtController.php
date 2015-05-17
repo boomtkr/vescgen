@@ -163,7 +163,7 @@ class JobmgtController extends BaseController {
 					->where('person.year','=',4)
 					->select('person.id','person.nickname','person.year')
 					->get();
-		$nonsenior = DB::DB::table('oncamp')->where('date','=',$timerecord->date)
+		$nonsenior = DB::table('oncamp')->where('date','=',$timerecord->date)
 					->join('person','oncamp.person_id','=','person.id')
 					->where('person.year','!=',4)
 					->select('person.id','person.nickname','person.year')
