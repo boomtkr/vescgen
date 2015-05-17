@@ -111,7 +111,7 @@
 										<h3 class="widget-content text-right animation-pullDown" style="font-size:40px;margin-top: 0px;">
 											<strong id="remaining-female">{{$femaleleft}}</strong><br>
 											<small id="all-female">{{$female_count}}</small>
-											<small>จำนวนผู้หญิง</small>
+											<small>จำนวนน้องผู้หญิง</small>
 										</h3>
 									</div>
 								</a>
@@ -119,6 +119,17 @@
 							</div>	
 						</div>
 						<div class="col-xs-6 input-container">
+							<div class="row">
+								<div class="col-xs-4">
+									<h4 class="text-center">งาน</h4>
+								</div>
+								<div class="col-xs-4">
+									<h4 class="text-center">จำนวนคน</h4>
+								</div>
+								<div class="col-xs-4">
+									<h4 class="text-center">จำนวนน้องผู้หญิง</h4>
+								</div>
+							</div>
 							<div class="row">
 								<div class="col-xs-4">
 									<div class="form-group">
@@ -137,7 +148,7 @@
 											<div class="col-xs-12">
 												<div class="input-group">
 													<span class="input-group-addon" style="padding-right: 6px; padding-left: 6px;"><i class="gi gi-group"></i></span>
-													<input type="text" id="example-input1-group1" name="user[]" class="form-control count-user" placeholder="จำนวนคน">
+													<input type="text" id="example-input1-group1" name="user[]" class="form-control count-user" value="1">
 												</div>
 											</div>
 										</div>
@@ -147,7 +158,7 @@
 											<div class="col-xs-12">
 												<div class="input-group">
 													<span class="input-group-addon" style="padding-right: 6px; padding-left: 6px;"><i class="gi gi-woman"></i></span>
-													<input type="text" id="example-input1-group1" name="female[]" class="form-control count-female" placeholder="จำนวนผู้หญิง">
+													<input type="text" id="example-input1-group1" name="female[]" class="form-control count-female" value="0">
 												</div>
 											</div>
 										</div>
@@ -202,22 +213,22 @@
 		$('#isNumeric').hide();
 		$('#isFemale').hide();
 		$('#isDuplicate').hide();
-	function isCal(){
-		if(!cal){
-			alert('กด Calculate เซ็คจำนวนคนก่อนน้าาาาา');
-		} 
+		function isCal(){
+			if(!cal){
+				alert('กด Calculate เซ็คจำนวนคนก่อนน้าาาาา');
+			} 
 
-	}
-function calculate(){
-	var duplicatework = 0;
-	var empty = 0;
-	var err_numeric = 0;
-	var err_female =0;
-	var work = [];
-	var user = [];
-	var female = [];
-	var i =0;
-	$('.count-user').each(function(){
+		}
+		function calculate(){
+			var duplicatework = 0;
+			var empty = 0;
+			var err_numeric = 0;
+			var err_female =0;
+			var work = [];
+			var user = [];
+			var female = [];
+			var i =0;
+			$('.count-user').each(function(){
 		user[i] = $(this).val(); // get value form each user input.
 		i++;
 
@@ -230,8 +241,8 @@ function calculate(){
 			err_numeric=1;
 		}
 	});
-	i=0;
-	$('.count-female').each(function(){
+			i=0;
+			$('.count-female').each(function(){
 		female[i] = $(this).val(); // get value from each female input.
 		i++;
 
@@ -252,16 +263,16 @@ function calculate(){
 
 	i=0;
 	//check duplicate work
-		$('.select-work').each(function(){
-			work[i] = $(this).val();
+	$('.select-work').each(function(){
+		work[i] = $(this).val();
 			// alert(work[i]+' '+$(this).val()+' '+i);
 			i++;
 		});
 
-		for(i=0;i<work.length;i++){
-			for(j=i;j<work.length;j++){
-				if(work[i]===work[j] && i!=j){
-					duplicatework=1;
+	for(i=0;i<work.length;i++){
+		for(j=i;j<work.length;j++){
+			if(work[i]===work[j] && i!=j){
+				duplicatework=1;
 					// alert(work[i]+' = '+work[j]);
 				}
 			}
@@ -271,82 +282,96 @@ function calculate(){
 			$('.alert').show();
 			// $('br').remove();
 		}
-	if(empty){
-		$('#isEmpty').show();
-		if(!$('.alert').find('#isEmpty').length) $('.alert').append('<p id="isEmpty">- กรอกทุกช่องให้ครบด้วย</p>');
-	} else {
-		$('#isEmpty').hide();
-	}
-	if(err_numeric){
-		$('#isNumeric').show();
-		if(!$('.alert').find('#isNumeric').length) $('.alert').append('<p id="isNumeric">- ใส่ตัวเลขขขขขขขขขขข</p>');
-	} else {
-		$('#isNumeric').hide();
-	}
-	if(err_female){
-		$('#isFemale').show();
-		if(!$('.alert').find('#isFemale').length) $('.alert').append('<p id="isFemale">- จำนวนผู้หญิงต้องน้อยกว่าหรือเท่ากับจำนวนคนในแต่ละงาน</p>');
-	} else {
-		$('#isFemale').hide();
-	}
-	if (duplicatework) {
-		$('#isDuplicate').show();
-		if(!$('.alert').find('#isDuplicate').length) $('.alert').append('<p id="isDuplicate">- งานซ้ำ!!!!</p>');
-	} else {
-		$('#isDuplicate').hide();
-	}
-	if(!empty && !err_numeric && !duplicatework && !err_female){
-		sum();
-		cal=1;
-		$("#submit-button").attr("type","submit");
-		$('.alert').hide();
+		if(empty){
+			$('#isEmpty').show();
+			if(!$('.alert').find('#isEmpty').length) $('.alert').append('<p id="isEmpty">- กรอกทุกช่องให้ครบด้วย</p>');
+		} else {
+			$('#isEmpty').hide();
+		}
+		if(err_numeric){
+			$('#isNumeric').show();
+			if(!$('.alert').find('#isNumeric').length) $('.alert').append('<p id="isNumeric">- ใส่ตัวเลขขขขขขขขขขข</p>');
+		} else {
+			$('#isNumeric').hide();
+		}
+		if(err_female){
+			$('#isFemale').show();
+			if(!$('.alert').find('#isFemale').length) $('.alert').append('<p id="isFemale">- จำนวนผู้หญิงต้องน้อยกว่าหรือเท่ากับจำนวนคนในแต่ละงาน</p>');
+		} else {
+			$('#isFemale').hide();
+		}
+		if (duplicatework) {
+			$('#isDuplicate').show();
+			if(!$('.alert').find('#isDuplicate').length) $('.alert').append('<p id="isDuplicate">- งานซ้ำ!!!!</p>');
+		} else {
+			$('#isDuplicate').hide();
+		}
+		if(!empty && !err_numeric && !duplicatework && !err_female){
+			sum();
+			cal=1;
+			
+			$('.alert').hide();
+		}
+
+
 	}
 
-	
-}
+	function sum(){
+		var sum_user=0;
+		var sum_female =0;
+		$('.count-user').each(function(){
+			sum_user = sum_user + parseInt($(this).val());
+		});
+		$('.count-female').each(function(){
+			sum_female= sum_female + parseInt($(this).val());
+		});
 
-function sum(){
-	var sum_user=0;
-	var sum_female =0;
-	$('.count-user').each(function(){
-		sum_user = sum_user + parseInt($(this).val());
+		var user = parseInt($('#all-user').text());
+		var female = parseInt($('#all-female').text());
+
+		user = user - sum_user;
+		female = female - sum_female;
+
+		
+		if(user < 0) {
+			$('#remaining-user').attr('style','color:red');
+			$('#remaining-user').html(user);
+		} else {
+			$('#remaining-user').removeAttr('style');
+			$('#remaining-user').html(user);
+		}
+		if(female < 0) {
+			$('#remaining-female').attr('style','color:red');
+			$('#remaining-female').html(female);	
+		} else {
+			$('#remaining-female').removeAttr('style');
+			$('#remaining-female').html(female);
+		}
+		if(user > 0 && female >0 ){
+			$("#submit-button").attr("type","submit");
+
+		}
+	}
+
+	var test = "<div class='row added-row'><div class='col-xs-4'><div class='form-group'><div class='col-xs-12'><select id='work-chosen' name='job[]' class='form-control select-work' data-placeholder='งาน' style='width: 250px;' >@foreach($worklist as $work)<option value={{$work->work_name}} >{{$work->work_name}}</option>@endforeach</select></div></div></div><div class='col-xs-4'><div class='form-group'><div class='col-xs-12'><div class='input-group'><span class='input-group-addon' style='padding-right: 6px; padding-left: 6px;'><i class='gi gi-group'></i></span><input type='text' id='example-input1-group1' name='user[]' class='form-control count-user' value='1'></div></div></div></div><div class='col-xs-4'><div class='form-group'><div class='col-xs-12'><div class='input-group'><span class='input-group-addon' style='padding-right: 6px; padding-left: 6px;'><i class='gi gi-woman'></i></span><input type='text' id='example-input1-group1' name='female[]' class='form-control count-female' value='0'></div></div></div></div><div class='col-xs-3'></div></div>";
+	$(".input-add").click(function(){
+		var jobcount = parseInt($("#remaining-job").text());
+			if(jobcount < parseInt($("#all-job").text())){
+				$(".input-container").append(test);
+			// alert(jobcount);
+			jobcount = jobcount+1;
+			$('#remaining-job').html(jobcount);
+		}
 	});
-	$('.count-female').each(function(){
-		sum_female= sum_female + parseInt($(this).val());
-	});
-
-	var user = parseInt($('#all-user').text());
-	var female = parseInt($('#all-female').text());
-
-	user = user - sum_user;
-	female = female - sum_female;
-
-	$('#remaining-user').html(user);
-	$('#remaining-female').html(female);
-}
-
-var test = "<div class='row added-row'><div class='col-xs-4'><div class='form-group'><div class='col-xs-12'><select id='work-chosen' name='job[]' class='form-control select-work' data-placeholder='งาน' style='width: 250px;' >@foreach($worklist as $work)<option value={{$work->work_name}} >{{$work->work_name}}</option>@endforeach</select></div></div></div><div class='col-xs-4'><div class='form-group'><div class='col-xs-12'><div class='input-group'><span class='input-group-addon' style='padding-right: 6px; padding-left: 6px;'><i class='gi gi-group'></i></span><input type='text' id='example-input1-group1' name='user[]' class='form-control count-user' placeholder='จำนวนคน'></div></div></div></div><div class='col-xs-4'><div class='form-group'><div class='col-xs-12'><div class='input-group'><span class='input-group-addon' style='padding-right: 6px; padding-left: 6px;'><i class='gi gi-woman'></i></span><input type='text' id='example-input1-group1' name='female[]' class='form-control count-female' placeholder='จำนวนผู้หญิง'></div></div></div></div><div class='col-xs-3'></div></div>";
-$(".input-add").click(function(){
-	var jobcount = parseInt($("#remaining-job").text());
-	if(jobcount < parseInt($("#all-job").text())){
-		$(".input-container").append(test);
-		// alert(jobcount);
-		jobcount = jobcount+1;
-		$('#remaining-job').html(jobcount);
-	}
-});
-$(".input-remove").click(function(){
+	$(".input-remove").click(function(){
 		var jobcount = parseInt($("#remaining-job").text());
 		if(jobcount >1){
 			$(".added-row:last").remove();
 			jobcount = jobcount-1;
 			$('#remaining-job').html(jobcount);
 		}
-});
-
-
-
-</script>
+	});
+	</script>
 <!-- Load and execute javascript code used only in this page -->
 {{ HTML::script('proui/js/pages/formsValidation.js'); }}
 
