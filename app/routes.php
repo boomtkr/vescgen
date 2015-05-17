@@ -67,7 +67,6 @@ Route::get('/workspace', function()
 	return View::make('home/workspace');
 });
 
-Route::get('/updatepeople','UpdatepeopleController@showhome');
 Route::get('/addpeople','UpdatepeopleController@addpeople');
 Route::post('/addpeople/save','UpdatepeopleController@saveadded');
 
