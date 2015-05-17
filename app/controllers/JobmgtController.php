@@ -163,6 +163,11 @@ class JobmgtController extends BaseController {
 					->where('person.year','=',4)
 					->select('person.id','person.nickname','person.year')
 					->get();
+		$nonsenior = DB::DB::table('oncamp')->where('date','=',$timerecord->date)
+					->join('person','oncamp.person_id','=','person.id')
+					->where('person.year','!=',4)
+					->select('person.id','person.nickname','person.year')
+					->get();
 		return View::make('home/jobmgtpeople')->with('day',$day)
 										   	  ->with('weekday',$weekday[$tdate])
 										      ->with('month',$month)
@@ -176,6 +181,7 @@ class JobmgtController extends BaseController {
 											  ->with('jobhis',$jobhis)
 											  ->with('people',$people)
 											  ->with('senior',$senior)
+											  ->with('nonsenior',$nonsenior)
 											  ->with('timerecord',$timerecord)
 										      ->with('user_count',$user_count)
 										      ->with('senior_count',$senior_count)
