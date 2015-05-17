@@ -154,7 +154,7 @@
 		if(cal){
 			$('#submit-button').attr('type','submit');
 		} else {
-			alert('s');
+			// alert('s');
 		}
 	}
 	function countSenior(){
