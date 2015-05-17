@@ -117,7 +117,7 @@
                                     <a href={{asset('jobmgt')}}  class="{{ strpos(Route::getCurrentRoute()->getPath(), 'jobmgt') !== false ? 'active' : ''}}"><i class="gi gi-ax sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">แบ่งงาน</span></a>
                                 </li>
                                 <li>
-                                    <a href="/jobtoday" class="{{ strpos(Route::getCurrentRoute()->getPath(), 'jobtoday') !== false ? 'active' : ''}}"><i class="gi gi-imac sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">กระดานหน้าที่วันนี้</span></a>
+                                    <a href={{asset('jobtoday')}} class="{{ strpos(Route::getCurrentRoute()->getPath(), 'jobtoday') !== false ? 'active' : ''}}"><i class="gi gi-imac sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">กระดานหน้าที่วันนี้</span></a>
                                     
                                 </li>
                                 <li>
