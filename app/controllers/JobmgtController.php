@@ -156,17 +156,17 @@ class JobmgtController extends BaseController {
 
 		$people = DB::table('oncamp')->where('date','=',$timerecord->date)
 					->join('person','oncamp.person_id','=','person.id')
-					->select('person.id','person.nickname','person.year')
+					->select('person.id','person.nickname','person.year','person.gender')
 					->get();
 		$senior = DB::table('oncamp')->where('date','=',$timerecord->date)
 					->join('person','oncamp.person_id','=','person.id')
 					->where('person.year','=',4)
-					->select('person.id','person.nickname','person.year')
+					->select('person.id','person.nickname','person.year','person.gender')
 					->get();
 		$nonsenior = DB::table('oncamp')->where('date','=',$timerecord->date)
 					->join('person','oncamp.person_id','=','person.id')
 					->where('person.year','!=',4)
-					->select('person.id','person.nickname','person.year')
+					->select('person.id','person.nickname','person.year','person.gender')
 					->get();
 		return View::make('home/jobmgtpeople')->with('day',$day)
 										   	  ->with('weekday',$weekday[$tdate])
@@ -188,15 +188,54 @@ class JobmgtController extends BaseController {
 										      ->with('female_count',$female_count);
 	}
 
-	// public static function workrandom(){
-	// 	$timerecord
-	// 	$jobhis 
-	// 	$job
-	// 	$usrperjob
-	// 	$people
+
+	public static function workrandom(){
+
+		$s_job = Input::get('job');
+		$s_female = Input::get('female');
+		$job = json_decode($s_job);
+		$female = json_decode($s_female);
+
+		$s_jobhis = Input::get('jobhis');
+		$s_timerecord = Input::get('timerecord');
+		$timerecord = json_decode($s_timerecord);
+		$jobhis = json_decode($s_jobhis);
+
+		$senior_namelist[] = Input::get('senior_namelist');
+		$nonsenior_namelist[] = Input::get('nonsenior_namelist');
+		foreach ($senior_namelist as $sn) {
+			foreach($sn as $s){
+				echo $s;
+			}
+		}
+
+		$today = Time::select('date')->first()->date;
+		$thistoday = str_replace('-', '/', $today);
+		$tomorrow = date('Y-m-d',strtotime($thistoday . "+1 days"));
+		$date = $today;
+		$exdate = explode("-", $date);
+		$year = (int)$exdate[0] + 543;
+		$day = (int)$exdate[2];
+		$month = Self::getmonthname((int)$exdate[1]);
+		$thmanday = PludDate::where('date','=',$date)->first()->id;
+		$weekday = Array('Monday'=>'จันทร์', 'Tuesday'=>'อังคาร', 'Wednesday'=>'พุธ',
+						 'Thursday'=>'พฤหัสบดี', 'Friday'=>'ศุกร์', 'Saturday'=>'เสาร์',
+						 'Sunday'=>'อาทิตย์');
+		$tdate = date("l",strtotime($date));
+
+
+
+		// foreach($senior_namelist as $sn){
+		// 	echo $senior_namelist->id;
+		// }
+		// $timerecord
+		// $jobhis 
+		// $job
+		// $usrperjob
+		// $people
 
 		
-	// }
+	}
 
 }
 
