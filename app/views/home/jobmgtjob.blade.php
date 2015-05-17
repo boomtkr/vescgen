@@ -73,8 +73,8 @@
 											<i class="fa fa-list-alt"></i>
 										</div>
 										<h3 class="widget-content text-right animation-pullDown" style="font-size:40px;margin-top: 0px;">
-											<strong id="remaining-user">{{$jobcount}}</strong><br>
-											<small>&nbsp;</small>
+											<strong id="remaining-job">{{$jobcount}}</strong><br>
+											<small id="all-job">{{--$jobcount--}}5</small>
 											<small>จำนวนงานทั้งหมด</small>
 										</h3>
 									</div>
@@ -160,7 +160,7 @@
 									<button type="button" class="btn btn-danger input-remove" style="border-radius:25px"><strong>-</strong></button>
 								</div>
 								<div class="col-xs-12" style="margin-bottom:10px">
-									<button class="btn btn-lg btn-default" onclick="sum();" type="button">Calculate</button>
+									<button class="btn btn-lg btn-default" onclick="calculate();" type="button">Calculate</button>
 								</div>
 								<div class="col-xs-12" style="margin-bottom:10px">
 									<button class="btn btn-lg btn-warning" onclick="reset();" type="reset">Reset</button>
@@ -185,23 +185,36 @@
 
 	<script type="text/javascript">
 		
-		// var previous = 0;
-		// var user = parseInt($('#all-user').text());
-		// 	$('.count-user').keyup(function(){
 
-		// 		if($(this).val().length<user.length){
-
-		// 			// alert($(this).val());
-		// 			var remain = user - parseInt($(this).val());
-		// 			$('#remaining-user').html(remain);
-		// 			user = remain;
-		// 			previous = parseInt($(this).val());
-		// 		}
-		// 	});
-		// 	$('.count-user').keydown(function(){
-		// 		alert($(this).val());
-		// 	});
-
+function calculate(){
+	var empty = 0;
+	var err_numeric = 0;
+	$('.count-user').each(function(){
+		if($(this).val()==null || $(this).val() ==''){
+			empty=1;
+		}
+		if(isNaN($(this).val())){
+			err_numeric=1;
+		}
+	});
+	$('.count-female').each(function(){
+		if($(this).val()==null || $(this).val() ==''){
+			empty=1;
+		}
+		if(isNaN($(this).val())){
+			err_numeric=1;
+		}
+	});
+	if(empty){
+		alert('ใส่จำนวนคนกับผู้หญิงให้ครบๆทุกช่องได้ม้ะ');
+	} else {
+		if(err_numeric==0){
+			sum();
+		} else {
+			alert('ใส่ตัวเลขสิเฟ่ย');
+		}
+	}
+}
 
 function sum(){
 	var sum_user=0;
@@ -212,7 +225,6 @@ function sum(){
 	$('.count-female').each(function(){
 		sum_female= sum_female + parseInt($(this).val());
 	});
-	alert('user= '+sum_user+',female= '+sum_female);
 
 	var user = parseInt($('#all-user').text());
 	var female = parseInt($('#all-female').text());
@@ -226,104 +238,22 @@ function sum(){
 
 var test = "<div class='row added-row'><div class='col-xs-4'><div class='form-group'><div class='col-xs-12'><select id='example-chosen' name='job[]' class='form-control select-work' data-placeholder='งาน' style='width: 250px;' >@foreach($worklist as $work)<option value={{$work->work_name}} >{{$work->work_name}}</option>@endforeach</select></div></div></div><div class='col-xs-4'><div class='form-group'><div class='col-xs-12'><div class='input-group'><span class='input-group-addon' style='padding-right: 6px; padding-left: 6px;'><i class='gi gi-group'></i></span><input type='text' id='example-input1-group1' name='user[]' class='form-control count-user' placeholder='จำนวนคน'></div></div></div></div><div class='col-xs-4'><div class='form-group'><div class='col-xs-12'><div class='input-group'><span class='input-group-addon' style='padding-right: 6px; padding-left: 6px;'><i class='gi gi-woman'></i></span><input type='text' id='example-input1-group1' name='female[]' class='form-control count-female' placeholder='จำนวนผู้หญิง'></div></div></div></div><div class='col-xs-3'></div></div>";
 $(".input-add").click(function(){
-	
-	$(".input-container").append(test);
-
-
-		 //    $('option:selected').each(function(){
-			// 	// alert($(this).text());
-			// 	$('option:selected').attr('disabled','');
-			
-			// });
-			// $('option:not(:selected)').each(function(){
-			// 	// alert($(this).text());
-			// 	$('option:not(:selected)').removeAttr('disabled');
-			// });
+	var jobcount = parseInt($("#remaining-job").text());
+	if(jobcount < parseInt($("#all-job").text())){
+		$(".input-container").append(test);
+		// alert(jobcount);
+		jobcount = jobcount+1;
+		$('#remaining-job').html(jobcount);
+	}
 });
 $(".input-remove").click(function(){
-	$
-	$(".added-row:last").remove();
+		var jobcount = parseInt($("#remaining-job").text());
+		$(".added-row:last").remove();
+		jobcount = jobcount-1;
+		$('#remaining-job').html(jobcount);
 });
 
-<?php 
-$work_array = array();
-foreach($worklist as $work){
-	$work_array[$work->id] = $work->work_name;
-}
-?>
 
-var visible = [];
-var workcount = <?php echo count($work_array); ?>;
-
-		// for(i=1;i<= workcount;i++){
-		// 	visible[i] = 1;
-		// }
-		
-		// $('.select-work').each(function(){
-		// 	$(this).on('change', function() {
-		// 		alert();
-		// 	});
-		// });
-
-var selected_work_list = [];
-
-function searchWork(list,work){
-	for(i=0;i<list.length;i++){
-		if(work == list[i]) return i;
-	}
-	return -1;
-}
-function addWork(list,work){
-	var add = 0;
-	for(i=0;i<list.length;i++){
-		if(list[i]=='') {
-			list[i]=work;
-			add=1;
-		}
-	}
-	if(add==0) list[list.length] = work;
-			// alert('add'+list);
-		}
-		function removeWork(list,work){
-			for(i=0;i<list.length;i++){
-				if(work == list[i]) list[i] = '';
-			}
-		}
-		// $('.select-work').on('change', function() {
-
-		// 	var workname = $(this).val();
-
-		// 	$('option[value="'+workname+'"]').each(function(){
-		// 		$(this).attr('disabled','');
-		// 		// $('.select-work option:not(:selected)').removeAttr('disabled');
-		// 		// $('.select-work option[value="'+workname+'"]').attr('disabled','');
-		
-		// 	});
-
-		// });
-		// $('.select-work').each(function(){
-		// 	$(this).on('change', function() {
-  // 			var work_name = this.value;
-  // 			// alert(work_name);
-  // 			// var selected_option = '.select-work option[value="'+work_name+'"]';
-  // 			var selected_option = '.select-work option:selected';
-  // 			var notselected_option = '.select-work option:not(:selected)';
-  // 			// alert(selected_option);
-  // 			// $(this).find('option').removeAttr("disabled",'');
-  // 			// $('.select-work').find('option').removeAttr("disabled",''); // remove disabled attr on previous selected option
-		// 	// $(this).find('option').removeAttr('style');
-  // 			// $(selected_option).attr("disabled",''); // disable the selected option
-  // 			// $(selected_option).attr('style','display:none;');
-  // 			// $(this).append('<option value="'+work_name+'"">'+work_name+'</option>');
-
-  // 			$(selected_option).each(function(){
-  // 				$(this).attr('disabled','');
-  // 			});
-  // 			$(notselected_option).each(function(){
-  // 				$(this).removeAttr('disabled','');
-  // 			});
-		// });
-		// });
 
 </script>
 <!-- Load and execute javascript code used only in this page -->

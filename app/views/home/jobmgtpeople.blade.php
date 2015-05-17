@@ -106,14 +106,14 @@
 														<td>
 															<select id="example-chosen-multiple" name="senior_namelist" class="select-chosen" data-placeholder="จิ้มเลือกซีเนียร์มาสักคน" style="width: 250px;" multiple>
 																@foreach($senior as $person)
-																	<option value={{$person->id}}>{{$person->nickname.'#'.$person->year}}</option>
+																	<option value='{{$person->id}}'>{{$person->nickname.'#'.$person->year}}</option>
 																@endforeach
 															</select>
 														</td>
 														<td>
 															<select id="example-chosen-multiple" name="nonsenior_namelist" class="select-chosen" data-placeholder="จิ้มเลือกน้องมาสักคนดิ" style="width: 250px;" multiple>
 																@foreach($nonsenior as $person)
-																	<option value={{$person->id}}>{{$person->nickname.'#'.$person->year}}</option>
+																	<option value='{{$person->id}}'>{{$person->nickname.'#'.$person->year}}</option>
 																@endforeach
 															</select>
 														</td>
