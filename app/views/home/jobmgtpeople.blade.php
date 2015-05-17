@@ -44,7 +44,7 @@
 										$jobcount = 1;
 										?>
 									</div>
-									{{Form::open(array('url'=>'/jobmgt/workcreated','id'=>'form-validation','method'=>'post'))}}
+									{{Form::open(array('url'=>'/jobmgt/workrandom','id'=>'form-validation','method'=>'post'))}}
 									
 									<div class="col-xs-3">
 										<div class="col-xs-12">
@@ -104,14 +104,14 @@
 														<td class="text-center">{{$user[$i]}}</td>	
 														<td class="text-center">{{$female[$i]}}</td>
 														<td>
-															<select id="example-chosen-multiple" name="senior_namelist" class="select-chosen" data-placeholder="จิ้มเลือกซีเนียร์มาสักคน" style="width: 250px;" multiple>
+															<select id="example-chosen-multiple" name="senior_namelist[]" class="select-chosen" data-placeholder="จิ้มเลือกซีเนียร์มาสักคน" style="width: 250px;" multiple>
 																@foreach($senior as $person)
 																	<option value='{{$person->id}}'>{{$person->nickname.'#'.$person->year}}</option>
 																@endforeach
 															</select>
 														</td>
 														<td>
-															<select id="example-chosen-multiple" name="nonsenior_namelist" class="select-chosen" data-placeholder="จิ้มเลือกน้องมาสักคนดิ" style="width: 250px;" multiple>
+															<select id="example-chosen-multiple" name="nonsenior_namelist[]" class="select-chosen" data-placeholder="จิ้มเลือกน้องมาสักคนดิ" style="width: 250px;" multiple>
 																@foreach($nonsenior as $person)
 																	<option value='{{$person->id}}'>{{$person->nickname.'#'.$person->year}}</option>
 																@endforeach
@@ -125,12 +125,12 @@
 										</div>
 									</div>
 									<div class="col-xs-2">
-										
-										
 										<div class="col-xs-12" style="margin-bottom:10px">
 											<button type="submit" name='submit' class="btn btn-lg btn-primary"><i class="fa fa-angle-right"></i> ต่อไป</button>			
 										</div>
 									</div>
+									<input type='hidden' name='job' value={{json_encode($job)}}></input> 
+									<input type='hidden' name='female' value={{json_encode($female)}}></input> 
 									<input type='hidden' name='timerecord' value={{json_encode($timerecord)}}></input> 
 									<input type='hidden' name='jobhis' value={{json_encode($jobhis)}}></input> 
 									{{Form::close()}}
