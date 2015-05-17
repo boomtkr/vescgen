@@ -23,6 +23,7 @@
 		<li style="display: inline; padding-right: 20px"><a href={{asset('dailyjob')}}>หน้าที่รายวัน</a></li>
 		<li style="display: inline; padding-right: 20px"><a href={{asset('allwork')}}>หน้าที่ทั้งหมด</a></li>
 	</ul>
+	<a href={{asset('addpeople')}}>เพิ่มคน</a>
 
 </body>
 </html>

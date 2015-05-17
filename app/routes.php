@@ -68,6 +68,8 @@ Route::get('/workspace', function()
 });
 
 Route::get('/updatepeople','UpdatepeopleController@showhome');
+Route::get('/addpeople','UpdatepeopleController@addpeople');
+Route::post('/addpeople/save','UpdatepeopleController@saveadded');
 
 Route::get('/jobtoday','JobtodayController@showdata');
 
