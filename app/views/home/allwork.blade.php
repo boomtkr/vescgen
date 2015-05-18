@@ -16,7 +16,7 @@
 				<div class="widget-simple text-center themed-background-emerald">
 
 
-					<h2 class="widget-content-light edpensook">
+					<h2 class="widget-content-light edpensook animation-pullDown">
 						<i class="fa fa-list-alt sidebar-nav-icon"></i> หน้าที่ทั้งหมด<br>
 						<small> &nbsp;</small>
 					</h2>

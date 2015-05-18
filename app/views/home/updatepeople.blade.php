@@ -27,3 +27,55 @@
 
 </body>
 </html>
+
+@extends('home/main')
+
+@section('content')
+<style type="text/css">
+	td{
+		font-size: 16px;
+	}
+	.form-group{
+		margin-bottom: 0px;
+	}
+	.help-block{
+		font-size: 8px;
+	}
+	
+</style>
+<div class="row edpensook">
+	<div class="col-xs-12">
+		<div class="widget">
+			<div class="widget-advanced widget-advanced-alt">
+
+				<!-- Widget Header -->
+				<div class="widget-simple text-center themed-background-autumn">
+
+
+					<h2 class="widget-content-light edpensook animation-pullDown">
+						<i class="fa fa-list-alt sidebar-nav-icon"></i> อัพเดตรายชื่อ<br>
+						
+					</h2>
+					
+				</div>
+				<!-- END Widget Header -->
+				
+				<!-- Widget Main -->
+				<div class="widget-main">
+					<div class="row">   
+						
+
+						
+
+					</div>
+					<!-- END Widget Main -->
+					
+				</div>
+			</div>
+			<!-- END Advanced Theme Color Widget Alternative -->
+		</div>
+
+	</div>
+	
+
+@stop

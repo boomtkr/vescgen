@@ -12,7 +12,7 @@
 					<div class="widget-simple text-center themed-background-amethyst">
 
 
-						<h2 class="widget-content-light  edpensook">
+						<h2 class="widget-content-light  edpensook animation-pullDown">
 							<i class="gi gi-sorting"></i> คนขึ้นลงพรุ่งนี้<br>
 							{{-- <h4 class="edpensook" style="color:white;"></h4> --}}
 							@if($changed == 1)
