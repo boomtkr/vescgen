@@ -104,7 +104,7 @@
 														<td class="text-center">{{$user[$i]}}</td>	
 														<td class="text-center">{{$female[$i]}}</td>
 														<td>
-															<select id="example-chosen-multiple" name='senior_namelist[]' class="select-chosen" data-placeholder="จิ้มเลือกซีเนียร์มาสักคน" style="width: 250px;" multiple>
+															<select id="select-senior" name='senior_namelist[]' class="select-chosen " data-placeholder="จิ้มเลือกซีเนียร์มาสักคน" style="width: 250px;" multiple>
 																@foreach($senior as $person)
 																	<option value='{{$person->id}}{{'.'}}{{$i}}'>{{$person->nickname.'#'.$person->year}}</option>
 																@endforeach
@@ -161,7 +161,12 @@
 		var count_senior = 0;
 		var all_senior = parseInt($('#all-senior').text());
 		$('.search-choice').each(function(){
-			count_senior = count_senior +1;
+			
+			var nameyear = $(this).find('span').text();
+			var year = nameyear.substring(nameyear.length-1);
+			if(year=='4'){
+				count_senior = count_senior +1;
+			}
 		});
 		// alert(count_senior)
 		var remaining_senior = all_senior - count_senior;
