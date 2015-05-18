@@ -56,7 +56,7 @@
 							</div>
 						</div>
 						<div class="col-xs-8 col-xs-push-2">
-							<form action={{asset('allwork')}} method="post" enctype="multipart/form-data" class="form-horizontal form-bordered" >
+							<form url='/allwork/add' method="post" enctype="multipart/form-data" class="form-horizontal form-bordered" >
                             <fieldset>
                                 <legend>เพิ่มงาน</legend>
                                 
@@ -109,7 +109,7 @@
 	function checkWork(){
 		$('.workname').each(function(){
 			var workname = $(this).text();
-			alert();
+			alert('h');
 		});
 	}
 </script>
