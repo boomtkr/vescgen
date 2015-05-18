@@ -254,31 +254,36 @@ class JobmgtController extends BaseController {
 		for($i=0;$i<count($job);$i++){
 			$nonseniors[$i] = array();
 		}
-		foreach($nonsenior_namelist as $nsn){
-			$person = explode('.',$nsn);
-			array_push($nonseniors[$person[1]],Person::find($person[0]));
-		}
-		$girlleft[] = array();
-
-		for($i=0; $i<count($job); $i++){
-			$girlleft[$i] = 0;
-			for($j=0; $j<count($nonseniors[$i]); $j++){
-				if($nonseniors[$i][$j]->gender == 'F'){
-					$girlleft[$i]++;
-				}
+		if(!empty($nonsenior_namelist)){
+			foreach($nonsenior_namelist as $nsn){
+				$person = explode('.',$nsn);
+				array_push($nonseniors[$person[1]],Person::find($person[0]));
 			}
 		}
 
-		// for($i=0;$i<count($job);$i++){
-		// 	echo $job[$i]. "+".count($seniors[$i]);;
-		// 	for($j=0;$j<count($seniors[$i]);$j++){
-		// 		echo $seniors[$i][$j]->nickname." ";
-		// 	}
-		// 	for($j=0;$j<count($nonseniors[$i]);$j++){
-		// 		echo $nonseniors[$i][$j]->nickname." ";
-		// 	}
-		// 	echo "/////";
-		// }
+
+		$girlleft[] = array();
+		$menleft[] = array();
+		for($i=0; $i<count($job); $i++){
+			$girlleft[$i] = 0;
+			$girlused = 0;
+			$menused = 0;
+			for($j=0; $j<count($nonseniors[$i]); $j++){
+				if($nonseniors[$i][$j]->gender == 'F'){
+					$girlused++;
+				}
+				else if($nonseniors[$i][$j]->gender == 'M'){
+					$menused++;
+				}
+			}
+			$girlleft[$i] = $female[$i] - $girlused;
+			$menleft[$i] = $user[$i] - $female[$i] - $menused - count($seniors[$i]);
+		}
+
+		$men_index = -1;
+		$girl_index = -1;
+		$menfitness = 0;
+		$girlfitness = 0;
 
 		$today = Time::select('date')->first()->date;
 		$thistoday = str_replace('-', '/', $today);
@@ -315,21 +320,154 @@ class JobmgtController extends BaseController {
 			}
 		}
 
-		$tmpnonseniors[] = array();
-		for($i=0;$i<count($job);$i++){
-			$tmpnonseniors[$i] = array();
+		//RANDOM GIRL
+
+
+		$tmpnonseniors_girl = array();
+		for($k=0;$k<3;$k++){
+			$tmpnonseniors_girl[$k] = array();
+			for($i=0;$i<count($job);$i++){
+				$tmpnonseniors_girl[$k][$i] = array();
+			}
+		}
+		$tmpgirls = array();
+		for($i=0;$i<3;$i++){
+			$tmpgirls[$i]=array();
+			$tmpgirls[$i]=$girls;
+		}
+
+		$fitness = array();
+		for($k=0; $k<3; $k++){
+			$total_fvalue = 0;
+			$divider = 0;
+			$x = 0;
+			for($i=0; $i<count($job); $i++){
+				for($h=0; $h<$girlleft[$i]; $h++){
+					$max_x = 0;
+					$max_f = 0;
+					for($j=0; $j<3; $j++){
+						$x = rand(0,count($tmpgirls[$k])-1);
+						$fvalue = Self::getfitnessvalue($tmpgirls[$k][$x], $job[$i], $timerecord->date);
+						if($fvalue > $max_f){
+							$max_f = $fvalue;
+							$max_x = $x;
+						}
+					}
+					$total_fvalue += $max_f;
+					$divider++;
+					array_push($tmpnonseniors_girl[$k][$i],$tmpgirls[$k][$max_x]);
+					array_splice($tmpgirls[$k], $max_x, 1);
+				}
+			}
+			if($divider > 0) $fitness[$k] = $total_fvalue / $divider;
+		}	
+		if(count($fitness)>0){
+			$maxfitness = max($fitness);
+			$girlfitness = $maxfitness;
+				for($k=0; $k<3; $k++){
+					if($fitness[$k] == $maxfitness){
+						$girl_index = $k;
+						break;
+					}
+				}
+		}
+
+
+		//RANDOM MEN
+
+		$mens = array();
+		$men_list = DB::table('oncamp')->where('date','=',$timerecord->date)
+					->join('person','oncamp.person_id','=','person.id')
+					->where('person.gender','=','M')
+					->where('person.year','!=',4)
+					->get();
+
+		foreach($men_list as $ml){
+			$check = 0;
+			foreach($nonseniors as $nss){
+				foreach($nss as $ns){
+					if($ns->id == $ml->id){
+						$check = 1;
+					}
+				}
+			}
+			if($check==0){
+				array_push($mens,$ml);
+			}
+		}
+
+		$tmpnonseniors_men = array();
+		for($k=0;$k<3;$k++){
+			$tmpnonseniors_men[$k] = array();
+			for($i=0;$i<count($job);$i++){
+				$tmpnonseniors_men[$k][$i] = array();
+			}
+		}
+		$tmpmens = array();
+		for($i=0;$i<3;$i++){
+			$tmpmens[$i]=array();
+			$tmpmens[$i]=$mens;
+		}
+
+		$fitness = array();
+		for($k=0; $k<3; $k++){
+			$total_fvalue = 0;
+			$divider = 0;
+			$x = 0;
+			for($i=0; $i<count($job); $i++){
+				for($h=0; $h<$menleft[$i]; $h++){
+					$max_x = 0;
+					$max_f = 0;
+					for($j=0; $j<3; $j++){
+						$x = rand(0,count($tmpmens[$k])-1);
+						$fvalue = Self::getfitnessvalue($tmpmens[$k][$x], $job[$i], $timerecord->date);
+						if($fvalue > $max_f){
+							$max_f = $fvalue;
+							$max_x = $x;
+						}
+					}
+					$total_fvalue += $max_f;
+					$divider++;
+					array_push($tmpnonseniors_men[$k][$i],$tmpmens[$k][$max_x]);					array_splice($tmpmens[$k], $max_x, 1);
+				}
+			}
+			if($divider > 0) $fitness[$k] = $total_fvalue / $divider;
+		}	
+
+		if(count($fitness)>0){
+			$maxfitness = max($fitness);
+			$menfitness = $maxfitness;
+			for($k=0; $k<3; $k++){
+				if($fitness[$k] == $maxfitness){
+					$men_index = $k;	
+					break;
+				}
+			}
 		}
 
 		for($i=0; $i<count($job); $i++){
-			if($girlleft[$i] > 0){
-				$x = rand(0,count($girls)-1);
-				$fit = Self::getfitnessvalue($girls[$x],$job[$i],$timerecord->date);
-				// echo $x."===".$girls[$x]->nickname."====".$fit;
-				array_push($tmpnonseniors[$i],$girls[$x]);
-				unset($girls[$x]);
-				array_values($girls);
+			if(count($girls) > 0){
+				for($g=0; $g<count($tmpnonseniors_girl[$girl_index][$i]); $g++){
+					array_push($nonseniors[$i],$tmpnonseniors_girl[$girl_index][$i][$g]);
+				}
+			}
+			if(count($mens) > 0){
+				for($m=0; $m<count($tmpnonseniors_men[$men_index][$i]); $m++){
+					array_push($nonseniors[$i],$tmpnonseniors_men[$men_index][$i][$m]);
+				}
 			}
 		}
+
+		// for($i=0; $i<count($job); $i++){
+		// 	echo $job[$i]." ".$user[$i]." ";
+		// 	foreach($seniors[$i] as $ns){
+		// 		echo $ns->nickname."#".$ns->year." ";
+		// 	}
+		// 	foreach($nonseniors[$i] as $ns){
+		// 		echo $ns->nickname."#".$ns->year." ";
+		// 	}
+		// 	echo "   ///\n";
+		// }
 
 		return View::make('home/jobmgtrandom')->with('day',$day)
 										   	  ->with('weekday',$weekday[$tdate])

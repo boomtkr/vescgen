@@ -7,7 +7,12 @@ class UpdatepeopleController extends BaseController {
 	}
 
 	public static function addpeople(){
-		return View::make('home/addpeople');
+		$people = Person::select('citizen_id')->get();
+		$citizenlist = array();
+		foreach($people as $pp){
+			array_push($citizenlist,$pp->citizen_id);
+		}
+		return View::make('home/addpeople')->with('citizenlist',$citizenlist);
 	}
 
 	public static function saveadded(){

@@ -132,7 +132,7 @@
 											<button id="submit-button" onclick="isCal();" type="button" name='submit' class="btn btn-lg btn-primary"><i class="fa fa-angle-right"></i> ต่อไป</button>			
 										</div>
 									</div>
-									<input type='hidden' name='job' value={{json_encode($user)}}></input> 
+									<input type='hidden' name='user' value={{json_encode($user)}}></input> 
 									<input type='hidden' name='job' value={{json_encode($job)}}></input> 
 									<input type='hidden' name='female' value={{json_encode($female)}}></input> 
 									<input type='hidden' name='timerecord' value={{json_encode($timerecord)}}></input> 
