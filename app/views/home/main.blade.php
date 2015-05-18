@@ -111,7 +111,7 @@
                                 </li>
                                 <li>
 
-                                    <a href={{asset('namelist')}}  class="{{ strpos(Route::getCurrentRoute()->getPath(), 'namelist') !== false ? 'active' : ''}}"><i class="fa fa-download sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">อัพเดตรายชื่อ</span></a>
+                                    <a href={{asset('addpeople')}}  class="{{ strpos(Route::getCurrentRoute()->getPath(), 'addpeople') !== false ? 'active' : ''}}"><i class="fa fa-download sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">อัพเดตรายชื่อ</span></a>
                                 </li>
                                 <li>
                                     <a href={{asset('jobmgt')}}  class="{{ strpos(Route::getCurrentRoute()->getPath(), 'jobmgt') !== false ? 'active' : ''}}"><i class="gi gi-ax sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">แบ่งงาน</span></a>

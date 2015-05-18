@@ -11,8 +11,8 @@
 				<div class="widget-simple text-center themed-background-coral">
 					
 					
-					<h2 class="widget-content-light  edpensook">
-						<i class="hi hi-user sidebar-nav-icon"></i> รายชื่อรายวัน<br>
+					<h2 class="widget-content-light  edpensook animation-pullDown">
+						<i class="hi hi-user sidebar-nav-icon" ></i> รายชื่อรายวัน<br>
 						<h4 class="edpensook" style="color:white;">ผลัด {{$plud}} วัน {{$date}}</h4>
 
 					</h2>

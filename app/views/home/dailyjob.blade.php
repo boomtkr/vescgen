@@ -16,7 +16,7 @@
 				<div class="widget-simple text-center themed-background-emerald">
 
 
-					<h2 class="widget-content-light edpensook">
+					<h2 class="widget-content-light edpensook animation-pullDown">
 						<i class="fa fa-briefcase" ></i> หน้าที่รายวัน<br>
 						<h4 class="edpensook" style="color:white;">ผลัด {{$plud}} วัน {{$date}} ช่วง@if($time=='morning')เช้า@endif</h4>
 

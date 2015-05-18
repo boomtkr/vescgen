@@ -1,7 +1,11 @@
 @extends('home/main')
 
 @section('content')
-
+<style type="text/css">
+	td {
+		font-size: 16px
+	}
+</style>
 <div class="row">
 	<div class="col-xs-12">
 		<div class="widget">
@@ -11,18 +15,19 @@
 				<div class="widget-simple text-center themed-background-fire">
 					
 					
-					<h2 class="widget-content-light  edpensook">
+					<h2 class="widget-content-light  edpensook animation-pullDown">
 						<i class="gi gi-imac sidebar-nav-icon"></i> กระดานหน้าที่วันนี้<br>
 						<h4 class="edpensook" style="color:white;">ผลัด {{$plud}} วัน {{$date}} @if($time=='morning')ช่วงเช้า@endif
 					@if($time=='afternoon')ช่วงบ่าย@endif
-					@if($time=='all')ทั้งวัน@endif</h4>
+					@if($time=='all')ทั้งวัน@endif
+					@if($time=='OT')โอที@endif</h4>
 
 					</h2>
 					
 					</div>
 				</div>
 				<!-- END Widget Header -->
-				<div class="widget-main">
+				<div class="widget-main edpensook">
 					<div class="row">
 						<div class="col-xs-12">
 
@@ -38,10 +43,10 @@
                                             <label class="col-xs-4 control-label" for="example-select">ช่วงเวลา</label>
                                             <div class="col-xs-8">
                                                 <select id="example-select" name="example-select" class="form-control" size="1">
-                                                    <option value="0">เช้า</option>
-                                                    <option value="1">บ่าย</option>
-                                                    <option value="2">ทั้งวัน</option>
-                                                  
+                                                    <option value="morning">เช้า</option>
+                                                    <option value="afternoon">บ่าย</option>
+                                                    <option value="all">ทั้งวัน</option>
+                                                  	<option value="OT">โอที</option>
                                                 </select>
                                             </div>
                                         </div>

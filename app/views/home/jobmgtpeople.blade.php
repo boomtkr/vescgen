@@ -15,7 +15,7 @@
 				<!-- Widget Header -->
 				<div class="widget-simple text-center themed-background-emerald">
 
-					<h2 class="widget-content-light edpensook">
+					<h2 class="widget-content-light edpensook animation-pullDown">
 						<i class="gi gi-ax"></i> แบ่งงาน<br>
 						<small> &nbsp;</small>
 					</h2>
@@ -89,11 +89,11 @@
 											<table class="table table-vcenter table-striped table-bordered" >
 												<thead >
 													<tr>
-														<th width="10%">งาน</th>
-														<th width="10%" class="text-center">คน</th>
-														<th width="10%" class="text-center">ผญ</th>
+														<th width="13%">งาน</th>
+														<th width="8%" class="text-center">คน</th>
+														<th width="8%" class="text-center">ผญ</th>
 														<th>เลือกซีเนียร์เข้าใจปะ</th>
-														<th>อยากเลือกน้องคนไหนก็เลือกเลยยยย</th>
+														<th>อยากเลือกน้องคนไหนก็เลือกเลย</th>
 													</tr>
 
 												</thead>
@@ -126,7 +126,10 @@
 									</div>
 									<div class="col-xs-2">
 										<div class="col-xs-12" style="margin-bottom:10px">
-											<button type="submit" name='submit' class="btn btn-lg btn-primary"><i class="fa fa-angle-right"></i> ต่อไป</button>			
+											<button type="button" name='submit' onclick="countSenior();" class="btn btn-lg btn-default">Calculate</button>			
+										</div>
+										<div class="col-xs-12" style="margin-bottom:10px">
+											<button id="submit-button" onclick="isCal();" type="button" name='submit' class="btn btn-lg btn-primary"><i class="fa fa-angle-right"></i> ต่อไป</button>			
 										</div>
 									</div>
 									<input type='hidden' name='user' value={{json_encode($user)}}></input> 
@@ -145,5 +148,35 @@
 				</div>
 
 			</div>
+<script type="text/javascript">
+	var cal = 0;
+	function isCal(){
+		if(cal){
+			$('#submit-button').attr('type','submit');
+		} else {
+			// alert('s');
+		}
+	}
+	function countSenior(){
+		var count_senior = 0;
+		var all_senior = parseInt($('#all-senior').text());
+		$('.search-choice').each(function(){
+			count_senior = count_senior +1;
+		});
+		// alert(count_senior)
+		var remaining_senior = all_senior - count_senior;
+		if(remaining_senior>=0){
+			$('#remaining-senior').removeAttr('style');
+			$('#remaining-senior').html(remaining_senior);
+			cal=1;
+		} else {
+			$('#remaining-senior').attr('style','color:red');
+			$('#remaining-senior').html(remaining_senior);
+		}
+		
+	}
+	
 
+	
+</script>
 			@stop

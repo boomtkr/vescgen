@@ -12,14 +12,15 @@ var FormsValidation = function() {
              *  Jquery Validation, Check out more examples and documentation at https://github.com/jzaefferer/jquery-validation
              */
 
-             // alert();
             /* Initialize Form Validation */
             $('#form-validation').validate({
-                errorClass: 'help-block animation-slideDown', // You can change the animation class for a different entrance animation - check animations page
+                errorClass: 'help-block', // You can change the animation class for a different entrance animation - check animations page
                 errorElement: 'div',
                 errorPlacement: function(error, e) {
                     e.parents('.form-group > div').append(error);
-                    $('.help-block').attr('style','margin-bottom: 0px;');
+                    // $('.help-block').remove();
+                    // e.parents('.form-group > div').append();
+                    
                 },
                 highlight: function(e) {
                     $(e).closest('.form-group').removeClass('has-success has-error').addClass('has-error');
@@ -27,16 +28,15 @@ var FormsValidation = function() {
                 },
                 success: function(e) {
                     // You can use the following if you would like to highlight with green color the input after successful validation!
-                    e.closest('.form-group').removeClass('has-success has-error'); // e.closest('.form-group').removeClass('has-success has-error').addClass('has-success');
+                    e.closest('.form-group').removeClass('has-success has-error').addClass('has-success');
                     e.closest('.help-block').remove();
                 },
                 rules: {
                     'citizen_id[]': {
-                        required: true,
-                        minlength: 13,
-                        maxlength: 13,
-                        digits: true
-                        
+                        required: true
+                        // minlength: 13,
+                        // // maxlength:13,
+                        // digits: true
                     },
                     'first_name[]': {
                         required: true
@@ -45,30 +45,31 @@ var FormsValidation = function() {
                         required: true
                     },
                     'nickname[]': {
-                        required: true
-                    },
 
+                    },
+                    'year[]': {
+
+                    },
                     'faculty[]': {
-                        required: true
+
                     },
                     'dep[]': {
-                        required: true
+
                     },
                     'student_id[]': {
-                        required: true,
-                        minlength:10
+
                     },
                     'phone[]': {
-                        required: true
+
                     },
                     'birthday[]': {
-                        required: true
+
                     },
                     'date_in[]': {
-                        required: true
+
                     },
                     'date_out[]': {
-                        required: true
+
                     },
                     'user[]': {
                         required: true,
@@ -127,43 +128,7 @@ var FormsValidation = function() {
                 },
                 messages: {
                     'citizen_id[]': {
-                        required: 'required',
-                        minlength: 'กรอกรหัส 13 หลัก',
-                        maxlength: 'กรอกรหัส 13 หลัก',
-                        digits: 'กรอกรหัสเป็นตัวเลข'
-                        
-                    },
-                    'first_name[]': {
-                        required: 'required'
-                    },
-                    'last_name[]': {
-                        required: 'required'
-                    },
-                    'nickname[]': {
-                        required: 'required'
-                    },
-
-                    'faculty[]': {
-                        required: 'required'
-                    },
-                    'dep[]': {
-                        required: 'required'
-                    },
-                    'student_id[]': {
-                        required: 'required',
-                        minlength: 'กรอกรหัส 10 หลัก'
-                    },
-                    'phone[]': {
-                        required: 'required'
-                    },
-                    'birthday[]': {
-                        required: 'required'
-                    },
-                    'date_in[]': {
-                        required: 'required'
-                    },
-                    'date_out[]': {
-                        required: 'required'
+                        required: '&nbsp;'
                     },
                     'user[]': {
                         required: ' !!!!! ใส่ด้วยดิวะ',

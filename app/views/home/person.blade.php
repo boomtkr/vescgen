@@ -20,7 +20,7 @@
 				<div class="widget-simple text-center themed-background-blackberry">
 
 
-					<h2 class="widget-content-light edpensook">
+					<h2 class="widget-content-light edpensook animation-pullDown">
 						<i class="gi gi-vcard"></i> แก้ไขข้อมูลรายบุคคล<br>
 						<h4 class="edpensook" style="color:white;">&nbsp;</h4>
 

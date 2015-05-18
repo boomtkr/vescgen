@@ -64,7 +64,7 @@
 <div class="row">
     <div class="col-sm-6 col-lg-3">
         <!-- Widget -->
-        <a href={{asset('namelist')}} class="widget widget-hover-effect1">
+        <a href={{asset('addpeople')}} class="widget widget-hover-effect1">
             <div class="widget-simple text-center">
                 <div class="widget-icon themed-background-autumn animation-fadeIn">
                     <i class="fa fa-download"></i>
