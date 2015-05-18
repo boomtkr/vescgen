@@ -15,19 +15,19 @@ function myFunction() {
 }
 </script>
 <body>
+	<?php
+		$girls = array('1','2');
+		$tmpgirls = array();
+		for($i=0;$i<3;$i++){
+			$tmpgirls[$i]=array();
+			$tmpgirls[$i]=$girls;
+		}
 
-	<table id="myTable">
-	  <tbody>
-	    <tr><td>A</td></tr>
-	    <tr><td>B</td></tr>
-		<tr>
-			<td><input type="text" name="user[]" id="user" placeholder="ชื่องาน" /></td>
-			<td><input type="text" name="job[]" id="job" placeholder="จำนวนคน" /></td>
-			<td><input type="text" name="female[]" id="female" placeholder="จำนวนสตรี" /></td>
-		</tr>
-	  </tbody>
-	</table>
+		array_splice($tmpgirls[0], 0, 1);
 
-	<button onclick="myFunction()">Try it</button>
+		// unset($tmpgirls[0][0]);
+		array_values($tmpgirls[0]);
+	?>
+	<pre>{{dd($tmpgirls)}}</pre>
 </body>
 </html>
