@@ -112,6 +112,7 @@ Route::get('/dailyjob/{plud}/{date}','DailyjobController@dailyjobpd');
 Route::get('/dailyjob/{plud}/{date}/{time}','DailyjobController@dailyjobpdt');
 
 Route::get('/allwork','AllworkController@allwork');
+Route::post('/allwork/add','AllworkController@addwork');
 
 Route::get('/a', function(){
 	$user = DB::table('person')->where('year', '==', '3')->get();
