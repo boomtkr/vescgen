@@ -90,8 +90,8 @@
                                 <div class="form-group">
 	                                <div class="col-xs-12 text-right">
 	                                    
-	                                    <input type="submit" value="ยืนยัน" />
-	                                    <!-- <button type="button" onclick="checkWork();" class="btn btn-lg btn-primary">เพิ่มงาน</button> -->
+	                                    {{-- <input type="submit" value="ยืนยัน" /> --}}
+	                                    <button id="addwork-button" type="button" onclick="checkWork();" class="btn btn-lg btn-primary">เพิ่มงาน</button>
 	                                </div>
 	                            </div>
                                 </fieldset>
@@ -109,11 +109,33 @@
 
 </div>
 <script type="text/javascript">
+// $('#input-workname').keypress(function(event){
+//     var keycode = (event.keyCode ? event.keyCode : event.which);
+//     if(keycode == '13'){
+//         alert('You pressed a "enter" key in textbox');  
+//     }
+// });
+// 	$('#input-workname').keypress(function(event) {
+//     var keycode = (event.keyCode ? event.keyCode : event.which);
+// 	if(keycode == '13'){
+// 		alert('You pressed a "enter" key in textbox');	
+// 	}
+// });
 	function checkWork(){
+		var duplicatework =0;
 		$('.workname').each(function(){
 			var workname = $(this).text();
-			alert('h');
+			// alert($('#input-workname').val());
+			if($('#input-workname').val()==workname){
+				duplicatework =1;
+			} 
 		});
+		if (duplicatework) {
+			alert('ชื่องานซ้ำาาาา');
+		} else {
+			$('#addwork-button').attr('type','submit');
+		}
+
 	}
 </script>
 
