@@ -34,7 +34,17 @@ class AllworkController extends BaseController {
 										 ->with('thmanday',$thmanday);
 	}
 
-	publics static function addwork(){
+	public static function addwork(){
+		$workname = Input::get('work_name');
+		$location = Input::get('location');
+		$worklvl = Input::get('work_lvl');
+
+		$newwork = new Work;
+		$newwork->work_name = $workname;
+		$newwork->location = $location;
+		$newwork->work_lvl = $worklvl;
+		$newwork->save();
+
 		$works = Work::all();
 		$date = Time::select('date')->first()->date;
 		$exdate = explode("-", $date);
@@ -64,7 +74,7 @@ class AllworkController extends BaseController {
 										 ->with('month',$month)
 										 ->with('year',$year)
 										 ->with('thmanday',$thmanday);
-		
+
 	}
 
 }
