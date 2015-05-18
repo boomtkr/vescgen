@@ -56,7 +56,7 @@
 							</div>
 						</div>
 						<div class="col-xs-8 col-xs-push-2">
-							{{Form::open(array('url'=>'/allwork/add','id'=>'form-validation','method'=>'post','class'=>'form-horizontal form-bordered'))}}
+							{{Form::open(array('url'=>'/allwork/add','id'=>'form-validation','method'=>'post','class'=>'form-horizontal form-bordered','onsubmit'=>'return false;'))}}
 							<!-- <form url='/allwork/add' method="post" enctype="multipart/form-data" class="form-horizontal form-bordered" > -->
                             <fieldset>
                                 <legend>เพิ่มงาน</legend>
@@ -64,7 +64,8 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label" for="user-settings-email">ชื่องาน</label>
                                     <div class="col-md-6">
-                                        <input type="email" id="input-workname" name="work_name" class="form-control">
+                                        <input type="text" id="input-workname" name="work_name" class="form-control">
+                                        
                                     </div>
                                 </div>
                                  <div class="form-group">
@@ -108,19 +109,16 @@
 	</div>
 
 </div>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+
 <script type="text/javascript">
-// $('#input-workname').keypress(function(event){
-//     var keycode = (event.keyCode ? event.keyCode : event.which);
-//     if(keycode == '13'){
-//         alert('You pressed a "enter" key in textbox');  
-//     }
-// });
-// 	$('#input-workname').keypress(function(event) {
-//     var keycode = (event.keyCode ? event.keyCode : event.which);
-// 	if(keycode == '13'){
-// 		alert('You pressed a "enter" key in textbox');	
-// 	}
-// });
+	$('#input-workname').keypress(function(event){
+	    var keycode = (event.keyCode ? event.keyCode : event.which);
+	    if(keycode == '13'){
+	        checkWork();
+	    }
+	});
+
 	function checkWork(){
 		var duplicatework =0;
 		$('.workname').each(function(){
@@ -132,7 +130,9 @@
 		});
 		if (duplicatework) {
 			alert('ชื่องานซ้ำาาาา');
+			$('form').attr('onsubmit','return false;');
 		} else {
+			$('form').removeAttr('onsubmit');
 			$('#addwork-button').attr('type','submit');
 		}
 
