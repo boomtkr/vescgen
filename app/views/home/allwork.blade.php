@@ -56,7 +56,8 @@
 							</div>
 						</div>
 						<div class="col-xs-8 col-xs-push-2">
-							<form url='/allwork/add' method="post" enctype="multipart/form-data" class="form-horizontal form-bordered" >
+							{{Form::open(array('url'=>'/allwork/add','id'=>'form-validation','method'=>'post','class'=>'form-horizontal form-bordered'))}}
+							<!-- <form url='/allwork/add' method="post" enctype="multipart/form-data" class="form-horizontal form-bordered" > -->
                             <fieldset>
                                 <legend>เพิ่มงาน</legend>
                                 
@@ -89,11 +90,13 @@
                                 <div class="form-group">
 	                                <div class="col-xs-12 text-right">
 	                                    
-	                                    <button type="button" onclick="checkWork();" class="btn btn-lg btn-primary">เพิ่มงาน</button>
+	                                    <input type="submit" value="ยืนยัน" />
+	                                    <!-- <button type="button" onclick="checkWork();" class="btn btn-lg btn-primary">เพิ่มงาน</button> -->
 	                                </div>
 	                            </div>
                                 </fieldset>
-                                </form>
+                                {{Form::close()}}
+                                <!-- </form> -->
 						</div>
 					</div>
 

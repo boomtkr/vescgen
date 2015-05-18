@@ -37,7 +37,7 @@ class AllworkController extends BaseController {
 	public static function addwork(){
 		$workname = Input::get('work_name');
 		$location = Input::get('location');
-		$worklvl = Input::get('worklvl');
+		$worklvl = Input::get('work_lvl');
 
 		$newwork = new Work;
 		$newwork->work_name = $workname;
