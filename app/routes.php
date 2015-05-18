@@ -77,6 +77,12 @@ Route::post('/jobmgt/datechosen','JobmgtController@datechosen');
 Route::post('/jobmgt/workcreated','JobmgtController@workcreated');
 Route::post('/jobmgt/workrandom','JobmgtController@workrandom');
 
+//------edit result page ------------
+Route::get('/jobmgt/editworkresult', function()
+{
+	return View::make('home/jobmgtrandomedit');
+});
+
 Route::get('/tmrchange','TmrchangeController@showdata');
 Route::get('/tmrchange/add/depart','TmrchangeController@adddepart');
 Route::get('/tmrchange/add/arrive','TmrchangeController@addarrive');
