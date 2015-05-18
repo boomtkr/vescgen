@@ -166,9 +166,15 @@
 		// alert(count_senior)
 		var remaining_senior = all_senior - count_senior;
 		if(remaining_senior>=0){
-			$('#remaining-senior').removeAttr('style');
-			$('#remaining-senior').html(remaining_senior);
-			cal=1;
+			if(remaining_senior==0){
+				$('#remaining-senior').removeAttr('style');
+				$('#remaining-senior').html(remaining_senior);
+				cal=1;
+			} else {
+				$('#remaining-senior').removeAttr('style');
+				$('#remaining-senior').html(remaining_senior);
+				alert('ยังเหลือซีเนียร์ที่ยังไม่ได้เลือกงาน');
+			}
 		} else {
 			$('#remaining-senior').attr('style','color:red');
 			$('#remaining-senior').html(remaining_senior);

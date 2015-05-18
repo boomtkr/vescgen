@@ -45,7 +45,7 @@
 										@foreach($works as $work)
 										<tr>
 											<td class="text-center">{{$work->id}}</td>
-											<td>{{$work->work_name}}</td>
+											<td class="workname">{{$work->work_name}}</td>
 											<td class="text-center">{{$work->location}}</td>
 											<td class="text-center">{{$work->work_lvl}}</td>
 										</tr>
@@ -54,6 +54,46 @@
 								</table>
 
 							</div>
+						</div>
+						<div class="col-xs-8 col-xs-push-2">
+							<form action={{asset('allwork')}} method="post" enctype="multipart/form-data" class="form-horizontal form-bordered" >
+                            <fieldset>
+                                <legend>เพิ่มงาน</legend>
+                                
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label" for="user-settings-email">ชื่องาน</label>
+                                    <div class="col-md-6">
+                                        <input type="email" id="input-workname" name="work_name" class="form-control">
+                                    </div>
+                                </div>
+                                 <div class="form-group">
+                                    <label class="col-md-3 control-label" for="user-settings-email">สถานที่</label>
+                                    <div class="col-md-6">
+                                        <select id="example-select" name="location" class="form-control" size="1" style=" height: 34px; ">
+                                                    <option value="site">site</option>
+                                                    <option value="home">home</option>
+                                                    
+                                                </select>
+                                    </div>
+                                </div>
+                                 <div class="form-group">
+                                    <label class="col-md-3 control-label" for="user-settings-email">ระดับงาน</label>
+                                    <div class="col-md-6">
+                                        <select id="example-select" name="work_lvl" class="form-control" size="1" style=" height: 34px; ">
+                                                    <option value="1">1</option>
+                                                    <option value="2">2</option>
+                                                    
+                                                </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+	                                <div class="col-xs-12 text-right">
+	                                    
+	                                    <button type="button" onclick="checkWork();" class="btn btn-lg btn-primary">เพิ่มงาน</button>
+	                                </div>
+	                            </div>
+                                </fieldset>
+                                </form>
 						</div>
 					</div>
 
@@ -65,7 +105,14 @@
 	</div>
 
 </div>
-
+<script type="text/javascript">
+	function checkWork(){
+		$('.workname').each(function(){
+			var workname = $(this).text();
+			alert();
+		});
+	}
+</script>
 
 
 @stop
