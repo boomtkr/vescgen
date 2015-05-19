@@ -25,8 +25,8 @@ class JobmgtController extends BaseController {
 		$people_list = DB::table('oncamp')->where('date','=',$today)
 						->join('person','person.id','=','oncamp.person_id')
 						->get();
-		$incoming_people = ManHis::where('date_in','=',$date)->get();
-		$outgoing_people = ManHis::where('date_out','=',$today)->get();
+		$incoming_people = MandayHistory::where('date_in','=',$date)->get();
+		$outgoing_people = MandayHistory::where('date_out','=',$today)->get();
 		foreach($people_list as $pl){
 			$okay = 1;
 			foreach($outgoing_people as $op){
