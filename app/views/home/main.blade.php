@@ -93,8 +93,8 @@
                                 </div>
                                 <div class="sidebar-user-name"><a href="/" style="color:#ffffff;text-decoration:none">V E S C <strong>G&nbsp; E&nbsp; N</strong></a></div>
                             </div>
-                            <div class="sidebar-section clearfix sidebar-nav-mini-hide">
-                                <div style="font-size:20px"><small>{{$day}} {{$month}} {{$year}}<br>Manday {{$thmanday}}</small></div>
+                            <div class="sidebar-section clearfix sidebar-nav-mini-hide edpensook">
+                                <div style="font-size:20px"><small>วัน{{$weekday}}ที่ {{$day}} {{$month}} {{$year-2500}}<br>แมนเดย์ที่ {{$thmanday}}<br>ผลัด {{$currentplud}}</small></div>
                             </div>
                             <!-- END User Info -->
 
@@ -107,7 +107,7 @@
                                     <span class="sidebar-header-title">Main Menu</span>
                                 </li>
                                 <li>
-                                    <a href="/" class="{{ Route::getCurrentRoute()->getPath()=='/' ? 'active' : ''}}"><i class="fa fa-th-large sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">หน้าแรก</span></a>
+                                    <a href={{asset('/')}} class="{{ Route::getCurrentRoute()->getPath()=='/' ? 'active' : ''}}"><i class="fa fa-th-large sidebar-nav-icon"></i><span class="sidebar-nav-mini-hide">หน้าแรก</span></a>
                                 </li>
                                 <li>
 
