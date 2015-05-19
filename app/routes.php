@@ -43,7 +43,10 @@ Route::get('/', function()
 	$tdate = date("l",strtotime($date));
 	$latestdate = Time::select('date')->first()->date;
 	$latesttime = Time::select('time')->first()->time;
-	$currentplud = self::findcurrentplud($latestdate);
+		$currentpludarray = PludDate::where('date','=',$latestdate)->get();
+		foreach($currentpludarray as $cpa){
+			$currentplud = $cpa->plud;
+		}
 	$user_count = DB::table('oncamp')->where('date','=',$date)
 					  ->join('person','oncamp.person_id','=','person.id')
 					  ->count();
