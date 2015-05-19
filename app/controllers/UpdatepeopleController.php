@@ -96,7 +96,6 @@ class UpdatepeopleController extends BaseController {
 		$dep = Input::get('dep');
 		$student_id = Input::get('student_id');
 		$phone = Input::get('phone');
-		$birthday = Input::get('birthday');
 		$str_lvl = Input::get('str_lvl');
 		$date_in = Input::get('date_in');
 		$date_out = Input::get('date_out');
@@ -113,7 +112,6 @@ class UpdatepeopleController extends BaseController {
 			$person->dep = $dep[$i];
 			$person->student_id = $student_id[$i];
 			$person->phone = $phone[$i];
-			$person->birthday = $birthday[$i];
 			$person->str_lvl = $str_lvl[$i];
 			$person->save();
 
