@@ -61,9 +61,7 @@ var FormsValidation = function() {
                     'phone[]': {
                         required: true
                     },
-                    'birthday[]': {
-                        required: true
-                    },
+                    
                     'date_in[]': {
                         required: true
                     },
@@ -156,9 +154,7 @@ var FormsValidation = function() {
                     'phone[]': {
                         required: 'required'
                     },
-                    'birthday[]': {
-                        required: 'required'
-                    },
+                   
                     'date_in[]': {
                         required: 'required'
                     },

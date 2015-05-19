@@ -1,8 +1,12 @@
 	@extends('home/main')
 
 	@section('content')
-
-	<div class="row">
+	<style type="text/css">
+	td{
+		font-size: 16px;
+	}
+	</style>
+	<div class="row edpensook">
 		<div class="col-xs-12">
 			<div class="widget">
 				<div class="widget-advanced widget-advanced-alt">
@@ -102,7 +106,7 @@
 															<td>
 																<a href={{asset('tmrchange/postpone/arrive/'.$ppl->id)}}><button class="btn btn-warning btn-md"><i class="fa fa-angle-double-right"></i> เลื่อน</button></a>
 															</td>
-															<td>cancel</td>
+															
 															<?php $i++; ?>
 														</tr>
 														@endforeach
@@ -176,7 +180,7 @@
 														<td>
 															<a href={{asset('tmrchange/postpone/depart/'.$ppl->id)}}><button class="btn btn-warning btn-md"><i class="fa fa-angle-double-right"></i> เลื่อน</button></a>
 														</td>
-														<td>cancel</td>
+														
 														<?php $i++; ?>
 													</tr>
 													@endforeach
