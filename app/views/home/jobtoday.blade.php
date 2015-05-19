@@ -124,33 +124,89 @@
 						<tbody>
 							<tr>
 								<td>SENIOR</td>
-								<td>ปุ๊ก ปุ๊ก ปุ๊ก</td>
+								<td>
+									<?php $i = 0; 
+									$count_senior=0;
+									?>
+									@foreach($works as $work)
+											@foreach($pplonwork[$i] as $ppow)
+													 @if($ppow->year==4) 
+													 	<a href={{asset('person/'.$ppow->id)}}>{{$ppow->nickname}}</a>
+													 	<?php $count_senior++; ?>
+													 @endif
+											@endforeach
+										
+									<?php $i++; ?>
+									@endforeach
+								</td>
 								<td class="text-center">3</td>
-								<td class="text-center">3</td>
+								<td class="text-center">{{$senior_md}}</td>
 							</tr>
 							<tr>
 								<td>JUNIOR</td>
-								<td>ปุ๊ก ปุ๊ก ปุ๊ก ปุ๊ก ปุ๊ก ปุ๊ก ปุ๊ก ปุ๊ก ปุ๊ก ปุ๊ก ปุ๊ก ปุ๊ก</td>
-								<td class="text-center">3</td>
-								<td class="text-center">3</td>
+								<td>
+									<?php $i = 0; 
+									$count_junior=0;
+									?>
+									@foreach($works as $work)
+											@foreach($pplonwork[$i] as $ppow)
+													 @if($ppow->year==3) 
+													 	<a href={{asset('person/'.$ppow->id)}}>{{$ppow->nickname}}</a>
+													 	<?php $count_junior++; ?>
+													 @endif
+											@endforeach
+										
+									<?php $i++; ?>
+									@endforeach
+								</td>
+								<td class="text-center">{{$count_junior}}</td>
+								<td class="text-center">{{$junior_md}}</td>
 							</tr>
 							<tr>
 								<td>MORE</td>
-								<td>ปุ๊ก ปุ๊ก ปุ๊ก ปุ๊ก ปุ๊ก ปุ๊ก ปุ๊ก ปุ๊ก ปุ๊ก ปุ๊ก ปุ๊ก ปุ๊ก</td>
-								<td class="text-center">3</td>
-								<td class="text-center">3</td>
+								<td>
+									<?php $i = 0;
+									$count_more=0;
+									?>
+									@foreach($works as $work)
+											@foreach($pplonwork[$i] as $ppow)
+													 @if($ppow->year==2) 
+													 	<a href={{asset('person/'.$ppow->id)}}>{{$ppow->nickname}}</a>
+													 	<?php $count_more++; ?>
+													 @endif
+											@endforeach
+										
+									<?php $i++; ?>
+									@endforeach
+								</td>
+								<td class="text-center">{{$count_more}}</td>
+								<td class="text-center">{{$more_md}}</td>
 							</tr>
 							<tr>
 								<td>FRESHY</td>
-								<td>ปุ๊ก ปุ๊ก ปุ๊ก ปุ๊ก ปุ๊ก ปุ๊ก ปุ๊ก ปุ๊ก ปุ๊ก ปุ๊ก ปุ๊ก ปุ๊ก</td>
-								<td class="text-center">3</td>
-								<td class="text-center">3</td>
+								<td>
+									<?php $i = 0; 
+									$count_freshy=0;
+									?>
+									@foreach($works as $work)
+											@foreach($pplonwork[$i] as $ppow)
+													 @if($ppow->year==1) 
+													 	<a href={{asset('person/'.$ppow->id)}}>{{$ppow->nickname}}</a>
+													 	<?php $count_freshy++; ?>
+													 @endif
+											@endforeach
+										
+									<?php $i++; ?>
+									@endforeach
+								</td>
+								<td class="text-center">{{$count_freshy}}</td>
+								<td class="text-center">{{$freshy_md}}</td>
 							</tr>
 							<tr>
 								<td><strong>รวม</strong></td>
 								<td></td>
-								<td class="text-center">12</td>
-								<td class="text-center">3</td>
+								<td class="text-center">{{$count_senior+$count_junior+$count_more+$count_freshy}}</td>
+								<td class="text-center">{{$senior_md+$junior_md+$more_md+$freshy_md}}</td>
 							</tr>
 						</tbody>
 					</table>
