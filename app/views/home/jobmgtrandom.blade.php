@@ -104,6 +104,7 @@
 						<div class="col-xs-2">
 							<button id="submit-button" type="button" name='submit' class="btn btn-lg btn-success col-xs-9"><i class="fa fa-angle-right"></i> ยืนยัน</button>	
 							<a href={{asset('/jobmgt/editworkresult')}}><button id="submit-button" type="button" name='submit' class="btn btn-lg btn-warning col-xs-9"><i class="fa fa-angle-right"></i> แก้ไข</button></a>
+							<a href="#"><button id="submit-button" type="button" name='submit' class="btn btn-lg btn-default col-xs-9"><i class="fa fa-angle-right"></i> แรนด้อมใหม่</button></a>
 						</div>
 					</div>
 					</form>

@@ -106,10 +106,7 @@
 											<td class="text-right" width="100px"  style=" height: 53px; ">เบอร์โทร</td>
 										</tr>
 										<tr>
-											<td class="text-right" width="100px"  style=" height: 53px; ">วันเกิด</td>
-										</tr>
-										<tr>
-											<td class="text-right" width="100px"  style=" height: 53px; ">ชอบทำงาน</td>
+											<td class="text-right" width="100px"  style=" height: 53px; ">ระดับถึก</td>
 										</tr>
 										<tr>
 											<td class="text-right" width="100px"  style=" height: 53px; ">วันขึ้น</td>
@@ -225,19 +222,11 @@
 														</div>
 													</td>
 												</tr>
-												<tr>
-													<td width="150px">
-														<div class="form-group">
-														<div class="input-group">
-															<input type="text" id="example-datepicker2" name="birthday[]" class="form-control input-datepicker input-datepicker-close" data-date-format="yyyy-mm-dd" placeholder="yyyy-mm-dd">
-															</div>
-														</div>
-													</td>
-												</tr>
+												
 												<tr>
 													<td width="150px"><select id="work-chosen" name="str_lvl[]" class="form-control" data-placeholder="งาน" style="width: 100%;" >
-														<option value="1">หนัก</option>
-														<option value="2">หนักมาก</option>
+														<option value="2">หนัก</option>
+														<option value="1">ธรรมดา</option>
 													</select></td>
 												</tr>
 												<tr>
@@ -282,12 +271,14 @@
 		var count_col = 1;
 		$('.input-add').click(function(){
 			count_col++;
-			var col = "<div class='table-responsive added-input-column' style='width:150px;float:left;display:inline;'><table class='table table-vcenter'><tbody><tr><td class='text-center'>"+count_col+"</td></tr><tr><td><div class='form-group'><div class='input-group'><input type='text' id='example-input1-group1' name='citizen_id[]' class='form-control'> </div</div></td></tr><tr><td width='150px'><div class='form-group'><div class='input-group'><input type='text' id='example-input1-group1' class='form-control' name='first_name[]' /></div></div></td></tr><tr><td width='150px'><div class='form-group'><div class='input-group'><input type='text' id='example-input1-group1' class='form-control' name='last_name[]' /></div></div></td></tr><tr ><td width='150px'><div class='form-group'><div class='input-group'><input type='text' id='example-input1-group1' class='form-control' name='nickname[]' /></div></div></td></tr><tr><td width='150px'><div class='form-group'><select id='work-chosen' id='example-input1-group1' name='year[]' class='form-control' data-placeholder='งาน' style='width: 100%;' ><option value='0'>0</option><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option><option value='5'>5</option></select></div></td></tr><tr><td width='150px'><select id='work-chosen' id='example-input1-group1' name='gender[]' class='form-control' data-placeholder='งาน' style='width: 100%;' ><option value='M'>ช</option><option value='F'>ญ</option></select></td></tr><tr><td width='150px'><div class='form-group'><div class='input-group'><input type='text' id='example-input1-group1' class='form-control' name='faculty[]' /></div></div></td></tr><tr><td width='150px'><div class='form-group'><div class='input-group'><input type='text' id='example-input1-group1' class='form-control' name='dep[]' /></div></div></td></tr><tr ><td width='150px'><div class='form-group'><div class='input-group'><input type='text' id='example-input1-group1' class='form-control' name='student_id[]' /></div></div></td></tr><tr ><td width='150px'><div class='form-group'><div class='input-group'><input type='text' id='example-input1-group1' class='form-control' name='phone[]' /></div></div></td></tr><tr><td width='150px'><div class='form-group'><div class='input-group'><input type='text' id='example-datepicker2' name='birthday[]' class='form-control input-datepicker input-datepicker-close' data-date-format='yyyy-mm-dd' placeholder='yyyy-mm-dd'></div></div></td></tr><tr><td width='150px'><select id='work-chosen' name='str_lvl[]' class='form-control' data-placeholder='งาน' style='width: 100%;' ><option value='1'>หนัก</option><option value='2'>หนักมาก</option></select></td></tr><tr><td width='150px'><div class='form-group'><div class='input-group'><input type='text' id='example-datepicker2' name='date_in[]' class='form-control input-datepicker input-datepicker-close' data-date-format='yyyy-mm-dd' placeholder='yyyy-mm-dd'></div></div></td></tr><tr><td width='150px'><div class='form-group'><div class='input-group'><input type='text' id='example-datepicker2' name='date_out[]' class='form-control input-datepicker input-datepicker-close' data-date-format='yyyy-mm-dd' placeholder='yyyy-mm-dd'></div></div></td></tr></tbody></table></div>";
+			var col = "<div class='table-responsive added-input-column' style='width:150px;float:left;display:inline;'><table class='table table-vcenter'><tbody><tr><td class='text-center'>"+count_col+"</td></tr><tr><td><div class='form-group'><div class='input-group'><input type='text' id='example-input1-group1' name='citizen_id[]' class='form-control'> </div</div></td></tr><tr><td width='150px'><div class='form-group'><div class='input-group'><input type='text' id='example-input1-group1' class='form-control' name='first_name[]' /></div></div></td></tr><tr><td width='150px'><div class='form-group'><div class='input-group'><input type='text' id='example-input1-group1' class='form-control' name='last_name[]' /></div></div></td></tr><tr ><td width='150px'><div class='form-group'><div class='input-group'><input type='text' id='example-input1-group1' class='form-control' name='nickname[]' /></div></div></td></tr><tr><td width='150px'><div class='form-group'><select id='work-chosen' id='example-input1-group1' name='year[]' class='form-control' data-placeholder='งาน' style='width: 100%;' ><option value='0'>0</option><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option><option value='5'>5</option></select></div></td></tr><tr><td width='150px'><select id='work-chosen' id='example-input1-group1' name='gender[]' class='form-control' data-placeholder='งาน' style='width: 100%;' ><option value='M'>ช</option><option value='F'>ญ</option></select></td></tr><tr><td width='150px'><div class='form-group'><div class='input-group'><input type='text' id='example-input1-group1' class='form-control' name='faculty[]' /></div></div></td></tr><tr><td width='150px'><div class='form-group'><div class='input-group'><input type='text' id='example-input1-group1' class='form-control' name='dep[]' /></div></div></td></tr><tr ><td width='150px'><div class='form-group'><div class='input-group'><input type='text' id='example-input1-group1' class='form-control' name='student_id[]' /></div></div></td></tr><tr ><td width='150px'><div class='form-group'><div class='input-group'><input type='text' id='example-input1-group1' class='form-control' name='phone[]' /></div></div></td></tr><tr><td width='150px'><select id='work-chosen' name='str_lvl[]' class='form-control' data-placeholder='งาน' style='width: 100%;' ><option value='2'>หนัก</option><option value='1'>ธรรมดา</option></select></td></tr><tr><td width='150px'><div class='form-group'><div class='input-group'><input type='text' id='example-datepicker2' name='date_in[]' class='form-control input-datepicker input-datepicker-close' data-date-format='yyyy-mm-dd' placeholder='yyyy-mm-dd'></div></div></td></tr><tr><td width='150px'><div class='form-group'><div class='input-group'><input type='text' id='example-datepicker2' name='date_out[]' class='form-control input-datepicker input-datepicker-close' data-date-format='yyyy-mm-dd' placeholder='yyyy-mm-dd'></div></div></td></tr></tbody></table></div>";
 			var w = count_col*150;
 		// alert(w);
 		$('.input-column-responsive').attr('style','width:'+w+'px;');
 		$('.input-column-responsive').append(col);
 		$('#count-people').html(count_col);
+		App.init();
+		FormsValidation.init();
 	});
 
 $('.input-remove').click(function(){
@@ -303,5 +294,12 @@ $('.input-remove').click(function(){
 <!-- Load and execute javascript code used only in this page -->
 {{ HTML::script('proui/js/pages/formsValidation.js'); }}
 <script>$(function(){ FormsValidation.init(); });</script>
+<script type="text/javascript">
+// 	$("#example-datepicker2").datepicker({
+//   onSelect: function(dateText) {
+//     display("Selected date: " + dateText + "; input's current value: " + this.value);
+//   }
+// });
+</script>
 
 @stop

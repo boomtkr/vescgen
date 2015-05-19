@@ -2,17 +2,21 @@
 	@extends('home/main')
 
 	@section('content')
-
-	<div class="row">
+	<style type="text/css">
+		td{
+			font-size: 16px;
+		}
+	</style>
+	<div class="row edpensook">
 		<div class="col-xs-12">
 			<div class="widget">
 				<div class="widget-advanced widget-advanced-alt">
 					<!-- Widget Header -->
 					<div class="widget-simple text-center themed-background-amethyst">
-						<h2 class="widget-content-light  edpensook animation-pullDown">
+						<h2 class="widget-content-light  animation-pullDown">
 							<i class="gi gi-sorting"></i> คนขึ้นลงพรุ่งนี้<br>
 							{{-- <h4 class="edpensook" style="color:white;"></h4> --}}		
-							<h4 class="edpensook" style="color:white;">&nbsp;</h4>
+							<h4 style="color:white;">&nbsp;</h4>
 					</div>
 					<!-- END Widget Header -->
 					<div class="widget-main">
@@ -100,7 +104,7 @@
 										</div>
 										 @endif
 										<div class="table-responsive">
-											<table class="table table-vcenter table-striped edpensook">
+											<table class="table table-vcenter table-striped">
 												<tbody>
 													<?php $i=1; ?>
 													@foreach($pplinlist as $ppl)
@@ -112,7 +116,7 @@
 														<td>
 															<a href={{asset('tmrchange/postpone/arrive/'.$ppl->id)}}><button class="btn btn-warning btn-md"><i class="fa fa-angle-double-right"></i> เลื่อน</button></a>
 														</td>
-														<td>cancel</td>
+														
 														<?php $i++; ?>
 													</tr>
 													@endforeach
@@ -178,7 +182,7 @@
 										</div>
 										 @endif
 										<div class="table-responsive">
-											<table class="table table-vcenter table-striped edpensook ">
+											<table class="table table-vcenter table-striped ">
 												{{-- <thead>
 													<tr>
 														<th>#</th>
@@ -198,7 +202,7 @@
 														<td>
 														<a href={{asset('tmrchange/postpone/depart/'.$ppl->id)}}><button class="btn btn-warning btn-md"><i class="fa fa-angle-double-right"></i> เลื่อน</button></a>
 														</td>
-														<td>cancel</td>
+														
 													<?php $i++; ?>
 													</tr>
 													@endforeach
