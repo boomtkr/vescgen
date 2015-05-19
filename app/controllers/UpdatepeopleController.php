@@ -90,7 +90,7 @@ class UpdatepeopleController extends BaseController {
 		$first_name = Input::get('first_name');
 		$last_name = Input::get('last_name');
 		$nickname = Input::get('nickname');
-		$year = Input::get('year');
+		$tyear = Input::get('year');
 		$gender = Input::get('gender');
 		$faculty = Input::get('faculty');
 		$dep = Input::get('dep');
@@ -106,7 +106,7 @@ class UpdatepeopleController extends BaseController {
 			$person->first_name = $first_name[$i];
 			$person->last_name = $last_name[$i];
 			$person->nickname = $nickname[$i];
-			$person->year = $year[$i];
+			$person->year = $tyear[$i];
 			$person->gender = $gender[$i];
 			$person->faculty = $faculty[$i];
 			$person->dep = $dep[$i];
