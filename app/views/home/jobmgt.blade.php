@@ -38,8 +38,8 @@
 							{{Form::open(array('url'=>'/jobmgt/datechosen','class'=>'form-horizontal'))}}
 							<div class="form-group">
 								<h4 class="col-md-3 control-label" for="example-select" style=" margin-top: 0px; ">วันที่</h4>
-								<div class="col-xs-4" style=" padding-top: 4px; ">
-									<select id="example-select" name="date" class="form-control" size="1" >
+								<div class="col-xs-4">
+									<select id="example-select" name="date" class="form-control" size="1" style=" height: 34px; ">
 										<option value={{$today}}>{{$today}}</option>
 										<option value={{$tomorrow}}>{{$tomorrow}}</option>
 										
@@ -48,8 +48,8 @@
 							</div>
 							<div class="form-group">
 								<h4 class="col-md-3 control-label" for="example-select" style=" margin-top: 0px; ">ช่วงเวลา</h4>
-								<div class="col-xs-4" style=" padding-top: 4px; ">
-									<select id="example-select" name="time" class="form-control" size="1" >
+								<div class="col-xs-4">
+									<select id="example-select" name="time" class="form-control" size="1" style=" height: 34px; ">
 										<option value='morning'>เช้า</option>
 										<option value='afternoon'>บ่าย</option>
 										<option value='OT'>โอที</option>

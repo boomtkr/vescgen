@@ -62,36 +62,37 @@
 										@if($type == 'arrive')
 										<div class="block" style="padding-bottom:50px">
 													
-											   		<h3 style=" margin-top: 0px; ">เลื่อนวันขึ้น</h3>
+											   		<h3 class="text-center" style=" margin-top: 0px; "><strong>เลื่อนวันขึ้น</strong></h3>
+											   		<hr>
 											   		{{Form::open(array('url'=>'tmrchange/postpone/arrive/'.$person->id.'/update','style'=>'margin-bottom:10px'))}}
 									    		
 									    			<div class="row" style=" margin-bottom: 10px; ">
 									    				<div class="col-xs-4">
-									    					<h5><strong>{{$person->nickname}}{{'#'}}{{$person->year}}</strong></h5>
+									    					<h4><strong>ชื่อ คณะ</strong></h4>
 									    				</div>
 									    				<div class="col-xs-8">
-									    					<h5>{{$person->first_name}}{{'  '}}{{$person->last_name}}{{' ,  '}}{{$person->faculty}}</h5>
+									    					<h4><strong>{{$person->nickname}}{{'#'}}{{$person->year}}</strong>{{' , '}}{{$person->first_name}}{{'  '}}{{$person->last_name}}{{' ,  '}}{{$person->faculty}}</h4>
 									    				</div>
 													    <div class="col-xs-4">
-									    					<h5>กำหนดวันขึ้นเดิม</h5>
+									    					<h4>กำหนดวันขึ้นเดิม</h4>
 									    				</div>
 									    				<div class="col-xs-8">
-									    					<h5>{{$arrivedate}}</h5>
+									    					<h4>{{$arrivedate}}</h4>
 									    				</div>
 									    				<div class="col-xs-4">
-									    					<h5>กำหนดวันลงเดิม</h5>
+									    					<h4>กำหนดวันลงเดิม</h4>
 									    				</div>
 									    				<div  class="col-xs-8">
-									    					<h5>{{$departdate}}</h5>
+									    					<h4>{{$departdate}}</h4>
 									    				</div>
 															<div class="col-xs-4">
-									    					<h5 for="newdate"><strong>วันขึ้นวันใหม่</strong></h5>
+									    					<h4 for="newdate"><strong>วันขึ้นวันใหม่</strong></h4>
 									    					</div>
 															<div class="col-xs-6"><input type="text" id="example-datepicker2" name="newdate" class="form-control input-datepicker input-datepicker-close" data-date-format="yyyy-mm-dd" placeholder="yyyy-mm-dd">
 									    				</div>
 									    			</div>
 			                                        <div class="pull-right">
-									   				<button class="btn btn-success" type="submit" value="ยันยืน">ยืนยัน</button>
+									   				<button class="btn btn-success" id="submit-button"  onclick="isSelect();" type="button" value="ยันยืน">ยืนยัน</button>
 									   				<a href={{asset('tmrchange')}} ><button class="btn btn-default" type="button">ปิด</button></a>
 									   				</div>
 											    	{{Form::close()}}
@@ -99,7 +100,7 @@
 										</div>
 										 @endif
 										<div class="table-responsive">
-											<table class="table table-vcenter table-striped">
+											<table class="table table-vcenter table-striped edpensook">
 												<tbody>
 													<?php $i=1; ?>
 													@foreach($pplinlist as $ppl)
@@ -109,7 +110,7 @@
 															<a href={{asset('person/'.$ppl->id)}}>{{$ppl->nickname}}{{'#'}}{{$ppl->year}}</a>
 														</td>
 														<td>
-															<a href={{asset('tmrchange/postpone/arrive/'.$ppl->id)}}><button class="btn btn-primary btn-lg"><i class="fa fa-angle-double-right"></i> เลื่อน</button></a>
+															<a href={{asset('tmrchange/postpone/arrive/'.$ppl->id)}}><button class="btn btn-warning btn-md"><i class="fa fa-angle-double-right"></i> เลื่อน</button></a>
 														</td>
 														<td>cancel</td>
 														<?php $i++; ?>
@@ -137,45 +138,47 @@
 									</div>
 									<div class="widget-extra-full">
 										@if($type == 'depart')
-										<div class="block">
+										<div class="block" style="padding-bottom:50px">
 													
-											   		<h3 style=" margin-top: 0px; "><strong>เลื่อนวันลง</strong></h3>
+											   		<h3 class="text-center" style=" margin-top: 0px; "><strong>เลื่อนวันลง</strong></h3>
+											   		<hr>
 											   		{{Form::open(array('url'=>'tmrchange/postpone/depart/'.$person->id.'/update','style'=>'margin-bottom:10px'))}}
 											   		
 									    			<div class="row" style=" margin-bottom: 10px; ">
 									    				<div class="col-xs-4">
-									    					<h5><strong>{{$person->nickname}}{{'#'}}{{$person->year}}</strong></h5>
+									    					<h4><strong>ชื่อ คณะ</strong></h4>
 									    				</div>
 									    				<div class="col-xs-8">
-									    					<h5>{{$person->first_name}}{{'  '}}{{$person->last_name}}{{' ,  '}}{{$person->faculty}}</h5>
+									    					<h4><strong>{{$person->nickname}}{{'#'}}{{$person->year}}</strong>{{' , '}}{{$person->first_name}}{{'  '}}{{$person->last_name}}{{' ,  '}}{{$person->faculty}}</h4>
 									    				</div>
 													    <div class="col-xs-4">
-									    					<h5>กำหนดวันขึ้นเดิม</h5>
+									    					<h4>กำหนดวันขึ้นเดิม</h4>
 									    				</div>
 									    				<div class="col-xs-8">
-									    					<h5>{{$arrivedate}}</h5>
+									    					<h4>{{$arrivedate}}</h4>
 									    				</div>
 									    				<div class="col-xs-4">
-									    					<h5>กำหนดวันลงเดิม</h5>
+									    					<h4>กำหนดวันลงเดิม</h4>
 									    				</div>
 									    				<div  class="col-xs-8">
-									    					<h5>{{$departdate}}</h5>
+									    					<h4>{{$departdate}}</h4>
 									    				</div>
 															<div class="col-xs-4">
-									    					<h5 for="newdate"><strong>วันลงวันใหม่</strong></h5>
+									    					<h4 for="newdate"><strong>วันลงวันใหม่</strong></h4>
 									    					</div>
 															<div class="col-xs-8"><input type="text" id="example-datepicker2" name="newdate" class="form-control input-datepicker input-datepicker-close" data-date-format="dd/mm/yy" placeholder="dd/mm/yy">
 									    				</div>
 									    			</div>
-			                                        
-									   				<button class="btn btn-success" type="submit" value="ยันยืน">ยืนยัน</button>
+			                                        <div class="pull-right">
+									   				<button class="btn btn-success" id="submit-button" onclick="isSelect();" type="button" value="ยันยืน">ยืนยัน</button>
 									   				<a href={{asset('tmrchange')}} ><button class="btn btn-default" type="button">ปิด</button></a>
+									   				</div>
 											    	{{Form::close()}}
 											  
 										</div>
 										 @endif
 										<div class="table-responsive">
-											<table class="table table-vcenter table-striped">
+											<table class="table table-vcenter table-striped edpensook ">
 												{{-- <thead>
 													<tr>
 														<th>#</th>
@@ -193,7 +196,7 @@
 															<a href={{asset('person/'.$ppl->id)}}>{{$ppl->nickname}}{{'#'}}{{$ppl->year}}</a>
 														</td>
 														<td>
-														<a href={{asset('tmrchange/postpone/depart/'.$ppl->id)}}><button class="btn btn-primary btn-md"><i class="fa fa-angle-double-right"></i> เลื่อน</button></a>
+														<a href={{asset('tmrchange/postpone/depart/'.$ppl->id)}}><button class="btn btn-warning btn-md"><i class="fa fa-angle-double-right"></i> เลื่อน</button></a>
 														</td>
 														<td>cancel</td>
 													<?php $i++; ?>
@@ -217,10 +220,18 @@
 
 	</div>
 
+
 <script type="text/javascript">
-	$(function(){
-		var peopleName = ["pook","boom","lek","mon"];
-		$('.input-typeahead-test').typeahead({ source: peopleName });
-	});
-</script>
+	var isSelected = 0;
+	function isSelect(){
+		var day = $('#example-datepicker2').val();
+		// alert(name);
+		if(day!='') isSelected=1;
+		if(isSelected){
+			$('#submit-button').attr('type','submit');
+		} else {
+			alert('เลือกวันที่ด้วยน้าาาาา ได้โปรดดด');
+		}
+	}
+	</script>
 	@stop

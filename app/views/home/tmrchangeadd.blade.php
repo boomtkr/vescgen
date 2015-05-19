@@ -61,42 +61,32 @@
 											@if($type == 'arrive')
 											<div class="block">
 
-												<h3 style=" margin-top: 0px; "><strong>เพิ่มคนขึ้น</strong></h3>
+												<h3 class="text-center" style=" margin-top: 0px; "><strong>เพิ่มคนขึ้น</strong></h3>
 												<div class="progress progress-striped active">
-
-													<div class="progress-bar progress-bar-warning edpensook" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%">เลือกรายชื่อ</div>
+													<div class="progress-bar progress-bar-warning edpensook" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width: 50%">เลือกคน</div>
 
 												</div>
 												{{Form::open(array('url'=>'/tmrchange/add/arrive/update','style'=>'margin-bottom:10px'))}}
 												<div class="row" style=" margin-bottom: 10px; ">
-													<div class="form-group">
-														<h5 class="col-md-4 control-label" for="example-typeahead">Search</h5>
+													<div class="form-group" style=" margin-bottom: 0px; ">
+														<h5 class="col-md-2 control-label text-right"><strong>เลือกคน</strong></h5>
 														<div class="col-md-6">
-															<input type="text" id="example-typeahead-test" name="pname" class="form-control input-typeahead-test" autocomplete="off" placeholder="Search People..">
+															<select id="chosen-arrive" name="pname" class="select-chosen" data-placeholder="ค้นหาชื่อ" style="width: 250px;">
+                                                        <option></option><!-- Required for data-placeholder attribute to work with Chosen plugin -->
+                                                        @foreach($ppltoaddlist as $ppl)
+                                                        	<option value="{{$ppl->nickname}}{{'#'}}{{$ppl->year}}" >{{$ppl->nickname}}{{'#'}}{{$ppl->year}}</option>
+                                                        	@endforeach
+                                                        </select>
+
+															{{-- <input type="text" id="example-typeahead-test" name="pname" class="form-control input-typeahead-test" autocomplete="off" placeholder="Search People.."> --}}
 														</div>
 													</div>
-												</div>
-												<div class="row" style=" margin-left: 0px; margin-right: 0px; ">
-													<div class="table-responsive">
-														<table class="table table-vcenter table-striped">
-															@foreach($ppltoaddlist as $ppl)
-															<tr>
-																<td class="text-center">
-																	<input type="checkbox" name="newsletter[]" value="newsletter">
-																</td>
-																<td>
-																	{{$ppl->nickname}}{{'#'}}{{$ppl->year}}
-																</td>
-															</tr>
-															@endforeach
-														</table>
-													</div>
+													<button id="submit-button" onclick="isSelect();" class="btn btn-primary" type="button" value="ยันยืน"><i class="fa fa-angle-right"></i> ต่อไป</button>
+												<a href={{asset('tmrchange')}} ><button class="btn btn-default" type="button"> ปิด </button></a>
 												</div>
 
-												<button class="btn btn-success" type="submit" value="ยันยืน">ยืนยัน</button>
-												<a href={{asset('tmrchange')}} ><button class="btn btn-default" type="button">ปิด</button></a>
 												{{Form::close()}}
-
+												
 											</div>
 											@endif
 											<div class="table-responsive">
@@ -110,7 +100,7 @@
 																<a href={{asset('person/'.$ppl->id)}}>{{$ppl->nickname}}{{'#'}}{{$ppl->year}}</a>
 															</td>
 															<td>
-																<a href={{asset('tmrchange/postpone/arrive/'.$ppl->id)}}><button class="btn btn-primary btn-md"><i class="fa fa-angle-double-right"></i> เลื่อน</button></a>
+																<a href={{asset('tmrchange/postpone/arrive/'.$ppl->id)}}><button class="btn btn-warning btn-md"><i class="fa fa-angle-double-right"></i> เลื่อน</button></a>
 															</td>
 															<td>cancel</td>
 															<?php $i++; ?>
@@ -140,35 +130,27 @@
 											@if($type == 'depart')
 											<div class="block">
 
-												<h3 style=" margin-top: 0px; "><strong>เพิ่มคนลง</strong></h3>
+												<h3 class="text-center" style=" margin-top: 0px; "><strong>เพิ่มคนลง</strong></h3>
 												{{Form::open(array('url'=>'/tmrchange/add/depart/update','style'=>'margin-bottom:10px'))}}
 												<div class="row" style=" margin-bottom: 10px; ">
-													<div class="form-group">
-														<h5 class="col-md-4 control-label" for="example-typeahead">Search</h5>
+													<div class="form-group" style=" margin-bottom: 0px; ">
+														<h5 class="col-md-2 control-label text-right" for="example-typeahead"><stong>เลือกคน</stong></h5>
 														<div class="col-md-6">
-															<input type="text" id="example-typeahead" name="pname" class="form-control input-typeahead-test" autocomplete="off" placeholder="Search People..">
+															<select id="example-chosen" name="pname" class="select-chosen" data-placeholder="ค้นหาชื่อ" style="width: 250px;">
+                                                        <option></option><!-- Required for data-placeholder attribute to work with Chosen plugin -->
+                                                        @foreach($ppltoaddlist as $ppl)
+                                                        	<option value="{{$ppl->nickname}}{{'#'}}{{$ppl->year}}" >{{$ppl->nickname}}{{'#'}}{{$ppl->year}}</option>
+                                                        	@endforeach
+                                                        </select>
+															{{-- <input type="text" id="example-typeahead" name="pname" class="form-control input-typeahead-test" autocomplete="off" placeholder="Search People.."> --}}
 														</div>
 													</div>
+													<button id="submit-button" onclick="isSelect();" class="btn btn-primary" type="button" value="ยันยืน"><i class="fa fa-angle-right"></i> ต่อไป</button>
+												<a href={{asset('tmrchange')}} ><button class="btn btn-default" type="button"> ปิด </button></a>
 												</div>
-												<div class="row" style=" margin-left: 0px; margin-right: 0px; ">
-													<div class="table-responsive">
-														<table class="table table-vcenter table-striped">
-															@foreach($ppltoaddlist as $ppl)
-															<tr>
-																<td class="text-center">
-																	<input type="checkbox" name="newsletter[]" value="newsletter">
-																</td>
-																<td>
-																	{{$ppl->nickname}}{{'#'}}{{$ppl->year}}
-																</td>
-															</tr>
-															@endforeach
-														</table>
-													</div>
-												</div>
+												
 
-												<button class="btn btn-success" type="submit" value="ยันยืน">ยืนยัน</button>
-												<a href={{asset('tmrchange')}} ><button class="btn btn-default" type="button">ปิด</button></a>
+												
 												{{Form::close()}}
 
 											</div>
@@ -192,7 +174,7 @@
 															<a href={{asset('person/'.$ppl->id)}}>{{$ppl->nickname}}{{'#'}}{{$ppl->year}}</a>
 														</td>
 														<td>
-															<a href={{asset('tmrchange/postpone/depart/'.$ppl->id)}}><button class="btn btn-primary btn-md"><i class="fa fa-angle-double-right"></i> เลื่อน</button></a>
+															<a href={{asset('tmrchange/postpone/depart/'.$ppl->id)}}><button class="btn btn-warning btn-md"><i class="fa fa-angle-double-right"></i> เลื่อน</button></a>
 														</td>
 														<td>cancel</td>
 														<?php $i++; ?>
@@ -215,29 +197,17 @@
 
 
 	</div>
-	<?php 
-	$i=0;
-	$peoplename = array();
-
-	foreach($ppltoaddlist as $ppl){
-		if($i<count($ppltoaddlist)){
-			echo $i;
-			$peoplename[$i] = $ppl->nickname.'#'.$ppl->year;
-			$i++;
-			echo $ppl->nickname.'#'.$ppl->year;
+	<script type="text/javascript">
+	var isSelected = 0;
+	function isSelect(){
+		var name = $('a.chosen-single > span').text();
+		// alert(name);
+		if(name!='ค้นหาชื่อ') isSelected=1;
+		if(isSelected){
+			$('#submit-button').attr('type','submit');
+		} else {
+			alert('เลือกคนก่อนน้าาาาา ได้โปรดดด');
 		}
 	}
-
-	print_r($peoplename);
-
-	?>
-	<script type="text/javascript">
-	var peopleName = ["มิกซ์#1","mon"];
-		var test = [];
-		var count = <?php echo count($peoplename); ?>;
-		
-		alert(peopleName);
-			// var peopleName = ["pook","mon"];
-        $('.input-typeahead-test').typeahead({ source: test });
 	</script>
 	@stop
