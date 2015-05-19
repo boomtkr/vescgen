@@ -25,6 +25,15 @@ class TmrchangeController extends BaseController {
 		return $currentplud;
 	}
 
+	
+	public static function findcurrentplud($today){
+		$currentpludarray = PludDate::where('date','=',$today)->get();
+		foreach($currentpludarray as $cpa){
+			$currentplud = $cpa->plud;
+		}
+		return $currentplud;
+	}
+
 	public static function showdata(){
 		$changed = 0;
 		$oldperson = 0;
@@ -41,6 +50,9 @@ class TmrchangeController extends BaseController {
 						 'Thursday'=>'พฤหัสบดี', 'Friday'=>'ศุกร์', 'Saturday'=>'เสาร์',
 						 'Sunday'=>'อาทิตย์');
 		$tdate = date("l",strtotime($date));
+		$latestdate = Time::select('date')->first()->date;
+		$latesttime = Time::select('time')->first()->time;
+		$currentplud = self::findcurrentplud($latestdate);
 
 		$ppltodaycount = OnCamp::where('date','=',$today)->count();
 
@@ -65,6 +77,7 @@ class TmrchangeController extends BaseController {
 								  		   ->with('thmanday',$thmanday)
 								  		   ->with('today',$today)
 										   ->with('tomorrow',$tomorrow)
+										   ->with('currentplud',$currentplud)
 										   ->with('pplinlist',$pplinlist)
 										   ->with('pploutlist',$pploutlist)
 										   ->with('ppltodaycount',$ppltodaycount)
@@ -89,6 +102,9 @@ class TmrchangeController extends BaseController {
 						 'Thursday'=>'พฤหัสบดี', 'Friday'=>'ศุกร์', 'Saturday'=>'เสาร์',
 						 'Sunday'=>'อาทิตย์');
 		$tdate = date("l",strtotime($date));
+		$latestdate = Time::select('date')->first()->date;
+		$latesttime = Time::select('time')->first()->time;
+		$currentplud = self::findcurrentplud($latestdate);
 
 		$ppltodaycount = OnCamp::where('date','=',$today)->count();
 
@@ -122,6 +138,7 @@ class TmrchangeController extends BaseController {
 								  		   ->with('year',$year)
 								  		   ->with('thmanday',$thmanday)
 								  		   ->with('today',$today)
+										   ->with('currentplud',$currentplud)
 										   ->with('tomorrow',$tomorrow)
 										   ->with('pplinlist',$pplinlist)
 										   ->with('pploutlist',$pploutlist)
@@ -147,6 +164,9 @@ class TmrchangeController extends BaseController {
 						 'Thursday'=>'พฤหัสบดี', 'Friday'=>'ศุกร์', 'Saturday'=>'เสาร์',
 						 'Sunday'=>'อาทิตย์');
 		$tdate = date("l",strtotime($date));
+		$latestdate = Time::select('date')->first()->date;
+		$latesttime = Time::select('time')->first()->time;
+		$currentplud = self::findcurrentplud($latestdate);
 
 		$ppltodaycount = OnCamp::where('date','=',$today)->count();
 
@@ -189,6 +209,7 @@ class TmrchangeController extends BaseController {
 								  		   ->with('thmanday',$thmanday)
 								  		   ->with('today',$today)
 										   ->with('tomorrow',$tomorrow)
+										   ->with('currentplud',$currentplud)
 										   ->with('pplinlist',$pplinlist)
 										   ->with('pploutlist',$pploutlist)
 										   ->with('ppltodaycount',$ppltodaycount)
@@ -214,6 +235,9 @@ class TmrchangeController extends BaseController {
 						 'Thursday'=>'พฤหัสบดี', 'Friday'=>'ศุกร์', 'Saturday'=>'เสาร์',
 						 'Sunday'=>'อาทิตย์');
 		$tdate = date("l",strtotime($date));
+		$latestdate = Time::select('date')->first()->date;
+		$latesttime = Time::select('time')->first()->time;
+		$currentplud = self::findcurrentplud($latestdate);
 
 		$ppltodaycount = OnCamp::where('date','=',$today)->count();
 
@@ -245,6 +269,7 @@ class TmrchangeController extends BaseController {
 								  		   ->with('thmanday',$thmanday)
 								  		   ->with('today',$today)
 										   ->with('tomorrow',$tomorrow)
+									       ->with('currentplud',$currentplud)
 										   ->with('pplinlist',$pplinlist)
 										   ->with('pploutlist',$pploutlist)
 										   ->with('ppltodaycount',$ppltodaycount)
@@ -270,6 +295,9 @@ class TmrchangeController extends BaseController {
 						 'Thursday'=>'พฤหัสบดี', 'Friday'=>'ศุกร์', 'Saturday'=>'เสาร์',
 						 'Sunday'=>'อาทิตย์');
 		$tdate = date("l",strtotime($date));
+		$latestdate = Time::select('date')->first()->date;
+		$latesttime = Time::select('time')->first()->time;
+		$currentplud = self::findcurrentplud($latestdate);
 
 		$ppltodaycount = OnCamp::where('date','=',$today)->count();
 
@@ -301,6 +329,7 @@ class TmrchangeController extends BaseController {
 								  		   ->with('thmanday',$thmanday)
 								  		   ->with('today',$today)
 										   ->with('tomorrow',$tomorrow)
+										   ->with('currentplud',$currentplud)
 										   ->with('pplinlist',$pplinlist)
 										   ->with('pploutlist',$pploutlist)
 										   ->with('ppltodaycount',$ppltodaycount)
@@ -347,6 +376,9 @@ class TmrchangeController extends BaseController {
 						 'Thursday'=>'พฤหัสบดี', 'Friday'=>'ศุกร์', 'Saturday'=>'เสาร์',
 						 'Sunday'=>'อาทิตย์');
 		$tdate = date("l",strtotime($date));
+		$latestdate = Time::select('date')->first()->date;
+		$latesttime = Time::select('time')->first()->time;
+		$currentplud = self::findcurrentplud($latestdate);
 
 		$ppltodaycount = OnCamp::where('date','=',$today)->count();
 
@@ -371,6 +403,7 @@ class TmrchangeController extends BaseController {
 								  		   ->with('thmanday',$thmanday)
 								  		   ->with('today',$today)
 										   ->with('tomorrow',$tomorrow)
+										   ->with('currentplud',$currentplud)
 										   ->with('pplinlist',$pplinlist)
 										   ->with('pploutlist',$pploutlist)
 										   ->with('ppltodaycount',$ppltodaycount)
@@ -408,6 +441,9 @@ class TmrchangeController extends BaseController {
 						 'Thursday'=>'พฤหัสบดี', 'Friday'=>'ศุกร์', 'Saturday'=>'เสาร์',
 						 'Sunday'=>'อาทิตย์');
 		$tdate = date("l",strtotime($date));
+		$latestdate = Time::select('date')->first()->date;
+		$latesttime = Time::select('time')->first()->time;
+		$currentplud = self::findcurrentplud($latestdate);
 
 		$ppltodaycount = OnCamp::where('date','=',$today)->count();
 
@@ -432,6 +468,7 @@ class TmrchangeController extends BaseController {
 								  		   ->with('thmanday',$thmanday)
 								  		   ->with('today',$today)
 										   ->with('tomorrow',$tomorrow)
+										   ->with('currentplud',$currentplud)
 										   ->with('pplinlist',$pplinlist)
 										   ->with('pploutlist',$pploutlist)
 										   ->with('ppltodaycount',$ppltodaycount)
@@ -458,6 +495,9 @@ class TmrchangeController extends BaseController {
 						 'Thursday'=>'พฤหัสบดี', 'Friday'=>'ศุกร์', 'Saturday'=>'เสาร์',
 						 'Sunday'=>'อาทิตย์');
 		$tdate = date("l",strtotime($date));
+		$latestdate = Time::select('date')->first()->date;
+		$latesttime = Time::select('time')->first()->time;
+		$currentplud = self::findcurrentplud($latestdate);
 
 		$ppltodaycount = OnCamp::where('date','=',$today)->count();
 		$pplinlist = DB::table('manday_history')
@@ -492,6 +532,7 @@ class TmrchangeController extends BaseController {
 										  	 	    ->with('today',$today)
 												    ->with('tomorrow',$tomorrow)
 										  		    ->with('thmanday',$thmanday)
+													->with('currentplud',$currentplud)
 												    ->with('pplinlist',$pplinlist)
 												    ->with('pploutlist',$pploutlist)
 												    ->with('ppltodaycount',$ppltodaycount);
@@ -512,6 +553,9 @@ class TmrchangeController extends BaseController {
 						 'Thursday'=>'พฤหัสบดี', 'Friday'=>'ศุกร์', 'Saturday'=>'เสาร์',
 						 'Sunday'=>'อาทิตย์');
 		$tdate = date("l",strtotime($date));
+		$latestdate = Time::select('date')->first()->date;
+		$latesttime = Time::select('time')->first()->time;
+		$currentplud = self::findcurrentplud($latestdate);
 		$ppltodaycount = OnCamp::where('date','=',$today)->count();
 
 		$manhis = MandayHistory::where('person_id','=',$id)
@@ -559,6 +603,7 @@ class TmrchangeController extends BaseController {
 										  		   ->with('thmanday',$thmanday)
 										  		   ->with('today',$today)
 												   ->with('tomorrow',$tomorrow)
+												   ->with('currentplud',$currentplud)
 												   ->with('pplinlist',$pplinlist)
 												   ->with('pploutlist',$pploutlist)
 												   ->with('ppltodaycount',$ppltodaycount)
@@ -581,6 +626,12 @@ class TmrchangeController extends BaseController {
 						 'Sunday'=>'อาทิตย์');
 		$tdate = date("l",strtotime($date));
 		$ppltodaycount = OnCamp::where('date','=',$today)->count();
+		$latestdate = Time::select('date')->first()->date;
+		$latesttime = Time::select('time')->first()->time;
+		$currentplud = self::findcurrentplud($latestdate);
+		$latestdate = Time::select('date')->first()->date;
+		$latesttime = Time::select('time')->first()->time;
+		$currentplud = self::findcurrentplud($latestdate);
 
 		$newdateout = Input::get('newdateout');
 		$manhis = new MandayHistory;
@@ -629,6 +680,7 @@ class TmrchangeController extends BaseController {
 										  		   ->with('thmanday',$thmanday)
 										  		   ->with('today',$today)
 												   ->with('tomorrow',$tomorrow)
+												   ->with('currentplud',$currentplud)
 												   ->with('pplinlist',$pplinlist)
 												   ->with('pploutlist',$pploutlist)
 												   ->with('ppltodaycount',$ppltodaycount)
@@ -662,6 +714,9 @@ class TmrchangeController extends BaseController {
 						 'Thursday'=>'พฤหัสบดี', 'Friday'=>'ศุกร์', 'Saturday'=>'เสาร์',
 						 'Sunday'=>'อาทิตย์');
 		$tdate = date("l",strtotime($date));
+		$latestdate = Time::select('date')->first()->date;
+		$latesttime = Time::select('time')->first()->time;
+		$currentplud = self::findcurrentplud($latestdate);
 
 		$ppltodaycount = OnCamp::where('date','=',$today)->count();
 
@@ -696,6 +751,7 @@ class TmrchangeController extends BaseController {
 								  		   ->with('thmanday',$thmanday)
 								  		   ->with('today',$today)
 										   ->with('tomorrow',$tomorrow)
+										   ->with('currentplud',$currentplud)
 										   ->with('pplinlist',$pplinlist)
 										   ->with('pploutlist',$pploutlist)
 										   ->with('ppltodaycount',$ppltodaycount)

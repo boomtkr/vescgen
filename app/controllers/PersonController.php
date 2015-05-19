@@ -2,6 +2,14 @@
 class PersonController extends BaseController {
 
 
+	public static function findcurrentplud($today){
+		$currentpludarray = PludDate::where('date','=',$today)->get();
+		foreach($currentpludarray as $cpa){
+			$currentplud = $cpa->plud;
+		}
+		return $currentplud;
+	}
+	
 	public static function updatedetails($id){
 		$first_name = Input::get('first_name');
 		$last_name = Input::get('last_name');
@@ -82,6 +90,7 @@ class PersonController extends BaseController {
 		$tdate = date("l",strtotime($tddate));
 		$latestdate = Time::select('date')->first()->date;
 		$latesttime = Time::select('time')->first()->time;
+		$currentplud = self::findcurrentplud($latestdate);
 		$person = Person::where('id','=',$id)->first();
 		$datehistory = array();
 		$timehistory = array();
@@ -104,6 +113,7 @@ class PersonController extends BaseController {
 										->with('month',$month)
 										->with('year',$year)
 										->with('thmanday',$thmanday)
+										->with('currentplud',$currentplud)
 										->with('person',$person)
 										->with('datehistory',$datehistory)
 										->with('timehistory',$timehistory)

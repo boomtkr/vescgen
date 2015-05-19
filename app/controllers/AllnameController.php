@@ -1,6 +1,16 @@
 <?php
 
 class AllnameController extends BaseController {
+
+
+	public static function findcurrentplud($today){
+		$currentpludarray = PludDate::where('date','=',$today)->get();
+		foreach($currentpludarray as $cpa){
+			$currentplud = $cpa->plud;
+		}
+		return $currentplud;
+	}
+	
 	public static function sortbyyear(){
 		$date = Time::select('date')->first()->date;
 		$exdate = explode("-", $date);
@@ -24,6 +34,9 @@ class AllnameController extends BaseController {
 						 'Thursday'=>'พฤหัสบดี', 'Friday'=>'ศุกร์', 'Saturday'=>'เสาร์',
 						 'Sunday'=>'อาทิตย์');
 		$tdate = date("l",strtotime($date));
+		$latestdate = Time::select('date')->first()->date;
+		$latesttime = Time::select('time')->first()->time;
+		$currentplud = self::findcurrentplud($latestdate);
 		$users = Person::orderBy('year','ASC')->get();
 		$user_count = Person::all()->count();
 		$female_count = Person::where('gender','=','F')->count();
@@ -38,6 +51,7 @@ class AllnameController extends BaseController {
 										 ->with('year',$year)
 										 ->with('thmanday',$thmanday)
 										 ->with('users',$users)
+										 ->with('currentplud',$currentplud)
 										 ->with('user_count',$user_count)
 										 ->with('male_count',$male_count)
 										 ->with('female_count',$female_count)
@@ -70,6 +84,9 @@ class AllnameController extends BaseController {
 						 'Thursday'=>'พฤหัสบดี', 'Friday'=>'ศุกร์', 'Saturday'=>'เสาร์',
 						 'Sunday'=>'อาทิตย์');
 		$tdate = date("l",strtotime($date));
+		$latestdate = Time::select('date')->first()->date;
+		$latesttime = Time::select('time')->first()->time;
+		$currentplud = self::findcurrentplud($latestdate);
 		$users = Person::orderBy('first_name','ASC')->get();
 		$user_count = Person::all()->count();
 		$female_count = Person::where('gender','=','F')->count();
@@ -84,6 +101,7 @@ class AllnameController extends BaseController {
 										 ->with('year',$year)
 										 ->with('thmanday',$thmanday)
 										 ->with('users',$users)
+										 ->with('currentplud',$currentplud)
 										 ->with('user_count',$user_count)
 										 ->with('male_count',$male_count)
 										 ->with('female_count',$female_count)
@@ -116,6 +134,9 @@ class AllnameController extends BaseController {
 						 'Thursday'=>'พฤหัสบดี', 'Friday'=>'ศุกร์', 'Saturday'=>'เสาร์',
 						 'Sunday'=>'อาทิตย์');
 		$tdate = date("l",strtotime($date));
+		$latestdate = Time::select('date')->first()->date;
+		$latesttime = Time::select('time')->first()->time;
+		$currentplud = self::findcurrentplud($latestdate);
 		$users = Person::orderBy('nickname','ASC')->get();
 		$user_count = Person::all()->count();
 		$female_count = Person::where('gender','=','F')->count();
@@ -130,6 +151,7 @@ class AllnameController extends BaseController {
 										 ->with('year',$year)
 										 ->with('thmanday',$thmanday)
 										 ->with('users',$users)
+										 ->with('currentplud',$currentplud)
 										 ->with('user_count',$user_count)
 										 ->with('male_count',$male_count)
 										 ->with('female_count',$female_count)

@@ -5,10 +5,9 @@ class OnCamp extends Eloquent {
 
     protected $table = 'oncamp';
 
-    public function person(){
-    	return $this->belongsTo('Person','person_id','id');
-    }
+    protected $fillable = array('date','person_id');
 
+    public $timestamps = false;
 }
 
 ?>

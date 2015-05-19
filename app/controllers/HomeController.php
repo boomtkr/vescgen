@@ -15,6 +15,14 @@ class HomeController extends BaseController {
 	|
 	*/
 
+	public static function findcurrentplud($today){
+		$currentpludarray = PludDate::where('date','=',$today)->get();
+		foreach($currentpludarray as $cpa){
+			$currentplud = $cpa->plud;
+		}
+		return $currentplud;
+	}
+
 	public static function showhome()
 	{
 		$date = Time::select('date')->first()->date;
@@ -39,7 +47,9 @@ class HomeController extends BaseController {
 						 'Thursday'=>'พฤหัสบดี', 'Friday'=>'ศุกร์', 'Saturday'=>'เสาร์',
 						 'Sunday'=>'อาทิตย์');
 		$tdate = date("l",strtotime($date));
-		echo $weekday[$tdate];
+		$latestdate = Time::select('date')->first()->date;
+		$latesttime = Time::select('time')->first()->time;
+		$currentplud = self::findcurrentplud($latestdate);
 		$user_count = DB::table('oncamp')->where('date','=',$date)
 						  ->join('person','oncamp.person_id','=','person.id')
 						  ->count();
@@ -61,6 +71,7 @@ class HomeController extends BaseController {
 									  ->with('month',$month)
 									  ->with('year',$year)
 									  ->with('thmanday',$thmanday)
+									  ->with('currentplud',$currentplud)
 									  ->with('user_count',$user_count)
 						   		      ->with('senior_count',$senior_count)
 									  ->with('junior_count',$junior_count)

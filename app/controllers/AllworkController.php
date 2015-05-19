@@ -2,6 +2,15 @@
 
 class AllworkController extends BaseController {
 
+
+	public static function findcurrentplud($today){
+		$currentpludarray = PludDate::where('date','=',$today)->get();
+		foreach($currentpludarray as $cpa){
+			$currentplud = $cpa->plud;
+		}
+		return $currentplud;
+	}
+	
 	public static function allwork(){
 		$works = Work::all();
 		$date = Time::select('date')->first()->date;
@@ -26,12 +35,16 @@ class AllworkController extends BaseController {
 						 'Thursday'=>'พฤหัสบดี', 'Friday'=>'ศุกร์', 'Saturday'=>'เสาร์',
 						 'Sunday'=>'อาทิตย์');
 		$tdate = date("l",strtotime($date));
+		$latestdate = Time::select('date')->first()->date;
+		$latesttime = Time::select('time')->first()->time;
+		$currentplud = self::findcurrentplud($latestdate);
 		return View::make('home/allwork')->with('works',$works)
 										 ->with('day',$day)
 										 ->with('weekday',$weekday[$tdate])
 										 ->with('month',$month)
 										 ->with('year',$year)
-										 ->with('thmanday',$thmanday);
+										 ->with('thmanday',$thmanday)
+										 ->with('currentplud',$currentplud);
 	}
 
 	public static function addwork(){
@@ -51,6 +64,9 @@ class AllworkController extends BaseController {
 		$year = (int)$exdate[0] + 543;
 		$day = (int)$exdate[2];
 		$m = (int)$exdate[1];
+		$latestdate = Time::select('date')->first()->date;
+		$latesttime = Time::select('time')->first()->time;
+		$currentplud = self::findcurrentplud($latestdate);
 		if($m==1){ $month = "มกราคม"; }
 		if($m==2){ $month = "กุมภาพันธ์"; }
 		if($m==3){ $month = "มีนาคม"; }
@@ -73,7 +89,8 @@ class AllworkController extends BaseController {
 										 ->with('weekday',$weekday[$tdate])
 										 ->with('month',$month)
 										 ->with('year',$year)
-										 ->with('thmanday',$thmanday);
+										 ->with('thmanday',$thmanday)
+										 ->with('currentplud',$currentplud);
 
 	}
 

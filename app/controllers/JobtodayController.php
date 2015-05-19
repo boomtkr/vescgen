@@ -69,6 +69,29 @@ class JobtodayController extends BaseController {
 		$pplonwork = self::getpeopleonwork($works, $latestdate, $latesttime);
 		$user_count = DB::table('job_history')->where('date','=',$latestdate)
 					  ->where('time','=',$latesttime)->count();
+
+
+		$senior_md = 0;
+		$junior_md = 0;
+		$more_md = 0;
+		$freshy_md = 0;
+
+		$ppllist = Person::all();
+		foreach($ppllist as $p){
+			$count = Oncamp::where('person_id','=',$p->id)->count();
+			if($p->year == 4){
+				$senior_md += $count;
+			}
+			else if($p->year == 3){
+				$junior_md += $count;
+			}
+			else if($p->year == 2){
+				$more_md += $count;
+			}
+			else{
+				$freshy_md += $count;
+			}
+		}
 		return View::make('home/jobtoday')->with('day',$day)
 										  ->with('weekday',$weekday[$tdate])
 										  ->with('month',$month)
@@ -80,7 +103,11 @@ class JobtodayController extends BaseController {
 										  ->with('plud',$currentplud)
 										  ->with('date',$latestdate)
 										  ->with('time',$latesttime)
-										  ->with('user_count',$user_count);
+										  ->with('user_count',$user_count)
+										  ->with('senior_md',$senior_md)
+										  ->with('junior_md',$junior_md)
+										  ->with('more_md',$more_md)
+										  ->with('freshy_md',$freshy_md);
 	}
 
 }

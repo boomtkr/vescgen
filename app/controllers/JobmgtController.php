@@ -17,6 +17,38 @@ class JobmgtController extends BaseController {
 		return $month;
 	}
 
+	public static function clearlastpploncamp($today, $date, $time){
+		OnCamp::where('date','=',$date)->delete();
+	}
+
+	public static function calculatepploncamp($today, $date, $time){
+		$people_list = DB::table('oncamp')->where('date','=',$today)
+						->join('person','person.id','=','oncamp.person_id')
+						->get();
+		$incoming_people = ManHis::where('date_in','=',$date)->get();
+		$outgoing_people = ManHis::where('date_out','=',$today)->get();
+		foreach($people_list as $pl){
+			$okay = 1;
+			foreach($outgoing_people as $op){
+				if($pl->id == $op->id){
+					$okay = 0;
+				}
+			}
+			if($okay == 1){
+				$oncamp = new OnCamp;
+				$oncamp->date = $date;
+				$oncamp->person_id = $pl->id;
+				$oncamp->save();
+			}
+		}
+		foreach($incoming_people as $ip){
+			$oncamp = new OnCamp;
+			$oncamp->date = $date;
+			$oncamp->person_id = $ip->id;
+			$oncamp->save();
+		}
+	}
+
 	public static function getfitnessvalue($person,$workname,$date){
 		$fvalue = 0;
 		$work = Work::where('work_name','=',$workname)->first();
@@ -74,10 +106,9 @@ class JobmgtController extends BaseController {
 						 'Thursday'=>'พฤหัสบดี', 'Friday'=>'ศุกร์', 'Saturday'=>'เสาร์',
 						 'Sunday'=>'อาทิตย์');
 		$tdate = date("l",strtotime($date));
-
 		$latestdate = Time::select('date')->first()->date;
 		$latesttime = Time::select('time')->first()->time;
-		$plud = self::findcurrentplud($latestdate);
+		$currentplud = self::findcurrentplud($latestdate);
 
 		return View::make('home/jobmgt')->with('day',$day)
 										->with('weekday',$weekday[$tdate])
@@ -88,7 +119,7 @@ class JobmgtController extends BaseController {
 										->with('tomorrow',$tomorrow)
 										->with('latestdate',$latestdate)
 										->with('latesttime',$latesttime)
-										->with('plud',$plud);
+										->with('currentplud',$currentplud);
 	}
 
 	public static function datechosen(){
@@ -119,6 +150,7 @@ class JobmgtController extends BaseController {
 		$timerecord->time = $time;
 		// $timerecord->save();
 
+
 		$today = Time::select('date')->first()->date;
 		$thistoday = str_replace('-', '/', $today);
 		$tomorrow = date('Y-m-d',strtotime($thistoday . "+1 days"));
@@ -132,6 +164,15 @@ class JobmgtController extends BaseController {
 						 'Thursday'=>'พฤหัสบดี', 'Friday'=>'ศุกร์', 'Saturday'=>'เสาร์',
 						 'Sunday'=>'อาทิตย์');
 		$tdate = date("l",strtotime($date));
+		$latestdate = Time::select('date')->first()->date;
+		$latesttime = Time::select('time')->first()->time;
+		$currentplud = self::findcurrentplud($latestdate);
+
+
+		if($timerecord->date > $today){
+			Self::clearlastpploncamp($today, $timerecord->date, $timerecord->time);
+			Self::calculatepploncamp($today, $timerecord->date, $timerecord->time);
+		}
 
 		$worklist = Work::all();
 
@@ -148,6 +189,7 @@ class JobmgtController extends BaseController {
 										   ->with('month',$month)
 										   ->with('year',$year)
 										   ->with('thmanday',$thmanday)
+										   ->with('currentplud',$currentplud)
 										   ->with('today',$today)
 									   	   ->with('tomorrow',$tomorrow)
 										   ->with('jobhis',$jobhis)
@@ -179,6 +221,9 @@ class JobmgtController extends BaseController {
 						 'Thursday'=>'พฤหัสบดี', 'Friday'=>'ศุกร์', 'Saturday'=>'เสาร์',
 						 'Sunday'=>'อาทิตย์');
 		$tdate = date("l",strtotime($date));
+		$latestdate = Time::select('date')->first()->date;
+		$latesttime = Time::select('time')->first()->time;
+		$currentplud = self::findcurrentplud($latestdate);
 
 		$user_count = DB::table('oncamp')->where('date','=',$timerecord->date)
 					  ->join('person','oncamp.person_id','=','person.id')
@@ -211,6 +256,7 @@ class JobmgtController extends BaseController {
 										      ->with('thmanday',$thmanday)
 										      ->with('today',$today)
 									   	      ->with('tomorrow',$tomorrow)
+											  ->with('currentplud',$currentplud)
 									   	      ->with('user',$user)
 											  ->with('job',$job)
 											  ->with('female',$female)
@@ -298,6 +344,9 @@ class JobmgtController extends BaseController {
 						 'Thursday'=>'พฤหัสบดี', 'Friday'=>'ศุกร์', 'Saturday'=>'เสาร์',
 						 'Sunday'=>'อาทิตย์');
 		$tdate = date("l",strtotime($date));
+		$latestdate = Time::select('date')->first()->date;
+		$latesttime = Time::select('time')->first()->time;
+		$currentplud = self::findcurrentplud($latestdate);
 
 		$girls = array();
 		$girl_list = DB::table('oncamp')->where('date','=',$timerecord->date)
@@ -474,6 +523,7 @@ class JobmgtController extends BaseController {
 										      ->with('month',$month)
 										      ->with('year',$year)
 										      ->with('thmanday',$thmanday)
+											  ->with('currentplud',$currentplud)
 										      ->with('today',$today)
 									   	      ->with('tomorrow',$tomorrow)
 									   	      ->with('user',$user)
