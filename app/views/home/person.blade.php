@@ -117,13 +117,6 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-md-3 control-label" for="example-text-input" style=" padding-top: 6px; ">วันเกิด</label>
-								<div class="col-md-8">
-									<input type="text" id="example-datepicker2" name="birthday" class="form-control input-datepicker" data-date-format="dd/mm/yy" style="font-size:16px" value={{$person->birthday}}>
-									{{-- <span class="help-block">This is a help text</span> --}}
-								</div>
-							</div>
-							<div class="form-group">
 								<label class="col-md-3 control-label" for="example-text-input" style=" padding-top: 6px; ">ถึก</label>
 								<div class="col-md-8">
 									<input type="text" id="example-text-input" name="str_lvl" class="form-control" style="font-size:16px" value={{$person->str_lvl}}>
