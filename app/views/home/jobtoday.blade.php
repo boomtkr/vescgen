@@ -39,10 +39,10 @@
 									<input type="text" id="example-datepicker2" name="example-datepicker2" class="form-control input-datepicker input-datepicker-close" data-date-format="yyyy-mm-dd" placeholder="yyyy-mm-dd">
 								</div>
 							</div>
-							<div class="form-group col-xs-4" style=" margin-top: 4px; ">
+							<div class="form-group col-xs-4" >
                                             <label class="col-xs-4 control-label" for="example-select">ช่วงเวลา</label>
                                             <div class="col-xs-8">
-                                                <select id="example-select" name="example-select" class="form-control" size="1">
+                                                <select id="example-select" name="example-select" class="form-control" size="1" style=" height: 34px; ">
                                                     <option value="morning">เช้า</option>
                                                     <option value="afternoon">บ่าย</option>
                                                     <option value="all">ทั้งวัน</option>
@@ -115,10 +115,10 @@
 					<table class="table table-vcenter table-striped table-bordered">
 						<thead>
 							<tr>
-								<th style="width:30px">ชั้นปี</th>
-								<th>รายชื่อ</th>
-								<th style="width:40px">#</th>
-								<th style="width:40px">MD</th>
+								<th class="text-center" style="width:30px">ชั้นปี</th>
+								<th class="text-center">รายชื่อ</th>
+								<th style="width:70px" class="text-center">จำนวน</th>
+								<th style="width:70px" class="text-center">แมนเดย์</th>
 							</tr>
 						</thead>
 						<tbody>
@@ -139,7 +139,7 @@
 									<?php $i++; ?>
 									@endforeach
 								</td>
-								<td class="text-center">3</td>
+								<td class="text-center" >{{$count_senior}}</td>
 								<td class="text-center">{{$senior_md}}</td>
 							</tr>
 							<tr>
@@ -205,8 +205,8 @@
 							<tr>
 								<td><strong>รวม</strong></td>
 								<td></td>
-								<td class="text-center">{{$count_senior+$count_junior+$count_more+$count_freshy}}</td>
-								<td class="text-center">{{$senior_md+$junior_md+$more_md+$freshy_md}}</td>
+								<td class="text-center"><strong>{{$count_senior+$count_junior+$count_more+$count_freshy}}</strong></td>
+								<td class="text-center"><strong>{{$senior_md+$junior_md+$more_md+$freshy_md}}</strong></td>
 							</tr>
 						</tbody>
 					</table>

@@ -38,14 +38,14 @@
 							<div class="list-group remove-margin col-xs-3">
 								<a href="javascript:void(0)" class="list-group-item">
 									<span class="pull-right" id="count-people"><strong>1</strong></span>
-									<h4 class="list-group-item-heading remove-margin"><i class="gi gi-female"></i> จำนวนงาน</h4>
+									<h4 class="list-group-item-heading remove-margin"><i class="fa fa-briefcase"></i> จำนวนงาน</h4>
 									<p class="list-group-item-text"></p>
 								</a>
 							</div>
 							<div class="list-group remove-margin col-xs-3">
 								<a href="javascript:void(0)" class="list-group-item">
 									<span class="pull-right" id="count-people"><strong>1</strong></span>
-									<h4 class="list-group-item-heading remove-margin"><i class="gi gi-female"></i> จำนวนคนทั้งหมด</h4>
+									<h4 class="list-group-item-heading remove-margin"><i class="gi gi-user"></i> จำนวนคนทั้งหมด</h4>
 									<p class="list-group-item-text"></p>
 								</a>
 							</div>
@@ -59,7 +59,7 @@
 							<div class="list-group remove-margin col-xs-3">
 								<a href="javascript:void(0)" class="list-group-item">
 									<span class="pull-right" id="count-people"><strong>1</strong></span>
-									<h4 class="list-group-item-heading remove-margin"><i class="gi gi-female"></i> จำนวนซีเนียร์</h4>
+									<h4 class="list-group-item-heading remove-margin"><i class="gi gi-crown"></i> จำนวนซีเนียร์</h4>
 									<p class="list-group-item-text"></p>
 								</a>
 							</div>
@@ -103,8 +103,9 @@
 						</div>
 						<div class="col-xs-2">
 							<button id="submit-button" type="button" name='submit' class="btn btn-lg btn-success col-xs-9"><i class="fa fa-angle-right"></i> ยืนยัน</button>	
-							<a href={{asset('/jobmgt/editworkresult')}}><button id="submit-button" type="button" name='submit' class="btn btn-lg btn-warning col-xs-9"><i class="fa fa-angle-right"></i> แก้ไข</button></a>
+							{{-- <a href={{asset('/jobmgt/editworkresult')}}><button id="submit-button" type="button" name='submit' class="btn btn-lg btn-warning col-xs-9"><i class="fa fa-angle-right"></i> แก้ไข</button></a> --}}
 							<a href="#"><button id="submit-button" type="button" name='submit' class="btn btn-lg btn-default col-xs-9"><i class="fa fa-angle-right"></i> แรนด้อมใหม่</button></a>
+
 						</div>
 					</div>
 					</form>

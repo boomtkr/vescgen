@@ -71,10 +71,10 @@
 								<!-- Widget -->
 								<a href="#" class="widget widget-hover-effect1 block" style=" padding-right: 0px; padding-top: 0px; padding-left: 0px; ">
 									<div class="widget-simple" style=" padding-bottom: 0px; padding-top: 10px; ">
-										<div class="widget-icon pull-left themed-background-default animation-fadeIn" style=" margin-top: 8px; ">
+										<div class="widget-icon pull-left themed-background-default animation-fadeIn" style=" margin-top: 3px; ">
 											<i class="fa fa-list-alt"></i>
 										</div>
-										<h3 class="widget-content text-right animation-pullDown" style="font-size:40px;margin-top: 0px;">
+										<h3 class="widget-content text-right animation-pullDown" style="font-size:30px;margin-top: 0px;margin-bottom: 5px;">
 											<strong id="remaining-job">{{$jobcount}}</strong><br>
 											<small id="all-job">{{--$jobcount--}}5</small>
 											<small>จำนวนงานทั้งหมด</small>
@@ -88,10 +88,10 @@
 								<!-- Widget -->
 								<a href="#" class="widget widget-hover-effect1 block" style=" padding-right: 0px; padding-top: 0px; padding-left: 0px; ">
 									<div class="widget-simple" style=" padding-bottom: 0px; padding-top: 10px; ">
-										<div class="widget-icon pull-left themed-background-flatie animation-fadeIn" style=" margin-top: 8px; ">
+										<div class="widget-icon pull-left themed-background-flatie animation-fadeIn" style=" margin-top: 3px; ">
 											<i class="gi gi-group"></i>
 										</div>
-										<h3 class="widget-content text-right animation-pullDown" style="font-size:40px;margin-top: 0px;">
+										<h3 class="widget-content text-right animation-pullDown" style="font-size:30px;margin-top: 0px;margin-bottom: 5px;">
 											<strong id="remaining-user">{{$userleft}}</strong><br>
 											<small id="all-user">{{$user_count}}</small>
 											<small>จำนวนคน</small>
@@ -105,10 +105,10 @@
 								<!-- Widget -->
 								<a href="#" class="widget widget-hover-effect1 block" style=" padding-right: 0px; padding-top: 0px; padding-left: 0px; ">
 									<div class="widget-simple" style=" padding-bottom: 0px; padding-top: 10px; ">
-										<div class="widget-icon pull-left themed-background-coral animation-fadeIn" style=" margin-top: 8px; ">
+										<div class="widget-icon pull-left themed-background-coral animation-fadeIn" style=" margin-top: 3px; ">
 											<i class="gi gi-woman"></i>
 										</div>
-										<h3 class="widget-content text-right animation-pullDown" style="font-size:40px;margin-top: 0px;">
+										<h3 class="widget-content text-right animation-pullDown" style="font-size:30px;margin-top: 0px;margin-bottom: 5px;">
 											<strong id="remaining-female">{{$femaleleft}}</strong><br>
 											<small id="all-female">{{$female_count}}</small>
 											<small>จำนวนน้องผู้หญิง</small>
@@ -376,5 +376,6 @@
 {{ HTML::script('proui/js/pages/formsValidation.js'); }}
 
 <script>$(function(){ FormsValidation.init(); });</script>
+
 
 @stop

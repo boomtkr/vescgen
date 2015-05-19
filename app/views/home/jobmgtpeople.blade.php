@@ -104,14 +104,14 @@
 														<td class="text-center">{{$user[$i]}}</td>	
 														<td class="text-center">{{$female[$i]}}</td>
 														<td>
-															<select id="select-senior" name='senior_namelist[]' class="select-chosen " data-placeholder="จิ้มเลือกซีเนียร์มาสักคน" style="width: 250px;" multiple>
+															<select id="select-senior" name='senior_namelist[]' class="select-chosen " data-placeholder="จิ้มเลือกซีเนียร์มาสักคน" style="width: 250px;" onchange="countSenior2(this.value);" multiple>
 																@foreach($senior as $person)
 																	<option value='{{$person->id}}{{'.'}}{{$i}}'>{{$person->nickname.'#'.$person->year}}</option>
 																@endforeach
 															</select>
 														</td>
 														<td>
-															<select id="example-chosen-multiple" name="nonsenior_namelist[]" class="select-chosen" data-placeholder="จิ้มเลือกน้องมาสักคนดิ" style="width: 250px;" multiple>
+															<select id="example-chosen-multiple" name="nonsenior_namelist[]" class="select-chosen" data-placeholder="จิ้มเลือกน้องมาสักคนดิ" style="width: 250px;" onchange="countSenior2(this.value);" multiple>
 																@foreach($nonsenior as $person)
 																	<option value='{{$person->id}}{{'.'}}{{$i}}'>{{$person->nickname.'#'.$person->year}}</option>
 																@endforeach
@@ -178,7 +178,7 @@
 			} else {
 				$('#remaining-senior').removeAttr('style');
 				$('#remaining-senior').html(remaining_senior);
-				alert('ยังเหลือซีเนียร์ที่ยังไม่ได้เลือกงาน');
+				// alert('ยังเหลือซีเนียร์ที่ยังไม่ได้เลือกงาน');
 			}
 		} else {
 			$('#remaining-senior').attr('style','color:red');
@@ -187,6 +187,9 @@
 		
 	}
 	
+	function countSenior2(value){
+		countSenior();
+	}
 
 	
 </script>

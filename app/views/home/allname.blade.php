@@ -94,6 +94,7 @@
 								<table class="table table-vcenter table-striped table-bordered">
 									<thead>
 										<tr>
+											<th class="text-center">แก้ไข</th>
 											<th class="text-center">#</th>
 											<th class="text-center">ชื่อ</th>
 											<th class="text-center">นามสกุล</th>
@@ -105,9 +106,9 @@
 											<th class="text-center">รหัสนิสิต</th>
 											<th class="text-center">รหัสปชช</th>
 											<th class="text-center">โทร.</th>
-											<th class="text-center">วันเกิด</th>
+											
 											<th class="text-center">ถึก</th>
-											<th class="text-center">MD</th>
+											<th class="text-center">แมนเดย์</th>
 										</tr>
 
 									</thead>
@@ -115,7 +116,8 @@
 										<?php $i=1; ?>
 										@foreach ($users as $user)
 										<tr>
-											<td>{{$i}}</td>
+											<td class="text-center"><a data-toggle="tooltip" title data-original-title="แก้ไขข้อมูล" href={{asset('person/'.$user->id)}} ><i class="gi gi-pencil"></i></a></td>
+											<td class="text-center">{{$i}}</td>
 											<td>{{$user->first_name}}</td>
 											<td>{{$user->last_name}}</td>
 											<td>{{$user->nickname}}</td>
@@ -126,7 +128,7 @@
 											<td>{{$user->student_id}}</td>
 											<td>{{$user->citizen_id}}</td>
 											<td>{{$user->phone}}</td>
-											<td>{{$user->birthday}}</td>
+										
 											<td class="text-center">{{$user->str_lvl}}</td>
 											<td class="text-center">{{$user->total_manday}}</td>
 										</tr>

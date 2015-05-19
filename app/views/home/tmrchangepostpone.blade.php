@@ -54,7 +54,7 @@
 								<div class="widget">
 									<div class="widget-extra themed-background-default">
 										<h3 class="widget-content-light">
-											&nbsp;<i class="gi gi-user_add"></i> คนขึ้น - {{$pplincount}} คน
+											&nbsp;<i class="gi gi-user_add"></i> คนขึ้น {{$pplincount}} คน
 										</h3>
 										<div class="pull-right" style="margin-top:-50px">
 											<div class="btn-group">
@@ -92,7 +92,7 @@
 															<div class="col-xs-4">
 									    					<h4 for="newdate"><strong>วันขึ้นวันใหม่</strong></h4>
 									    					</div>
-															<div class="col-xs-6"><input type="text" id="example-datepicker2" name="newdate" class="form-control input-datepicker input-datepicker-close" data-date-format="yyyy-mm-dd" placeholder="yyyy-mm-dd">
+															<div class="col-xs-6"><input type="text" id="example-datepicker2" name="newdate" class="form-control input-datepicker input-datepicker-close" data-date-format="yyyy-mm-dd" placeholder="yyyy-mm-dd" onchange="checkDate(this.value);">
 									    				</div>
 									    			</div>
 			                                        <div class="pull-right">
@@ -132,7 +132,7 @@
 								<div class="widget">
 									<div class="widget-extra themed-background-night">
 										<h3 class="widget-content-light">
-											&nbsp;<i class="gi gi-user_add"></i> คนลง - {{$pploutcount}} คน
+											&nbsp;<i class="gi gi-user_add"></i> คนลง {{$pploutcount}} คน
 										</h3>
 										<div class="pull-right" style="margin-top:-50px">
 											<div class="btn-group">
@@ -170,7 +170,7 @@
 															<div class="col-xs-4">
 									    					<h4 for="newdate"><strong>วันลงวันใหม่</strong></h4>
 									    					</div>
-															<div class="col-xs-8"><input type="text" id="example-datepicker2" name="newdate" class="form-control input-datepicker input-datepicker-close" data-date-format="dd/mm/yy" placeholder="dd/mm/yy">
+															<div class="col-xs-8"><input type="text" id="example-datepicker2" name="newdate" class="form-control input-datepicker input-datepicker-close" data-date-format="dd/mm/yy" placeholder="dd/mm/yy" onchange="checkDate(this.value);">
 									    				</div>
 									    			</div>
 			                                        <div class="pull-right">
@@ -238,4 +238,59 @@
 		}
 	}
 	</script>
+	<script type="text/javascript">
+	function checkDate(date){
+			var year = parseInt(date.substring(0,4))+543;
+			var month = parseInt(date.substring(5,7));
+			var day = parseInt(date.substring(8,10));
+
+			var currentyear = <?php echo $year; ?>;
+			var currentday = <?php echo $day; ?>;
+			var currentmonth = <?php 
+				switch ($month) {
+				    case 'มกราคม':
+				        echo 1;
+				        break;
+				    case 'กุมภาพันธ์':
+				        echo 2;
+				        break;
+				    case 'มีนาคม':
+				        echo 3;
+				        break;
+				    case 'เมษายน':
+				        echo 4;
+				        break;
+				    case 'พฤษภาคม':
+				        echo 5;
+				        break;
+				    case 'มิถุนายน':
+				        echo 6;
+				        break;
+				    case 'กรกฎาคม':
+				        echo 7;
+				        break;
+				    case 'สิงหาคม':
+				        echo 8;
+				        break;
+				    case 'กันยายน':
+				        echo 9;
+				        break;
+				    case 'ตุลาคม':
+				        echo 10;
+				        break;
+				    case 'พฤศจิกายน':
+				        echo 11;
+				        break;
+				    case 'ธันวาคม':
+				        echo 12;
+				        break;
+				}
+			 ?>;
+			 // var checkdayin = 0;
+			if( year < currentyear ||(year==currentyear &&month < currentmonth)||(year == currentyear && month == currentmonth && day < currentday )){
+				// checkdayin = 1;
+				alert('เลือกวันที่ผิด มันผ่านไปแล้วโว้ยยย');
+			}
+		}
+</script>
 	@stop

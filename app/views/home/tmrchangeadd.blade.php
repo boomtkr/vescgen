@@ -53,7 +53,7 @@
 									<div class="widget">
 										<div class="widget-extra themed-background-default">
 											<h3 class="widget-content-light">
-												&nbsp;<i class="gi gi-user_add"></i> คนขึ้น - {{$pplincount}} คน
+												&nbsp;<i class="gi gi-user_add"></i> คนขึ้น {{$pplincount}} คน
 											</h3>
 											<div class="pull-right" style="margin-top:-50px">
 												<div class="btn-group">
@@ -122,7 +122,7 @@
 									<div class="widget">
 										<div class="widget-extra themed-background-night">
 											<h3 class="widget-content-light">
-												&nbsp;<i class="gi gi-user_remove"></i> คนลง - {{$pploutcount}} คน
+												&nbsp;<i class="gi gi-user_remove"></i> คนลง {{$pploutcount}} คน
 											</h3>
 											<div class="pull-right" style="margin-top:-50px">
 												<div class="btn-group">

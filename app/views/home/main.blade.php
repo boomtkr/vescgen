@@ -94,7 +94,7 @@
                                 <div class="sidebar-user-name"><a href="/" style="color:#ffffff;text-decoration:none">V E S C <strong>G&nbsp; E&nbsp; N</strong></a></div>
                             </div>
                             <div class="sidebar-section clearfix sidebar-nav-mini-hide edpensook">
-                                <div style="font-size:20px"><small>วัน{{$weekday}}ที่ {{$day}} {{$month}} {{$year-2500}}<br>แมนเดย์ที่ {{$thmanday}}<br>ผลัด {{$currentplud}}</small></div>
+                                <div style="font-size:20px"><small>วัน{{$weekday}}ที่ {{$day}} {{$month}} {{$year-2500}}<br>ผลัด {{$currentplud}} แมนเดย์ที่ {{$thmanday}} </small></div>
                             </div>
                             <!-- END User Info -->
 
