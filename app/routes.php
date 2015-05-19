@@ -37,6 +37,13 @@ Route::get('/', function()
 	if($m==11){ $month = "พฤศจิกายน"; }
 	if($m==12){ $month = "ธันวาคม"; }
 	$thmanday = PludDate::where('date','=',$date)->first()->id;
+	$weekday = Array('Monday'=>'จันทร์', 'Tuesday'=>'อังคาร', 'Wednesday'=>'พุธ',
+						 'Thursday'=>'พฤหัสบดี', 'Friday'=>'ศุกร์', 'Saturday'=>'เสาร์',
+						 'Sunday'=>'อาทิตย์');
+	$tdate = date("l",strtotime($date));
+	$latestdate = Time::select('date')->first()->date;
+	$latesttime = Time::select('time')->first()->time;
+	$currentplud = self::findcurrentplud($latestdate);
 	$user_count = DB::table('oncamp')->where('date','=',$date)
 					  ->join('person','oncamp.person_id','=','person.id')
 					  ->count();
@@ -53,9 +60,11 @@ Route::get('/', function()
 					  ->join('person','oncamp.person_id','=','person.id')
 					  ->where('person.year','=',1)->count();
 	return View::make('home/home')->with('day',$day)
+								  ->with('weekday',$weekday[$tdate])
 								  ->with('month',$month)
 								  ->with('year',$year)
 								  ->with('thmanday',$thmanday)
+								  ->with('currentplud',$currentplud)
 								  ->with('user_count',$user_count)
 					   		      ->with('senior_count',$senior_count)
 								  ->with('junior_count',$junior_count)
