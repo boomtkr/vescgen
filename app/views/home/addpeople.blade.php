@@ -28,7 +28,7 @@
 	.help-block{
 		font-size: 8px;
 	}
-	
+
 </style>
 <div class="row edpensook">
 	<div class="col-xs-12">
@@ -233,7 +233,7 @@
 													<td width="150px">
 														<div class="form-group">
 														<div class="input-group">
-															<input type="text" id="example-datepicker2" name="date_in[]" class="form-control input-datepicker input-datepicker-close" data-date-format="yyyy-mm-dd" placeholder="yyyy-mm-dd">
+															<input type="text" id="example-datepicker2" name="date_in[]" class="form-control input-datepicker input-datepicker-close" data-date-format="yyyy-mm-dd" placeholder="yyyy-mm-dd" onchange="checkDate(this.value);">
 															</div>
 														</div>
 													</td>
@@ -242,7 +242,7 @@
 													<td width="150px">
 														<div class="form-group">
 														<div class="input-group">
-															<input type="text" id="example-datepicker2" name="date_out[]" class="form-control input-datepicker input-datepicker-close" data-date-format="yyyy-mm-dd" placeholder="yyyy-mm-dd">
+															<input type="text" id="example-datepicker2" name="date_out[]" class="form-control input-datepicker input-datepicker-close" data-date-format="yyyy-mm-dd" placeholder="yyyy-mm-dd" onchange="checkDate(this.value);">
 															</div>
 														</div>
 													</td>
@@ -271,7 +271,7 @@
 		var count_col = 1;
 		$('.input-add').click(function(){
 			count_col++;
-			var col = "<div class='table-responsive added-input-column' style='width:150px;float:left;display:inline;'><table class='table table-vcenter'><tbody><tr><td class='text-center'>"+count_col+"</td></tr><tr><td><div class='form-group'><div class='input-group'><input type='text' id='example-input1-group1' name='citizen_id[]' class='form-control'> </div</div></td></tr><tr><td width='150px'><div class='form-group'><div class='input-group'><input type='text' id='example-input1-group1' class='form-control' name='first_name[]' /></div></div></td></tr><tr><td width='150px'><div class='form-group'><div class='input-group'><input type='text' id='example-input1-group1' class='form-control' name='last_name[]' /></div></div></td></tr><tr ><td width='150px'><div class='form-group'><div class='input-group'><input type='text' id='example-input1-group1' class='form-control' name='nickname[]' /></div></div></td></tr><tr><td width='150px'><div class='form-group'><select id='work-chosen' id='example-input1-group1' name='year[]' class='form-control' data-placeholder='งาน' style='width: 100%;' ><option value='0'>0</option><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option><option value='5'>5</option></select></div></td></tr><tr><td width='150px'><select id='work-chosen' id='example-input1-group1' name='gender[]' class='form-control' data-placeholder='งาน' style='width: 100%;' ><option value='M'>ช</option><option value='F'>ญ</option></select></td></tr><tr><td width='150px'><div class='form-group'><div class='input-group'><input type='text' id='example-input1-group1' class='form-control' name='faculty[]' /></div></div></td></tr><tr><td width='150px'><div class='form-group'><div class='input-group'><input type='text' id='example-input1-group1' class='form-control' name='dep[]' /></div></div></td></tr><tr ><td width='150px'><div class='form-group'><div class='input-group'><input type='text' id='example-input1-group1' class='form-control' name='student_id[]' /></div></div></td></tr><tr ><td width='150px'><div class='form-group'><div class='input-group'><input type='text' id='example-input1-group1' class='form-control' name='phone[]' /></div></div></td></tr><tr><td width='150px'><select id='work-chosen' name='str_lvl[]' class='form-control' data-placeholder='งาน' style='width: 100%;' ><option value='2'>หนัก</option><option value='1'>ธรรมดา</option></select></td></tr><tr><td width='150px'><div class='form-group'><div class='input-group'><input type='text' id='example-datepicker2' name='date_in[]' class='form-control input-datepicker input-datepicker-close' data-date-format='yyyy-mm-dd' placeholder='yyyy-mm-dd'></div></div></td></tr><tr><td width='150px'><div class='form-group'><div class='input-group'><input type='text' id='example-datepicker2' name='date_out[]' class='form-control input-datepicker input-datepicker-close' data-date-format='yyyy-mm-dd' placeholder='yyyy-mm-dd'></div></div></td></tr></tbody></table></div>";
+			var col = "<div class='table-responsive added-input-column' style='width:150px;float:left;display:inline;'><table class='table table-vcenter'><tbody><tr><td class='text-center'>"+count_col+"</td></tr><tr><td><div class='form-group'><div class='input-group'><input type='text' id='example-input1-group1' name='citizen_id[]' class='form-control'> </div</div></td></tr><tr><td width='150px'><div class='form-group'><div class='input-group'><input type='text' id='example-input1-group1' class='form-control' name='first_name[]' /></div></div></td></tr><tr><td width='150px'><div class='form-group'><div class='input-group'><input type='text' id='example-input1-group1' class='form-control' name='last_name[]' /></div></div></td></tr><tr ><td width='150px'><div class='form-group'><div class='input-group'><input type='text' id='example-input1-group1' class='form-control' name='nickname[]' /></div></div></td></tr><tr><td width='150px'><div class='form-group'><select id='work-chosen' id='example-input1-group1' name='year[]' class='form-control' data-placeholder='งาน' style='width: 100%;' ><option value='0'>0</option><option value='1'>1</option><option value='2'>2</option><option value='3'>3</option><option value='4'>4</option><option value='5'>5</option></select></div></td></tr><tr><td width='150px'><select id='work-chosen' id='example-input1-group1' name='gender[]' class='form-control' data-placeholder='งาน' style='width: 100%;' ><option value='M'>ช</option><option value='F'>ญ</option></select></td></tr><tr><td width='150px'><div class='form-group'><div class='input-group'><input type='text' id='example-input1-group1' class='form-control' name='faculty[]' /></div></div></td></tr><tr><td width='150px'><div class='form-group'><div class='input-group'><input type='text' id='example-input1-group1' class='form-control' name='dep[]' /></div></div></td></tr><tr ><td width='150px'><div class='form-group'><div class='input-group'><input type='text' id='example-input1-group1' class='form-control' name='student_id[]' /></div></div></td></tr><tr ><td width='150px'><div class='form-group'><div class='input-group'><input type='text' id='example-input1-group1' class='form-control' name='phone[]' /></div></div></td></tr><tr><td width='150px'><select id='work-chosen' name='str_lvl[]' class='form-control' data-placeholder='งาน' style='width: 100%;' ><option value='2'>หนัก</option><option value='1'>ธรรมดา</option></select></td></tr><tr><td width='150px'><div class='form-group'><div class='input-group'><input type='text' id='example-datepicker2' name='date_in[]' class='form-control input-datepicker input-datepicker-close' data-date-format='yyyy-mm-dd' placeholder='yyyy-mm-dd' onchange='checkDate(this.value);'></div></div></td></tr><tr><td width='150px'><div class='form-group'><div class='input-group'><input type='text' id='example-datepicker2' name='date_out[]' class='form-control input-datepicker input-datepicker-close' data-date-format='yyyy-mm-dd' placeholder='yyyy-mm-dd' onchange='checkDate(this.value);'></div></div></td></tr></tbody></table></div>";
 			var w = count_col*150;
 		// alert(w);
 		$('.input-column-responsive').attr('style','width:'+w+'px;');
@@ -295,11 +295,59 @@ $('.input-remove').click(function(){
 {{ HTML::script('proui/js/pages/formsValidation.js'); }}
 <script>$(function(){ FormsValidation.init(); });</script>
 <script type="text/javascript">
-// 	$("#example-datepicker2").datepicker({
-//   onSelect: function(dateText) {
-//     display("Selected date: " + dateText + "; input's current value: " + this.value);
-//   }
-// });
+	function checkDate(date){
+			var year = parseInt(date.substring(0,4))+543;
+			var month = parseInt(date.substring(5,7));
+			var day = parseInt(date.substring(8,10));
+
+			var currentyear = <?php echo $year; ?>;
+			var currentday = <?php echo $day; ?>;
+			var currentmonth = <?php 
+				switch ($month) {
+				    case 'มกราคม':
+				        echo 1;
+				        break;
+				    case 'กุมภาพันธ์':
+				        echo 2;
+				        break;
+				    case 'มีนาคม':
+				        echo 3;
+				        break;
+				    case 'เมษายน':
+				        echo 4;
+				        break;
+				    case 'พฤษภาคม':
+				        echo 5;
+				        break;
+				    case 'มิถุนายน':
+				        echo 6;
+				        break;
+				    case 'กรกฎาคม':
+				        echo 7;
+				        break;
+				    case 'สิงหาคม':
+				        echo 8;
+				        break;
+				    case 'กันยายน':
+				        echo 9;
+				        break;
+				    case 'ตุลาคม':
+				        echo 10;
+				        break;
+				    case 'พฤศจิกายน':
+				        echo 11;
+				        break;
+				    case 'ธันวาคม':
+				        echo 12;
+				        break;
+				}
+			 ?>;
+			 // var checkdayin = 0;
+			if( year < currentyear ||(year==currentyear &&month < currentmonth)||(year == currentyear && month == currentmonth && day < currentday )){
+				// checkdayin = 1;
+				alert('เลือกวันที่ผิด มันผ่านไปแล้วโว้ยยย');
+			}
+		}
 </script>
 
 @stop
