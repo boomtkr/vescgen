@@ -135,6 +135,7 @@
 											<h4 style="color:red">*ห้ามเลือกซีเนียร์ซ้ำนะนะนะนะนะ ได้โปรดดดด</h4>
 										</div>
 									</div>
+									<input type='hidden' name='check' value='0'></input>
 									<input type='hidden' name='user' value={{json_encode($user)}}></input> 
 									<input type='hidden' name='job' value={{json_encode($job)}}></input> 
 									<input type='hidden' name='female' value={{json_encode($female)}}></input> 

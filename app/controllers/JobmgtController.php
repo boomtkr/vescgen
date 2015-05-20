@@ -52,7 +52,7 @@ class JobmgtController extends BaseController {
 	public static function getfitnessvalue($person,$workname,$date){
 		$fvalue = 0;
 		$work = Work::where('work_name','=',$workname)->first();
-		if($person->gender = 'F' and $work->work_lvl > $person->str_lvl){
+		if($person->gender == 'F' and $work->work_lvl > $person->str_lvl){
 			$char_value = 0.85;
 		}
 		else $char_value = 1;
@@ -295,8 +295,18 @@ class JobmgtController extends BaseController {
 		$timerecord = json_decode($s_timerecord);
 		$jobhis = json_decode($s_jobhis);
 
-		$senior_namelist = Input::get('senior_namelist');
-		$nonsenior_namelist = Input::get('nonsenior_namelist');
+		$check = Input::get('check');
+
+		if($check == '0'){
+			$senior_namelist = Input::get('senior_namelist');
+			$nonsenior_namelist = Input::get('nonsenior_namelist');
+		}
+		else{
+			$s_senior_namelist = Input::get('senior_namelist');
+			$s_nonsenior_namelist = Input::get('nonsenior_namelist');
+			$senior_namelist = json_decode($s_senior_namelist);
+			$nonsenior_namelist = json_decode($s_nonsenior_namelist);
+		}
 
 		$seniors[] = array();
 		for($i=0;$i<count($job);$i++){
@@ -342,7 +352,7 @@ class JobmgtController extends BaseController {
 		$menfitness = 0;
 		$girlfitness = 0;
 
-		$today = Time::select('date')->first()->date;
+		$today = Time::first()->date;
 		$thistoday = str_replace('-', '/', $today);
 		$tomorrow = date('Y-m-d',strtotime($thistoday . "+1 days"));
 		$date = $today;
@@ -469,6 +479,8 @@ class JobmgtController extends BaseController {
 			$tmpmens[$i]=$mens;
 		}
 
+
+
 		$fitness = array();
 		for($k=0; $k<3; $k++){
 			$total_fvalue = 0;
@@ -488,7 +500,8 @@ class JobmgtController extends BaseController {
 					}
 					$total_fvalue += $max_f;
 					$divider++;
-					array_push($tmpnonseniors_men[$k][$i],$tmpmens[$k][$max_x]);					array_splice($tmpmens[$k], $max_x, 1);
+					array_push($tmpnonseniors_men[$k][$i],$tmpmens[$k][$max_x]);					
+					array_splice($tmpmens[$k], $max_x, 1);
 				}
 			}
 			if($divider > 0) $fitness[$k] = $total_fvalue / $divider;
@@ -517,24 +530,12 @@ class JobmgtController extends BaseController {
 				}
 			}
 		}
-
 		for($i=0; $i<count($job); $i++){
 			usort($nonseniors[$i], function($a, $b)
 			{
 			    return strcmp($a->year, $b->year) * -1;
 			});
 		}	
-
-		// for($i=0; $i<count($job); $i++){
-		// 	echo $job[$i]." ".$user[$i]." ";
-		// 	foreach($seniors[$i] as $ns){
-		// 		echo $ns->nickname."#".$ns->year." ";
-		// 	}
-		// 	foreach($nonseniors[$i] as $ns){
-		// 		echo $ns->nickname."#".$ns->year." ";
-		// 	}
-		// 	echo "   ///\n";
-		// }
 
 		return View::make('home/jobmgtrandom')->with('day',$day)
 										   	  ->with('weekday',$weekday[$tdate])
@@ -549,6 +550,8 @@ class JobmgtController extends BaseController {
 											  ->with('female',$female)
 											  ->with('jobhis',$jobhis)
 											  ->with('timerecord',$timerecord)
+											  ->with('senior_namelist',$senior_namelist)
+											  ->with('nonsenior_namelist',$nonsenior_namelist)
 										      ->with('seniors',$seniors)
 										      ->with('nonseniors',$nonseniors);
 
@@ -559,7 +562,7 @@ class JobmgtController extends BaseController {
 		$s_user = Input::get('user');
 		$s_job = Input::get('job');
 		$s_female = Input::get('female');
-		$s_seniors = Input::get('senior');
+		$s_seniors = Input::get('seniors');
 		$s_nonseniors = Input::get('nonseniors');
 		$s_jobhis = Input::get('jobhis');
 		$s_timerecord = Input::get('timerecord');
@@ -567,9 +570,71 @@ class JobmgtController extends BaseController {
 		$user = json_decode($s_user);
 		$job = json_decode($s_job);
 		$timerecord = json_decode($s_timerecord);
-		$jobhis = json_decode($s_jobhis);
+		// $jobhis = json_decode($s_jobhis);
 		$seniors = json_decode($s_seniors);
 		$nonseniors = json_decode($s_nonseniors);
+
+
+		$currentrecord = Time::first();
+		$lastdate = $currentrecord->date;
+		$lasttime = $currentrecord->time;
+		$date = $timerecord->date;
+		$time = $timerecord->time;
+		if($date == $lastdate and $time == 'OT' and $lasttime == 'morning'){
+			$jobhis = JobHistory::where('date','=',$date)->get();
+			foreach($jobhis as $mh){
+				$mh->time = "day";
+				$mh->save();
+			}
+		}
+		elseif($date != $lastdate and $lasttime == 'morning'){
+			$jobhis = JobHistory::where('date','=',$lastdate)->get();
+			foreach($jobhis as $mh){
+				$mh->time = "day";
+				$mh->save();
+			}
+		}
+		
+		if($date != $lastdate){
+			for($i=0; $i<count($job); $i++){
+				foreach($seniors[$i] as $s){
+					$person = Person::find($seniors[$i]->id);
+					$person->total_manday += 1;
+					$person->save();
+				}
+				foreach($nonseniors[$i] as $s){
+					$person = Person::find($nonseniors[$i]->id);
+					$person->total_manday += 1;
+					$person->save();
+				}
+			}
+		}
+
+		$currentrecord->date = $timerecord->date;
+		$currentrecord->time = $timerecord->time;
+		$currentrecord->save();
+
+
+		for($i=0; $i<count($job); $i++){
+			foreach($seniors[$i] as $s){
+				$record = new JobHistory;
+				$record->person_id = $s->id;
+				$record->date = $timerecord->date;
+				$record->time = $timerecord->time;
+				$record->work_id = Work::where('work_name','=',$job[$i])->first()->id;
+				$record->work_name = $job[$i];
+				$record->save();
+			}
+			foreach($nonseniors[$i] as $s){
+				$record = new JobHistory;
+				$record->person_id = $s->id;
+				$record->date = $timerecord->date;
+				$record->time = $timerecord->time;
+				$record->work_id = Work::where('work_name','=',$job[$i])->first()->id;
+				$record->work_name = $job[$i];
+				$record->save();
+			}
+		}
 
 		$today = Time::select('date')->first()->date;
 		$thistoday = str_replace('-', '/', $today);

@@ -132,7 +132,10 @@
 						{{Form::close()}}
 							
 						{{-- go randomming --}}
-						{{Form::open(array('url'=>'jobmgt/done'))}}
+						{{Form::open(array('url'=>'jobmgt/workrandom'))}}
+						<input type='hidden' name='check' value='1'></input>
+						<input type='hidden' name='senior_namelist' value={{json_decode($senior_namelist)}}></input>
+						<input type='hidden' name='nonsenior_namelist' value={{json_decode($nonsenior_namelist)}}></input>
 						<input type='hidden' name='user' value={{json_encode($user)}}></input> 
 						<input type='hidden' name='job' value={{json_encode($job)}}></input> 
 						<input type='hidden' name='seniors' value={{json_encode($seniors)}}></input> 
@@ -140,7 +143,7 @@
 						<input type='hidden' name='timerecord' value={{json_encode($timerecord)}}></input> 
 						<input type='hidden' name='jobhis' value={{json_encode($jobhis)}}></input> 
 							<button id="random-button" type="submit" name='submit' class="btn btn-lg btn-default col-xs-9"><i class="fa fa-angle-right" ></i> แรนด้อมใหม่</button>
-							{{Form::close()}}
+						{{Form::close()}}
 						</div>
 					</div>
 					
