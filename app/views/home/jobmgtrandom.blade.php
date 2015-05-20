@@ -34,31 +34,48 @@
 							<h3><h3>เลือกวันที่และช่วงเวลา < กรอกงานและจำนวนคน < เลือกซีเนียร์รับผิดชอบแต่ละงาน < <strong>ผลการแบ่งงาน</strong></h3>
 							<hr>
 						</div>
+						<?php $countsenior=0; $countnonsenior=0; $countfemale=0; ?>
+						<?php $i=0; ?>
+						@for($i=0;$i<count($job);$i++)
+						@foreach($seniors[$i] as $senior)
+							<?php $countsenior++; 
+							print($senior->gender);
+							?>
+
+						@endforeach
+						@foreach($nonseniors[$i] as $nonsenior)
+							<?php $countnonsenior++; 
+							print($nonsenior->gender);
+							if($nonsenior->gender=='F') $countfemale++;
+							?>
+						@endforeach
+						
+						@endfor
 						<div class="col-xs-12" style="margin-bottom:15px">
 							<div class="list-group remove-margin col-xs-3">
 								<a href="javascript:void(0)" class="list-group-item">
-									<span class="pull-right" id="count-people"><strong>1</strong></span>
+									<span class="pull-right" id="count-people"><strong>{{count($job)}}</strong></span>
 									<h4 class="list-group-item-heading remove-margin"><i class="fa fa-briefcase"></i> จำนวนงาน</h4>
 									<p class="list-group-item-text"></p>
 								</a>
 							</div>
 							<div class="list-group remove-margin col-xs-3">
 								<a href="javascript:void(0)" class="list-group-item">
-									<span class="pull-right" id="count-people"><strong>1</strong></span>
+									<span class="pull-right" id="count-people"><strong>{{$countnonsenior+$countsenior}}</strong></span>
 									<h4 class="list-group-item-heading remove-margin"><i class="gi gi-user"></i> จำนวนคนทั้งหมด</h4>
 									<p class="list-group-item-text"></p>
 								</a>
 							</div>
 							<div class="list-group remove-margin col-xs-3">
 								<a href="javascript:void(0)" class="list-group-item">
-									<span class="pull-right" id="count-people"><strong>1</strong></span>
-									<h4 class="list-group-item-heading remove-margin"><i class="gi gi-female"></i> จำนวนผู้หญิง</h4>
+									<span class="pull-right" id="count-people"><strong>{{$countfemale}}</strong></span>
+									<h4 class="list-group-item-heading remove-margin"><i class="gi gi-female"></i> จำนวนน้องผู้หญิง</h4>
 									<p class="list-group-item-text"></p>
 								</a>
 							</div>
 							<div class="list-group remove-margin col-xs-3">
 								<a href="javascript:void(0)" class="list-group-item">
-									<span class="pull-right" id="count-people"><strong>1</strong></span>
+									<span class="pull-right" id="count-people"><strong>{{$countsenior}}</strong></span>
 									<h4 class="list-group-item-heading remove-margin"><i class="gi gi-crown"></i> จำนวนซีเนียร์</h4>
 									<p class="list-group-item-text"></p>
 								</a>
@@ -123,4 +140,5 @@
 		</div>
 	</div>
 </div>
+
 @stop

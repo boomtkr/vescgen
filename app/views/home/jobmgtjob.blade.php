@@ -76,7 +76,7 @@
 										</div>
 										<h3 class="widget-content text-right animation-pullDown" style="font-size:30px;margin-top: 0px;margin-bottom: 5px;">
 											<strong id="remaining-job">{{$jobcount}}</strong><br>
-											<small id="all-job">{{--$jobcount--}}5</small>
+											<small id="all-job">{{count($worklist)}}</small>
 											<small>จำนวนงานทั้งหมด</small>
 										</h3>
 									</div>

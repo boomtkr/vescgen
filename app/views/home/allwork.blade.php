@@ -42,9 +42,10 @@
 
 									</thead>
 									<tbody>
+									<?php $countwork=0; ?>
 										@foreach($works as $work)
 										<tr>
-											<td class="text-center">{{$work->id}}</td>
+											<td class="text-center">{{++$countwork;}}</td>
 											<td class="workname">{{$work->work_name}}</td>
 											<td class="text-center">{{$work->location}}</td>
 											<td class="text-center">{{$work->work_lvl}}</td>
