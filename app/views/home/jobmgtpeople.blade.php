@@ -131,6 +131,9 @@
 										<div class="col-xs-12" style="margin-bottom:10px">
 											<button id="submit-button" onclick="isCal();" type="button" name='submit' class="btn btn-lg btn-primary"><i class="fa fa-angle-right"></i> ต่อไป</button>			
 										</div>
+										<div>
+											<h4 style="color:red">*ห้ามเลือกซีเนียร์ซ้ำนะนะนะนะนะ ได้โปรดดดด</h4>
+										</div>
 									</div>
 									<input type='hidden' name='user' value={{json_encode($user)}}></input> 
 									<input type='hidden' name='job' value={{json_encode($job)}}></input> 

@@ -87,10 +87,10 @@
 								<table class="table table-vcenter table-striped table-bordered" >
 									<thead >
 										<tr>
-											<th width="10%">งาน</th>
-											<th width="8%" class="text-center">คน</th>
-											<th width="8%" class="text-center">ผญ</th>
-											<th class="text-center">ซีเนียร์</th>
+											<th width="7%">งาน</th>
+											<th width="5%" class="text-center">คน</th>
+											<th width="5%" class="text-center">ผญ</th>
+											<th width="20%" class="text-center">ซีเนียร์</th>
 											<th class="text-center">น้องงงงงๆๆๆๆๆๆๆๆๆ</th>
 										</tr>
 
