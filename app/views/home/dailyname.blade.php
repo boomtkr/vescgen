@@ -1,7 +1,11 @@
 @extends('home/main')
 
 @section('content')
-
+<style type="text/css">
+	td a , td {
+		font-size: 18px;
+	}
+</style>
 <div class="row edpensook">
 	<div class="col-xs-12">
 		<div class="widget">
@@ -121,7 +125,7 @@
 												<?php $sumeachrow=0; ?>
 												@foreach($user as $u)
 
-												<a href={{asset('person/'.$u->person_id)}}>{{$u->nickname}}{{'#'}}{{$u->year}}</a>
+												<a href={{asset('person/'.$u->person_id)}}>{{$u->nickname}}</a>
 
 												<?php $sumeachrow++;
 												$sum++; ?>

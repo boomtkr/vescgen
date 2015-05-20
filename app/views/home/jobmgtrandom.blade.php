@@ -25,7 +25,7 @@
 
 				<!-- Widget Main -->
 				<div class="widget-main">
-					{{Form::open(array('url'=>'jobmgt/randomdone'))}}
+					
 					<div class="row">
 						<div class="col-xs-12">
 							<div class="progress progress-striped active">
@@ -34,31 +34,48 @@
 							<h3><h3>เลือกวันที่และช่วงเวลา < กรอกงานและจำนวนคน < เลือกซีเนียร์รับผิดชอบแต่ละงาน < <strong>ผลการแบ่งงาน</strong></h3>
 							<hr>
 						</div>
+						<?php $countsenior=0; $countnonsenior=0; $countfemale=0; ?>
+						<?php $i=0; ?>
+						@for($i=0;$i<count($job);$i++)
+						@foreach($seniors[$i] as $senior)
+							<?php $countsenior++; 
+							print($senior->gender);
+							?>
+
+						@endforeach
+						@foreach($nonseniors[$i] as $nonsenior)
+							<?php $countnonsenior++; 
+							print($nonsenior->gender);
+							if($nonsenior->gender=='F') $countfemale++;
+							?>
+						@endforeach
+						
+						@endfor
 						<div class="col-xs-12" style="margin-bottom:15px">
 							<div class="list-group remove-margin col-xs-3">
 								<a href="javascript:void(0)" class="list-group-item">
-									<span class="pull-right" id="count-people"><strong>1</strong></span>
+									<span class="pull-right" id="count-people"><strong>{{count($job)}}</strong></span>
 									<h4 class="list-group-item-heading remove-margin"><i class="fa fa-briefcase"></i> จำนวนงาน</h4>
 									<p class="list-group-item-text"></p>
 								</a>
 							</div>
 							<div class="list-group remove-margin col-xs-3">
 								<a href="javascript:void(0)" class="list-group-item">
-									<span class="pull-right" id="count-people"><strong>1</strong></span>
+									<span class="pull-right" id="count-people"><strong>{{$countnonsenior+$countsenior}}</strong></span>
 									<h4 class="list-group-item-heading remove-margin"><i class="gi gi-user"></i> จำนวนคนทั้งหมด</h4>
 									<p class="list-group-item-text"></p>
 								</a>
 							</div>
 							<div class="list-group remove-margin col-xs-3">
 								<a href="javascript:void(0)" class="list-group-item">
-									<span class="pull-right" id="count-people"><strong>1</strong></span>
-									<h4 class="list-group-item-heading remove-margin"><i class="gi gi-female"></i> จำนวนผู้หญิง</h4>
+									<span class="pull-right" id="count-people"><strong>{{$countfemale}}</strong></span>
+									<h4 class="list-group-item-heading remove-margin"><i class="gi gi-female"></i> จำนวนน้องผู้หญิง</h4>
 									<p class="list-group-item-text"></p>
 								</a>
 							</div>
 							<div class="list-group remove-margin col-xs-3">
 								<a href="javascript:void(0)" class="list-group-item">
-									<span class="pull-right" id="count-people"><strong>1</strong></span>
+									<span class="pull-right" id="count-people"><strong>{{$countsenior}}</strong></span>
 									<h4 class="list-group-item-heading remove-margin"><i class="gi gi-crown"></i> จำนวนซีเนียร์</h4>
 									<p class="list-group-item-text"></p>
 								</a>
@@ -101,21 +118,32 @@
 								</table>
 							</div>
 						</div>
+
+						<div class="col-xs-2">
+						{{-- go submitting --}}
+						{{Form::open(array('url'=>'jobmgt/done'))}}
 						<input type='hidden' name='user' value={{json_encode($user)}}></input> 
 						<input type='hidden' name='job' value={{json_encode($job)}}></input> 
 						<input type='hidden' name='seniors' value={{json_encode($seniors)}}></input> 
 						<input type='hidden' name='nonseniors' value={{json_encode($nonseniors)}}></input> 
 						<input type='hidden' name='timerecord' value={{json_encode($timerecord)}}></input> 
 						<input type='hidden' name='jobhis' value={{json_encode($jobhis)}}></input> 
-
-						<div class="col-xs-2">
-							<input id="submit-button" type="submit" name='submit' class="btn btn-lg btn-success col-xs-9"><i class="fa fa-angle-right"></i> ยืนยัน</button>	
-							<!-- {{-- <a href={{asset('/jobmgt/editworkresult')}}><button id="submit-button" type="button" name='submit' class="btn btn-lg btn-warning col-xs-9"><i class="fa fa-angle-right"></i> แก้ไข</button></a> --}} -->
-							<a href="#"><button id="submit-button" type="button" name='submit' class="btn btn-lg btn-default col-xs-9"><i class="fa fa-angle-right"></i> แรนด้อมใหม่</button></a>
-
+							<button id="submit-button" type="submit" name='submit' class="btn btn-lg btn-success col-xs-9"><i class="fa fa-angle-right" ></i> ยืนยัน</button>	
+						{{Form::close()}}
+							
+						{{-- go randomming --}}
+						{{Form::open(array('url'=>'jobmgt/done'))}}
+						<input type='hidden' name='user' value={{json_encode($user)}}></input> 
+						<input type='hidden' name='job' value={{json_encode($job)}}></input> 
+						<input type='hidden' name='seniors' value={{json_encode($seniors)}}></input> 
+						<input type='hidden' name='nonseniors' value={{json_encode($nonseniors)}}></input> 
+						<input type='hidden' name='timerecord' value={{json_encode($timerecord)}}></input> 
+						<input type='hidden' name='jobhis' value={{json_encode($jobhis)}}></input> 
+							<button id="random-button" type="submit" name='submit' class="btn btn-lg btn-default col-xs-9"><i class="fa fa-angle-right" ></i> แรนด้อมใหม่</button>
+							{{Form::close()}}
 						</div>
 					</div>
-					{{Form::close()}}
+					
 					<!-- END Advanced Theme Color Widget Alternative -->
 				</div>
 
@@ -123,4 +151,5 @@
 		</div>
 	</div>
 </div>
+
 @stop
