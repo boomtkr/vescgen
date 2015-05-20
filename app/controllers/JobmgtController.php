@@ -52,7 +52,7 @@ class JobmgtController extends BaseController {
 	public static function getfitnessvalue($person,$workname,$date){
 		$fvalue = 0;
 		$work = Work::where('work_name','=',$workname)->first();
-		if($person->gender = 'F' and $work->work_lvl > $person->str_lvl){
+		if($person->gender == 'F' and $work->work_lvl > $person->str_lvl){
 			$char_value = 0.85;
 		}
 		else $char_value = 1;
@@ -295,8 +295,18 @@ class JobmgtController extends BaseController {
 		$timerecord = json_decode($s_timerecord);
 		$jobhis = json_decode($s_jobhis);
 
-		$senior_namelist = Input::get('senior_namelist');
-		$nonsenior_namelist = Input::get('nonsenior_namelist');
+		$check = Input::get('check');
+
+		if($check == '0'){
+			$senior_namelist = Input::get('senior_namelist');
+			$nonsenior_namelist = Input::get('nonsenior_namelist');
+		}
+		else{
+			$s_senior_namelist = Input::get('senior_namelist');
+			$s_nonsenior_namelist = Input::get('nonsenior_namelist');
+			$senior_namelist = json_decode($s_senior_namelist);
+			$nonsenior_namelist = json_decode($s_nonsenior_namelist);
+		}
 
 		$seniors[] = array();
 		for($i=0;$i<count($job);$i++){
@@ -469,6 +479,8 @@ class JobmgtController extends BaseController {
 			$tmpmens[$i]=$mens;
 		}
 
+
+
 		$fitness = array();
 		for($k=0; $k<3; $k++){
 			$total_fvalue = 0;
@@ -488,7 +500,8 @@ class JobmgtController extends BaseController {
 					}
 					$total_fvalue += $max_f;
 					$divider++;
-					array_push($tmpnonseniors_men[$k][$i],$tmpmens[$k][$max_x]);					array_splice($tmpmens[$k], $max_x, 1);
+					array_push($tmpnonseniors_men[$k][$i],$tmpmens[$k][$max_x]);					
+					array_splice($tmpmens[$k], $max_x, 1);
 				}
 			}
 			if($divider > 0) $fitness[$k] = $total_fvalue / $divider;
@@ -517,7 +530,6 @@ class JobmgtController extends BaseController {
 				}
 			}
 		}
-
 		for($i=0; $i<count($job); $i++){
 			usort($nonseniors[$i], function($a, $b)
 			{
@@ -538,6 +550,8 @@ class JobmgtController extends BaseController {
 											  ->with('female',$female)
 											  ->with('jobhis',$jobhis)
 											  ->with('timerecord',$timerecord)
+											  ->with('senior_namelist',$senior_namelist)
+											  ->with('nonsenior_namelist',$nonsenior_namelist)
 										      ->with('seniors',$seniors)
 										      ->with('nonseniors',$nonseniors);
 

@@ -25,7 +25,7 @@
 
 				<!-- Widget Main -->
 				<div class="widget-main">
-					{{Form::open(array('url'=>'/jobmgt/randomdone'))}}
+					
 					<div class="row">
 						<div class="col-xs-12">
 							<div class="progress progress-striped active">
@@ -118,21 +118,35 @@
 								</table>
 							</div>
 						</div>
+
+						<div class="col-xs-2">
+						{{-- go submitting --}}
+						{{Form::open(array('url'=>'jobmgt/done'))}}
 						<input type='hidden' name='user' value={{json_encode($user)}}></input> 
 						<input type='hidden' name='job' value={{json_encode($job)}}></input> 
 						<input type='hidden' name='seniors' value={{json_encode($seniors)}}></input> 
 						<input type='hidden' name='nonseniors' value={{json_encode($nonseniors)}}></input> 
 						<input type='hidden' name='timerecord' value={{json_encode($timerecord)}}></input> 
 						<input type='hidden' name='jobhis' value={{json_encode($jobhis)}}></input> 
-
-						<div class="col-xs-2">
-							<input id="submit-button" type="submit" name='submit' class="btn btn-lg btn-success col-xs-9"></input>	
-							<!-- {{-- <a href={{asset('/jobmgt/editworkresult')}}><button id="submit-button" type="button" name='submit' class="btn btn-lg btn-warning col-xs-9"><i class="fa fa-angle-right"></i> แก้ไข</button></a> --}} -->
-							<a href="#"><button id="submit-button" type="button" name='submit' class="btn btn-lg btn-default col-xs-9"><i class="fa fa-angle-right"></i> แรนด้อมใหม่</button></a>
-
+							<button id="submit-button" type="submit" name='submit' class="btn btn-lg btn-success col-xs-9"><i class="fa fa-angle-right" ></i> ยืนยัน</button>	
+						{{Form::close()}}
+							
+						{{-- go randomming --}}
+						{{Form::open(array('url'=>'jobmgt/workrandom'))}}
+						<input type='hidden' name='check' value='1'></input>
+						<input type='hidden' name='senior_namelist' value={{json_decode($senior_namelist)}}></input>
+						<input type='hidden' name='nonsenior_namelist' value={{json_decode($nonsenior_namelist)}}></input>
+						<input type='hidden' name='user' value={{json_encode($user)}}></input> 
+						<input type='hidden' name='job' value={{json_encode($job)}}></input> 
+						<input type='hidden' name='seniors' value={{json_encode($seniors)}}></input> 
+						<input type='hidden' name='nonseniors' value={{json_encode($nonseniors)}}></input> 
+						<input type='hidden' name='timerecord' value={{json_encode($timerecord)}}></input> 
+						<input type='hidden' name='jobhis' value={{json_encode($jobhis)}}></input> 
+							<button id="random-button" type="submit" name='submit' class="btn btn-lg btn-default col-xs-9"><i class="fa fa-angle-right" ></i> แรนด้อมใหม่</button>
+						{{Form::close()}}
 						</div>
 					</div>
-					{{Form::close()}}
+					
 					<!-- END Advanced Theme Color Widget Alternative -->
 				</div>
 
