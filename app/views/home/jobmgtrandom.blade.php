@@ -25,7 +25,7 @@
 
 				<!-- Widget Main -->
 				<div class="widget-main">
-					{{Form::open(array('url'=>'jobmgt/randomdone'))}}
+					{{Form::open(array('url'=>'/jobmgt/randomdone'))}}
 					<div class="row">
 						<div class="col-xs-12">
 							<div class="progress progress-striped active">
@@ -109,7 +109,7 @@
 						<input type='hidden' name='jobhis' value={{json_encode($jobhis)}}></input> 
 
 						<div class="col-xs-2">
-							<input id="submit-button" type="submit" name='submit' class="btn btn-lg btn-success col-xs-9"><i class="fa fa-angle-right"></i> ยืนยัน</button>	
+							<input id="submit-button" type="submit" name='submit' class="btn btn-lg btn-success col-xs-9"></input>	
 							<!-- {{-- <a href={{asset('/jobmgt/editworkresult')}}><button id="submit-button" type="button" name='submit' class="btn btn-lg btn-warning col-xs-9"><i class="fa fa-angle-right"></i> แก้ไข</button></a> --}} -->
 							<a href="#"><button id="submit-button" type="button" name='submit' class="btn btn-lg btn-default col-xs-9"><i class="fa fa-angle-right"></i> แรนด้อมใหม่</button></a>
 

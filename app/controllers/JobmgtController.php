@@ -342,7 +342,7 @@ class JobmgtController extends BaseController {
 		$menfitness = 0;
 		$girlfitness = 0;
 
-		$today = Time::select('date')->first()->date;
+		$today = Time::first()->date;
 		$thistoday = str_replace('-', '/', $today);
 		$tomorrow = date('Y-m-d',strtotime($thistoday . "+1 days"));
 		$date = $today;
@@ -525,17 +525,6 @@ class JobmgtController extends BaseController {
 			});
 		}	
 
-		// for($i=0; $i<count($job); $i++){
-		// 	echo $job[$i]." ".$user[$i]." ";
-		// 	foreach($seniors[$i] as $ns){
-		// 		echo $ns->nickname."#".$ns->year." ";
-		// 	}
-		// 	foreach($nonseniors[$i] as $ns){
-		// 		echo $ns->nickname."#".$ns->year." ";
-		// 	}
-		// 	echo "   ///\n";
-		// }
-
 		return View::make('home/jobmgtrandom')->with('day',$day)
 										   	  ->with('weekday',$weekday[$tdate])
 										      ->with('month',$month)
@@ -559,7 +548,7 @@ class JobmgtController extends BaseController {
 		$s_user = Input::get('user');
 		$s_job = Input::get('job');
 		$s_female = Input::get('female');
-		$s_seniors = Input::get('senior');
+		$s_seniors = Input::get('seniors');
 		$s_nonseniors = Input::get('nonseniors');
 		$s_jobhis = Input::get('jobhis');
 		$s_timerecord = Input::get('timerecord');
@@ -567,9 +556,71 @@ class JobmgtController extends BaseController {
 		$user = json_decode($s_user);
 		$job = json_decode($s_job);
 		$timerecord = json_decode($s_timerecord);
-		$jobhis = json_decode($s_jobhis);
+		// $jobhis = json_decode($s_jobhis);
 		$seniors = json_decode($s_seniors);
 		$nonseniors = json_decode($s_nonseniors);
+
+
+		$currentrecord = Time::first();
+		$lastdate = $currentrecord->date;
+		$lasttime = $currentrecord->time;
+		$date = $timerecord->date;
+		$time = $timerecord->time;
+		if($date == $lastdate and $time == 'OT' and $lasttime == 'morning'){
+			$jobhis = JobHistory::where('date','=',$date)->get();
+			foreach($jobhis as $mh){
+				$mh->time = "day";
+				$mh->save();
+			}
+		}
+		elseif($date != $lastdate and $lasttime == 'morning'){
+			$jobhis = JobHistory::where('date','=',$lastdate)->get();
+			foreach($jobhis as $mh){
+				$mh->time = "day";
+				$mh->save();
+			}
+		}
+		
+		if($date != $lastdate){
+			for($i=0; $i<count($job); $i++){
+				foreach($seniors[$i] as $s){
+					$person = Person::find($seniors[$i]->id);
+					$person->total_manday += 1;
+					$person->save();
+				}
+				foreach($nonseniors[$i] as $s){
+					$person = Person::find($nonseniors[$i]->id);
+					$person->total_manday += 1;
+					$person->save();
+				}
+			}
+		}
+
+		$currentrecord->date = $timerecord->date;
+		$currentrecord->time = $timerecord->time;
+		$currentrecord->save();
+
+
+		for($i=0; $i<count($job); $i++){
+			foreach($seniors[$i] as $s){
+				$record = new JobHistory;
+				$record->person_id = $s->id;
+				$record->date = $timerecord->date;
+				$record->time = $timerecord->time;
+				$record->work_id = Work::where('work_name','=',$job[$i])->first()->id;
+				$record->work_name = $job[$i];
+				$record->save();
+			}
+			foreach($nonseniors[$i] as $s){
+				$record = new JobHistory;
+				$record->person_id = $s->id;
+				$record->date = $timerecord->date;
+				$record->time = $timerecord->time;
+				$record->work_id = Work::where('work_name','=',$job[$i])->first()->id;
+				$record->work_name = $job[$i];
+				$record->save();
+			}
+		}
 
 		$today = Time::select('date')->first()->date;
 		$thistoday = str_replace('-', '/', $today);

@@ -113,6 +113,7 @@ class UpdatepeopleController extends BaseController {
 			$person->student_id = $student_id[$i];
 			$person->phone = $phone[$i];
 			$person->str_lvl = $str_lvl[$i];
+			$person->total_manday = 0;
 			$person->save();
 
 	  		$id = Person::where('citizen_id','=',$citizen_id[$i])->first()->id;

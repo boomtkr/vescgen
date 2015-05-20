@@ -88,7 +88,7 @@ Route::get('/jobmgt','JobmgtController@jobmgt');
 Route::post('/jobmgt/datechosen','JobmgtController@datechosen');
 Route::post('/jobmgt/workcreated','JobmgtController@workcreated');
 Route::post('/jobmgt/workrandom','JobmgtController@workrandom');
-Route::post('/jobmgt/done','JobmgtController@savedata');
+Route::post('/jobmgt/randomdone','JobmgtController@savedata');
 
 //------edit result page ------------
 Route::get('/jobmgt/editworkresult', function()
