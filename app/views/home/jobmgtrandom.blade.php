@@ -39,13 +39,11 @@
 						@for($i=0;$i<count($job);$i++)
 						@foreach($seniors[$i] as $senior)
 							<?php $countsenior++; 
-							print($senior->gender);
 							?>
 
 						@endforeach
 						@foreach($nonseniors[$i] as $nonsenior)
 							<?php $countnonsenior++; 
-							print($nonsenior->gender);
 							if($nonsenior->gender=='F') $countfemale++;
 							?>
 						@endforeach
@@ -121,7 +119,7 @@
 
 						<div class="col-xs-2">
 						{{-- go submitting --}}
-						{{Form::open(array('url'=>'jobmgt/done'))}}
+						{{Form::open(array('url'=>'jobmgt/randomdone'))}}
 						<input type='hidden' name='user' value={{json_encode($user)}}></input> 
 						<input type='hidden' name='job' value={{json_encode($job)}}></input> 
 						<input type='hidden' name='seniors' value={{json_encode($seniors)}}></input> 
@@ -134,8 +132,8 @@
 						{{-- go randomming --}}
 						{{Form::open(array('url'=>'jobmgt/workrandom'))}}
 						<input type='hidden' name='check' value='1'></input>
-						<input type='hidden' name='senior_namelist' value={{json_decode($senior_namelist)}}></input>
-						<input type='hidden' name='nonsenior_namelist' value={{json_decode($nonsenior_namelist)}}></input>
+						<input type='hidden' name='senior_namelist' value={{json_encode($senior_namelist)}}></input>
+						<input type='hidden' name='nonsenior_namelist' value={{json_encode($nonsenior_namelist)}}></input>
 						<input type='hidden' name='user' value={{json_encode($user)}}></input> 
 						<input type='hidden' name='job' value={{json_encode($job)}}></input> 
 						<input type='hidden' name='seniors' value={{json_encode($seniors)}}></input> 
