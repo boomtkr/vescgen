@@ -18,12 +18,12 @@
 					<h2 class="widget-content-light  edpensook animation-pullDown">
 						<i class="gi gi-imac sidebar-nav-icon"></i> กระดานหน้าที่วันนี้<br>
 						<h4 class="edpensook" style="color:white;">ผลัด {{$plud}} วัน {{$date}} @if($time=='morning')ช่วงเช้า@endif
-					@if($time=='afternoon')ช่วงบ่าย@endif
-					@if($time=='all')ทั้งวัน@endif
-					@if($time=='OT')โอที@endif</h4>
+							@if($time=='afternoon')ช่วงบ่าย@endif
+							@if($time=='all')ทั้งวัน@endif
+							@if($time=='OT')โอที@endif</h4>
 
-					</h2>
-					
+						</h2>
+
 					</div>
 				</div>
 				<!-- END Widget Header -->
@@ -31,197 +31,197 @@
 					<div class="row">
 						<div class="col-xs-12">
 
-					<form action="#" method="post" class="form-horizontal form-bordered" onsubmit="return false;" style=" margin-top: 0px; ">
-						<fieldset>
-							<div class="form-group col-xs-4">
-							<label class="col-xs-4 control-label" for="example-datepicker">วันที่</label>
-								<div class="col-xs-8">
-									<input type="text" id="example-datepicker2" name="example-datepicker2" class="form-control input-datepicker input-datepicker-close" data-date-format="yyyy-mm-dd" placeholder="yyyy-mm-dd">
+							<form action="#" method="post" class="form-horizontal form-bordered" onsubmit="return false;" style=" margin-top: 0px; ">
+								<fieldset>
+									<div class="form-group col-xs-4">
+									<h4 class="col-xs-4 control-label" for="example-datepicker" style=" margin-top: 2px; "><strong>วันที่</strong></h4>
+										<div class="col-xs-8">
+											<input type="text" id="example-datepicker2" name="example-datepicker2" class="form-control input-datepicker input-datepicker-close" data-date-format="yyyy-mm-dd" placeholder="yyyy-mm-dd">
+										</div>
+									</div>
+									<div class="form-group col-xs-4" >
+										<h4 class="col-xs-4 control-label" for="example-select" style=" margin-top: 2px; "><strong>ช่วงเวลา</strong></h4>
+										<div class="col-xs-8">
+											<select id="example-select" name="example-select" class="form-control" size="1" style=" height: 34px; ">
+												<option value="morning">เช้า</option>
+												<option value="afternoon">บ่าย</option>
+												<option value="all">ทั้งวัน</option>
+												<option value="OT">โอที</option>
+											</select>
+										</div>
+									</div>
+									<div class="form-group col-xs-4">
+										<button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-angle-right"></i> Go</button>
+									</div>
+								</fieldset>
+							</form>
+
+
+
+						</div>
+						<div class="col-xs-7">
+							<!-- Your Plan Widget -->
+							<div class="widget">
+								<div class="widget-extra themed-background-emerald">
+
+									<h3 class="widget-content-light">
+										กระดานหน้าที่
+									</h3>
+								</div>
+								<div class="widget-extra-full">
+
+									<div class="table-responsive">
+										<table class="table table-vcenter table-striped">
+											<thead>
+												<tr>
+													<th style="width:80px">งาน</th>
+													<th style="width:50px">จำนวน</th>
+													<th class="text-center">รายชื่อ</th>
+												</tr>
+											</thead>
+											<tbody>
+												<?php $i = 0; ?>
+												@foreach($works as $work)
+												<tr>
+													<td class="text-center">{{$work->work_name}}</td>
+													<td class="text-center">{{count($pplonwork[$i])}}</td>
+													<td>
+														@foreach($pplonwork[$i] as $ppow)
+														<a href={{asset('person/'.$ppow->id)}}>{{$ppow->nickname}}{{'#'}}{{$ppow->year}}</a> | 
+														@endforeach
+													</td>
+												</tr>
+												<?php $i++; ?>
+												@endforeach
+											</tbody>
+										</table>
+									</div>
+
 								</div>
 							</div>
-							<div class="form-group col-xs-4" >
-                                            <label class="col-xs-4 control-label" for="example-select">ช่วงเวลา</label>
-                                            <div class="col-xs-8">
-                                                <select id="example-select" name="example-select" class="form-control" size="1" style=" height: 34px; ">
-                                                    <option value="morning">เช้า</option>
-                                                    <option value="afternoon">บ่าย</option>
-                                                    <option value="all">ทั้งวัน</option>
-                                                  	<option value="OT">โอที</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                            <div class="form-group col-xs-4">
-                            <button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-angle-right"></i> Go</button>
-                            </div>
-						</fieldset>
-					</form>
-				
+							<!-- END Your Plan Widget -->
+						</div>
+						<div class="col-xs-5">
+							<!-- Your Plan Widget -->
+							<div class="widget">
+								<div class="widget-extra themed-background-coral">
 
-	             
-	</div>
-	<div class="col-xs-7">
-		<!-- Your Plan Widget -->
-		<div class="widget">
-			<div class="widget-extra themed-background-emerald">
+									<h3 class="widget-content-light">
+										รายชื่อคนบนค่าย
+									</h3>
+								</div>
+								<div class="widget-extra-full">
+									<div class="table-responsive">
+										<table class="table table-vcenter table-striped table-bordered">
+											<thead>
+												<tr>
+													<th class="text-center" style="width:30px">ชั้นปี</th>
+													<th class="text-center">รายชื่อ</th>
+													<th style="width:70px" class="text-center">จำนวน</th>
+													<th style="width:70px" class="text-center">แมนเดย์</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td>SENIOR</td>
+													<td>
+														<?php $i = 0; 
+														$count_senior=0;
+														?>
+														@foreach($works as $work)
+														@foreach($pplonwork[$i] as $ppow)
+														@if($ppow->year==4) 
+														<a href={{asset('person/'.$ppow->id)}}>{{$ppow->nickname}}</a>
+														<?php $count_senior++; ?>
+														@endif
+														@endforeach
 
-				<h3 class="widget-content-light">
-					กระดานหน้าที่
-				</h3>
-			</div>
-			<div class="widget-extra-full">
+														<?php $i++; ?>
+														@endforeach
+													</td>
+													<td class="text-center" >{{$count_senior}}</td>
+													<td class="text-center">{{$senior_md}}</td>
+												</tr>
+												<tr>
+													<td>JUNIOR</td>
+													<td>
+														<?php $i = 0; 
+														$count_junior=0;
+														?>
+														@foreach($works as $work)
+														@foreach($pplonwork[$i] as $ppow)
+														@if($ppow->year==3) 
+														<a href={{asset('person/'.$ppow->id)}}>{{$ppow->nickname}}</a>
+														<?php $count_junior++; ?>
+														@endif
+														@endforeach
 
-				<div class="table-responsive">
-					<table class="table table-vcenter table-striped">
-						<thead>
-							<tr>
-								<th style="width:80px">งาน</th>
-								<th style="width:50px">จำนวน</th>
-								<th class="text-center">รายชื่อ</th>
-							</tr>
-						</thead>
-						<tbody>
-						<?php $i = 0; ?>
-						@foreach($works as $work)
-							<tr>
-								<td class="text-center">{{$work->work_name}}</td>
-								<td class="text-center">{{count($pplonwork[$i])}}</td>
-								<td>
-								@foreach($pplonwork[$i] as $ppow)
-										<a href={{asset('person/'.$ppow->id)}}>{{$ppow->nickname}}{{'#'}}{{$ppow->year}}</a> | 
-								@endforeach
-								</td>
-							</tr>
-						<?php $i++; ?>
-						@endforeach
-						</tbody>
-					</table>
-				</div>
+														<?php $i++; ?>
+														@endforeach
+													</td>
+													<td class="text-center">{{$count_junior}}</td>
+													<td class="text-center">{{$junior_md}}</td>
+												</tr>
+												<tr>
+													<td>MORE</td>
+													<td>
+														<?php $i = 0;
+														$count_more=0;
+														?>
+														@foreach($works as $work)
+														@foreach($pplonwork[$i] as $ppow)
+														@if($ppow->year==2) 
+														<a href={{asset('person/'.$ppow->id)}}>{{$ppow->nickname}}</a>
+														<?php $count_more++; ?>
+														@endif
+														@endforeach
 
-			</div>
-		</div>
-		<!-- END Your Plan Widget -->
-	</div>
-	<div class="col-xs-5">
-		<!-- Your Plan Widget -->
-		<div class="widget">
-			<div class="widget-extra themed-background-coral">
+														<?php $i++; ?>
+														@endforeach
+													</td>
+													<td class="text-center">{{$count_more}}</td>
+													<td class="text-center">{{$more_md}}</td>
+												</tr>
+												<tr>
+													<td>FRESHY</td>
+													<td>
+														<?php $i = 0; 
+														$count_freshy=0;
+														?>
+														@foreach($works as $work)
+														@foreach($pplonwork[$i] as $ppow)
+														@if($ppow->year==1) 
+														<a href={{asset('person/'.$ppow->id)}}>{{$ppow->nickname}}</a>
+														<?php $count_freshy++; ?>
+														@endif
+														@endforeach
 
-				<h3 class="widget-content-light">
-					รายชื่อคนบนค่าย
-				</h3>
-			</div>
-			<div class="widget-extra-full">
-				<div class="table-responsive">
-					<table class="table table-vcenter table-striped table-bordered">
-						<thead>
-							<tr>
-								<th class="text-center" style="width:30px">ชั้นปี</th>
-								<th class="text-center">รายชื่อ</th>
-								<th style="width:70px" class="text-center">จำนวน</th>
-								<th style="width:70px" class="text-center">แมนเดย์</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>SENIOR</td>
-								<td>
-									<?php $i = 0; 
-									$count_senior=0;
-									?>
-									@foreach($works as $work)
-											@foreach($pplonwork[$i] as $ppow)
-													 @if($ppow->year==4) 
-													 	<a href={{asset('person/'.$ppow->id)}}>{{$ppow->nickname}}</a>
-													 	<?php $count_senior++; ?>
-													 @endif
-											@endforeach
-										
-									<?php $i++; ?>
-									@endforeach
-								</td>
-								<td class="text-center" >{{$count_senior}}</td>
-								<td class="text-center">{{$senior_md}}</td>
-							</tr>
-							<tr>
-								<td>JUNIOR</td>
-								<td>
-									<?php $i = 0; 
-									$count_junior=0;
-									?>
-									@foreach($works as $work)
-											@foreach($pplonwork[$i] as $ppow)
-													 @if($ppow->year==3) 
-													 	<a href={{asset('person/'.$ppow->id)}}>{{$ppow->nickname}}</a>
-													 	<?php $count_junior++; ?>
-													 @endif
-											@endforeach
-										
-									<?php $i++; ?>
-									@endforeach
-								</td>
-								<td class="text-center">{{$count_junior}}</td>
-								<td class="text-center">{{$junior_md}}</td>
-							</tr>
-							<tr>
-								<td>MORE</td>
-								<td>
-									<?php $i = 0;
-									$count_more=0;
-									?>
-									@foreach($works as $work)
-											@foreach($pplonwork[$i] as $ppow)
-													 @if($ppow->year==2) 
-													 	<a href={{asset('person/'.$ppow->id)}}>{{$ppow->nickname}}</a>
-													 	<?php $count_more++; ?>
-													 @endif
-											@endforeach
-										
-									<?php $i++; ?>
-									@endforeach
-								</td>
-								<td class="text-center">{{$count_more}}</td>
-								<td class="text-center">{{$more_md}}</td>
-							</tr>
-							<tr>
-								<td>FRESHY</td>
-								<td>
-									<?php $i = 0; 
-									$count_freshy=0;
-									?>
-									@foreach($works as $work)
-											@foreach($pplonwork[$i] as $ppow)
-													 @if($ppow->year==1) 
-													 	<a href={{asset('person/'.$ppow->id)}}>{{$ppow->nickname}}</a>
-													 	<?php $count_freshy++; ?>
-													 @endif
-											@endforeach
-										
-									<?php $i++; ?>
-									@endforeach
-								</td>
-								<td class="text-center">{{$count_freshy}}</td>
-								<td class="text-center">{{$freshy_md}}</td>
-							</tr>
-							<tr>
-								<td><strong>รวม</strong></td>
-								<td></td>
-								<td class="text-center"><strong>{{$count_senior+$count_junior+$count_more+$count_freshy}}</strong></td>
-								<td class="text-center"><strong>{{$senior_md+$junior_md+$more_md+$freshy_md}}</strong></td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			</div>
-		</div>
-		<!-- END Your Plan Widget -->
-	</div>
+														<?php $i++; ?>
+														@endforeach
+													</td>
+													<td class="text-center">{{$count_freshy}}</td>
+													<td class="text-center">{{$freshy_md}}</td>
+												</tr>
+												<tr>
+													<td><strong>รวม</strong></td>
+													<td></td>
+													<td class="text-center"><strong>{{$count_senior+$count_junior+$count_more+$count_freshy}}</strong></td>
+													<td class="text-center"><strong>{{$senior_md+$junior_md+$more_md+$freshy_md}}</strong></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+							<!-- END Your Plan Widget -->
+						</div>
 					</div>
 				</div>
+			</div>
 		</div>
+
+
 	</div>
-	
-	
-</div>
 
 
-@stop
+	@stop

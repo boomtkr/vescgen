@@ -61,7 +61,7 @@
 								<div class="list-group remove-margin">
 							<a href="javascript:void(0)" class="list-group-item">
 									<span class="pull-right" id="count-people"><strong>1</strong></span>
-									<h4 class="list-group-item-heading remove-margin"><i class="gi gi-female"></i> จำนวนคน</h4>
+									<h4 class="list-group-item-heading remove-margin"><i class="gi gi-user"></i> จำนวนคน</h4>
 									<p class="list-group-item-text"></p>
 								</a>
 								</div>
