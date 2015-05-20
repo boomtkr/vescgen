@@ -25,7 +25,7 @@
 
 				<!-- Widget Main -->
 				<div class="widget-main">
-					<form>
+					{{Form::open(array('url'=>'jobmgt/randomdone'))}}
 					<div class="row">
 						<div class="col-xs-12">
 							<div class="progress progress-striped active">
@@ -101,14 +101,21 @@
 								</table>
 							</div>
 						</div>
+						<input type='hidden' name='user' value={{json_encode($user)}}></input> 
+						<input type='hidden' name='job' value={{json_encode($job)}}></input> 
+						<input type='hidden' name='seniors' value={{json_encode($seniors)}}></input> 
+						<input type='hidden' name='nonseniors' value={{json_encode($nonseniors)}}></input> 
+						<input type='hidden' name='timerecord' value={{json_encode($timerecord)}}></input> 
+						<input type='hidden' name='jobhis' value={{json_encode($jobhis)}}></input> 
+
 						<div class="col-xs-2">
-							<button id="submit-button" type="button" name='submit' class="btn btn-lg btn-success col-xs-9"><i class="fa fa-angle-right"></i> ยืนยัน</button>	
-							{{-- <a href={{asset('/jobmgt/editworkresult')}}><button id="submit-button" type="button" name='submit' class="btn btn-lg btn-warning col-xs-9"><i class="fa fa-angle-right"></i> แก้ไข</button></a> --}}
+							<input id="submit-button" type="submit" name='submit' class="btn btn-lg btn-success col-xs-9"><i class="fa fa-angle-right"></i> ยืนยัน</button>	
+							<!-- {{-- <a href={{asset('/jobmgt/editworkresult')}}><button id="submit-button" type="button" name='submit' class="btn btn-lg btn-warning col-xs-9"><i class="fa fa-angle-right"></i> แก้ไข</button></a> --}} -->
 							<a href="#"><button id="submit-button" type="button" name='submit' class="btn btn-lg btn-default col-xs-9"><i class="fa fa-angle-right"></i> แรนด้อมใหม่</button></a>
 
 						</div>
 					</div>
-					</form>
+					{{Form::close()}}
 					<!-- END Advanced Theme Color Widget Alternative -->
 				</div>
 

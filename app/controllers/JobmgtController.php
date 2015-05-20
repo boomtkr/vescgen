@@ -37,14 +37,14 @@ class JobmgtController extends BaseController {
 			if($okay == 1){
 				$oncamp = new OnCamp;
 				$oncamp->date = $date;
-				$oncamp->person_id = $pl->id;
+				$oncamp->person_id = $pl->person_id;
 				$oncamp->save();
 			}
 		}
 		foreach($incoming_people as $ip){
 			$oncamp = new OnCamp;
 			$oncamp->date = $date;
-			$oncamp->person_id = $ip->id;
+			$oncamp->person_id = $ip->person_id;
 			$oncamp->save();
 		}
 	}
@@ -172,6 +172,17 @@ class JobmgtController extends BaseController {
 		if($timerecord->date > $today){
 			Self::clearlastpploncamp($today, $timerecord->date, $timerecord->time);
 			Self::calculatepploncamp($today, $timerecord->date, $timerecord->time);
+		}
+
+		else if($timerecord->date == PludDate::first()->date){
+			$affected = OnCamp::where('date','=',PludDate::first()->date)->delete();
+			$incoming_list = MandayHistory::where('date_in','=',$timerecord->date)->get();
+			foreach($incoming_list as $il){
+				$oncamp = new OnCamp;
+				$oncamp->date = $timerecord->date;
+				$oncamp->person_id = $il->person_id;
+				$oncamp->save();
+			}
 		}
 
 		$worklist = Work::all();
@@ -507,6 +518,13 @@ class JobmgtController extends BaseController {
 			}
 		}
 
+		for($i=0; $i<count($job); $i++){
+			usort($nonseniors[$i], function($a, $b)
+			{
+			    return strcmp($a->year, $b->year) * -1;
+			});
+		}	
+
 		// for($i=0; $i<count($job); $i++){
 		// 	echo $job[$i]." ".$user[$i]." ";
 		// 	foreach($seniors[$i] as $ns){
@@ -535,6 +553,49 @@ class JobmgtController extends BaseController {
 										      ->with('nonseniors',$nonseniors);
 
 		
+	}
+
+	public static function savedata(){
+		$s_user = Input::get('user');
+		$s_job = Input::get('job');
+		$s_female = Input::get('female');
+		$s_seniors = Input::get('senior');
+		$s_nonseniors = Input::get('nonseniors');
+		$s_jobhis = Input::get('jobhis');
+		$s_timerecord = Input::get('timerecord');
+
+		$user = json_decode($s_user);
+		$job = json_decode($s_job);
+		$timerecord = json_decode($s_timerecord);
+		$jobhis = json_decode($s_jobhis);
+		$seniors = json_decode($s_seniors);
+		$nonseniors = json_decode($s_nonseniors);
+
+		$today = Time::select('date')->first()->date;
+		$thistoday = str_replace('-', '/', $today);
+		$tomorrow = date('Y-m-d',strtotime($thistoday . "+1 days"));
+		$date = $today;
+		$exdate = explode("-", $date);
+		$year = (int)$exdate[0] + 543;
+		$day = (int)$exdate[2];
+		$month = Self::getmonthname((int)$exdate[1]);
+		$thmanday = PludDate::where('date','=',$date)->first()->id;
+		$weekday = Array('Monday'=>'จันทร์', 'Tuesday'=>'อังคาร', 'Wednesday'=>'พุธ',
+						 'Thursday'=>'พฤหัสบดี', 'Friday'=>'ศุกร์', 'Saturday'=>'เสาร์',
+						 'Sunday'=>'อาทิตย์');
+		$tdate = date("l",strtotime($date));
+		$latestdate = Time::select('date')->first()->date;
+		$latesttime = Time::select('time')->first()->time;
+		$currentplud = self::findcurrentplud($latestdate);
+
+		return View::make('home/jobmgtdone')->with('day',$day)
+										   	  ->with('weekday',$weekday[$tdate])
+										      ->with('month',$month)
+										      ->with('year',$year)
+										      ->with('thmanday',$thmanday)
+											  ->with('currentplud',$currentplud)
+										      ->with('today',$today)
+									   	      ->with('tomorrow',$tomorrow);
 	}
 
 }

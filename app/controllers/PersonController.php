@@ -22,7 +22,6 @@ class PersonController extends BaseController {
 		$citizen_id = Input::get('citizen_id');
 		$phone = Input::get('phone');
 		$str_lvl = Input::get('str_lvl');
-		$birthday = Input::get('birthday');
 
 		$person = Person::find($id);
 		if($person->first_name != $first_name){
@@ -51,9 +50,6 @@ class PersonController extends BaseController {
 		}
 		if($person->citizen_id != $citizen_id){
 			$person->citizen_id = $citizen_id;
-		}
-		if($person->birthday != $birthday){
-			$person->birthday = $birthday;
 		}
 		if($person->phone != $phone){
 			$person->phone = $phone;

@@ -37,7 +37,7 @@ class AllnameController extends BaseController {
 		$latestdate = Time::select('date')->first()->date;
 		$latesttime = Time::select('time')->first()->time;
 		$currentplud = self::findcurrentplud($latestdate);
-		$users = Person::orderBy('year','ASC')->get();
+		$users = Person::orderBy('year','DSC')->get();
 		$user_count = Person::all()->count();
 		$female_count = Person::where('gender','=','F')->count();
 		$male_count = Person::where('gender','=','M')->count();
