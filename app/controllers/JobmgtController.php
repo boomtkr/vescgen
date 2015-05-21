@@ -394,20 +394,20 @@ class JobmgtController extends BaseController {
 
 
 		$tmpnonseniors_girl = array();
-		for($k=0;$k<3;$k++){
+		for($k=0;$k<10;$k++){
 			$tmpnonseniors_girl[$k] = array();
 			for($i=0;$i<count($job);$i++){
 				$tmpnonseniors_girl[$k][$i] = array();
 			}
 		}
 		$tmpgirls = array();
-		for($i=0;$i<3;$i++){
+		for($i=0;$i<10;$i++){
 			$tmpgirls[$i]=array();
 			$tmpgirls[$i]=$girls;
 		}
 
 		$fitness = array();
-		for($k=0; $k<3; $k++){
+		for($k=0; $k<10; $k++){
 			$total_fvalue = 0;
 			$divider = 0;
 			$x = 0;
@@ -434,7 +434,7 @@ class JobmgtController extends BaseController {
 		if(count($fitness)>0){
 			$maxfitness = max($fitness);
 			$girlfitness = $maxfitness;
-				for($k=0; $k<3; $k++){
+				for($k=0; $k<10; $k++){
 					if($fitness[$k] == $maxfitness){
 						$girl_index = $k;
 						break;
@@ -467,22 +467,20 @@ class JobmgtController extends BaseController {
 		}
 
 		$tmpnonseniors_men = array();
-		for($k=0;$k<3;$k++){
+		for($k=0;$k<10;$k++){
 			$tmpnonseniors_men[$k] = array();
 			for($i=0;$i<count($job);$i++){
 				$tmpnonseniors_men[$k][$i] = array();
 			}
 		}
 		$tmpmens = array();
-		for($i=0;$i<3;$i++){
+		for($i=0;$i<10;$i++){
 			$tmpmens[$i]=array();
 			$tmpmens[$i]=$mens;
 		}
 
-
-
 		$fitness = array();
-		for($k=0; $k<3; $k++){
+		for($k=0; $k<10; $k++){
 			$total_fvalue = 0;
 			$divider = 0;
 			$x = 0;
@@ -510,13 +508,14 @@ class JobmgtController extends BaseController {
 		if(count($fitness)>0){
 			$maxfitness = max($fitness);
 			$menfitness = $maxfitness;
-			for($k=0; $k<3; $k++){
+			for($k=0; $k<10; $k++){
 				if($fitness[$k] == $maxfitness){
 					$men_index = $k;	
 					break;
 				}
 			}
 		}
+
 
 		for($i=0; $i<count($job); $i++){
 			if(count($girls) > 0){
@@ -594,16 +593,17 @@ class JobmgtController extends BaseController {
 				$mh->save();
 			}
 		}
-		
+
+
 		if($date != $lastdate){
 			for($i=0; $i<count($job); $i++){
 				foreach($seniors[$i] as $s){
-					$person = Person::find($seniors[$i]->id);
+					$person = Person::find($s->id);
 					$person->total_manday += 1;
 					$person->save();
 				}
 				foreach($nonseniors[$i] as $s){
-					$person = Person::find($nonseniors[$i]->id);
+					$person = Person::find($s->id);
 					$person->total_manday += 1;
 					$person->save();
 				}

@@ -42,7 +42,6 @@
 									<select id="example-select" name="date" class="form-control" size="1" style=" height: 34px; ">
 										<option value={{$today}}>{{$today}}</option>
 										<option value={{$tomorrow}}>{{$tomorrow}}</option>
-										
 									</select>
 								</div>
 							</div>
