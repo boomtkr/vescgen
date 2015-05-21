@@ -219,10 +219,6 @@
         {{-- // <script src="js/pages/index.js"></script> --}}
         {{ HTML::script('proui/js/pages/index.js'); }}
         <script>$(function(){ Index.init(); });</script>
-        <script type="text/javascript">
-        $('.test li').click(function(){
-            alert();
-        });
-        </script>
+       
     </body>
 </html> 
