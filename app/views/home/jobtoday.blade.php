@@ -31,7 +31,7 @@
 					<div class="row">
 						<div class="col-xs-12">
 
-							<form action="#" method="post" class="form-horizontal form-bordered" onsubmit="return false;" style=" margin-top: 0px; ">
+							{{-- <form action="#" method="post" class="form-horizontal form-bordered" onsubmit="return false;" style=" margin-top: 0px; ">
 								<fieldset>
 									<div class="form-group col-xs-4">
 									<h4 class="col-xs-4 control-label" for="example-datepicker" style=" margin-top: 2px; "><strong>วันที่</strong></h4>
@@ -54,7 +54,7 @@
 										<button type="submit" class="btn btn-sm btn-primary"><i class="fa fa-angle-right"></i> Go</button>
 									</div>
 								</fieldset>
-							</form>
+							</form> --}}
 
 
 
@@ -80,6 +80,7 @@
 												</tr>
 											</thead>
 											<tbody>
+
 												<?php $i = 0; ?>
 												@foreach($works as $work)
 												<tr>
