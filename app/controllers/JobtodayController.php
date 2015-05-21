@@ -23,6 +23,7 @@ class JobtodayController extends BaseController {
 
 	public static function getpeopleonwork($works, $date, $time){
 		$i = 0;
+		$peopleonwork = array();
 		foreach($works as $work){
 			$peopleonwork[$i] = DB::table('job_history')->where('date','=',$date)
 							->join('person','person.id','=','job_history.person_id')
@@ -78,7 +79,8 @@ class JobtodayController extends BaseController {
 
 		$ppllist = Person::all();
 		foreach($ppllist as $p){
-			$count = Oncamp::where('person_id','=',$p->id)->count();
+			$count = Oncamp::where('person_id','=',$p->id)->
+							where('date','<=',$date)->count();
 			if($p->year == 4){
 				$senior_md += $count;
 			}

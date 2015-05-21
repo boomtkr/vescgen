@@ -43,7 +43,6 @@
 										<option>เลือกวันที่</option>
 										<option value={{$today}}>{{$today}}</option>
 										<option value={{$tomorrow}}>{{$tomorrow}}</option>
-										
 									</select>
 								</div>
 							</div>
