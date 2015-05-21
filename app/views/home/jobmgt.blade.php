@@ -125,9 +125,7 @@
 					$('#time-select option').each(function(){
 						$(this).remove();
 					});
-
 					$('#time-select').append("<option>เลือกช่วงเวลา</option><option value='morning'>เช้า</option><option value='afternoon'>บ่าย</option><option value='OT'>โอที</option>");
-
 			}
 		
 	}
